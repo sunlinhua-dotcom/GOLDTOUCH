@@ -127,12 +127,8 @@ export async function generateStockReportAI(stock: StockInfo): Promise<string> {
 
     // Calculate precise dates
     const today = new Date();
-    const shortTermDate = new Date(today);
-    shortTermDate.setMonth(today.getMonth() + 3);
     const longTermDate = new Date(today);
     longTermDate.setFullYear(today.getFullYear() + 1);
-
-    const formatDate = (d: Date) => d.toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, "-");
 
     // 1. 系统指令 (极致中文化，不给模型留任何英文锚点)
     const systemInstruction = `
@@ -173,22 +169,30 @@ export async function generateStockReportAI(stock: StockInfo): Promise<string> {
 `;
 
     // 2. 这里的 prompt 也要把后缀去掉，防止 AI 看到 .HK 就想飚英语
-    const stockCodeOnly = stock.code.split('.')[0];
     const marketName = stock.code.includes('HK') ? '港股' : stock.code.includes('US') ? '美股' : 'A股';
 
     const prompt = `
-情报：
-名字：${stock.name}
-市场：${marketName}
-现价：${stock.price}
-涨跌：${stock.change}
-消息：${newsContext}
+行情数据：
+- 名字：${stock.name}
+- 市场：${marketName}
+- 现价：${stock.price}
+- 涨跌：${stock.change}
+- 消息：${newsContext}
 
-乘客想听你白话。记住了，你一个外文字儿都不认识，全出大白话中文。
+乘客想听你白话几句。记住了：
+1。你是个胡同老炮，一句孙子（英语）都不会说。
+2。所有的名字都得说中文，比如“阿里巴巴”不能说英文。
+3。绝对禁止输出任何英文字母。
+4。直接按模板输出，别废话。
+
+如果你敢蹦出一个英文字儿，这趟车钱我就不给你了！立刻开始全中文输出。
 `;
 
+    console.log(`[AI REQUEST] Generating report for ${stock.name}...`);
     try {
         const text = await generateContent(prompt, systemInstruction);
+        console.log(`[AI RESPONSE] Length: ${text.length} chars. Snippet: ${text.substring(0, 100)}`);
+
 
         // Save to DB if user is logged in
         if (userId) {

@@ -43,6 +43,8 @@ export async function generateContent(prompt: string, systemInstruction?: string
             body: JSON.stringify(payload)
         });
 
+        console.log(`[GEMINI REQUEST] Payload built with systemInstruction: ${!!systemInstruction}`);
+
         if (!response.ok) {
             const errorText = await response.text();
             console.error("Gemini API Error:", response.status, errorText);
