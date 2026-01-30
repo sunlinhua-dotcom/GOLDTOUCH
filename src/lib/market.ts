@@ -33,8 +33,18 @@ export async function searchStocks(query: string): Promise<SearchResult[]> {
     // 1. Define Fetchers
     const fetchTencent = async (): Promise<SearchResult[]> => {
         try {
-            const res = await fetch(`http://smartbox.gtimg.cn/s3/?t=all&q=${encodeURIComponent(query)}`, { cache: 'no-store' });
+            const url = `https://smartbox.gtimg.cn/s3/?t=all&q=${encodeURIComponent(query)}`;
+            const res = await fetch(url, {
+                cache: 'no-store',
+                headers: { "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" }
+            });
             const text = await res.text();
+
+            if (!res.ok) {
+                console.error(`[Search] Tencent API failed with status ${res.status}: ${text.substring(0, 100)}`);
+                return [];
+            }
+
             const match = text.match(/"([^"]*)"/);
             if (!match || !match[1] || match[1] === "N") return [];
 
@@ -57,7 +67,7 @@ export async function searchStocks(query: string): Promise<SearchResult[]> {
                 return { name, code: `${code}.${normalizedMarket}`, market: normalizedMarket };
             }).filter(item => item !== null) as SearchResult[];
         } catch (e) {
-            console.error("Tencent Search Error:", e);
+            console.error("Tencent Search Fatal Error:", e);
             return [];
         }
     };
@@ -133,11 +143,11 @@ export async function getStockQuote(fullCode: string): Promise<StockQuote | null
     const queryCode = `${marketPrefix}${cleanCode}`;
 
     try {
-        const res = await fetch(`http://qt.gtimg.cn/q=${queryCode}`, {
+        const url = `https://qt.gtimg.cn/q=${queryCode}`;
+        const res = await fetch(url, {
             cache: 'no-store',
             headers: {
-                // Sometimes standard headers help avoid blocking, though qt is very open
-                "User-Agent": "Mozilla/5.0"
+                "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
             }
         });
         // Response: v_hk00700="51~腾讯控股~385.200~382.600~386.000~..."
