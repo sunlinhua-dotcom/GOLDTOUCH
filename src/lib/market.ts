@@ -15,60 +15,105 @@ export interface SearchResult {
     market: string;
 }
 
-// Tencent Smartbox API for Search
-// URL: http://smartbox.gtimg.cn/s3/?t=all&q={query}
+// Hybrid Search: Tencent Smartbox (Better for HK/US/Ranking) + Sina Suggest (Essential for BJ)
 export async function searchStocks(query: string): Promise<SearchResult[]> {
-    try {
-        const res = await fetch(`http://smartbox.gtimg.cn/s3/?t=all&q=${encodeURIComponent(query)}`, {
-            cache: 'no-store'
-        });
-        // Response is like: v_hint="1~00700~腾讯控股~txkg~HK~GP-HK~1";
-        const text = await res.text();
+    const results: SearchResult[] = [];
+    const seenCodes = new Set<string>();
 
-        // Extract content inside quotes
-        const match = text.match(/"([^"]*)"/);
-        if (!match || !match[1] || match[1] === "N") return [];
-
-        const lines = match[1].split("^");
-        const results: SearchResult[] = [];
-
-        for (const line of lines) {
-            const parts = line.split("~");
-            // parts[0] is market type (us, hk, sh, sz etc)
-            // parts[1] is code
-            // parts[2] is name
-            // parts[3] is pinyin
-            if (parts.length < 3) continue;
-
-            let [market, code, name] = [parts[0], parts[1], parts[2]];
-
-            // Normalize Market & Code
-            let normalizedMarket = "";
-            if (market === "hk") normalizedMarket = "HK";
-            else if (market === "us") normalizedMarket = "US";
-            else if (market === "sh") normalizedMarket = "SH";
-            else if (market === "sz") normalizedMarket = "SZ";
-            else if (market === "bj") normalizedMarket = "BJ"; // Tencent might group BJ in sh/sz sometimes, need verification
-
-            if (!normalizedMarket) continue;
-
-            // Format Code: 00700 -> 00700.HK
-            const formattedCode = `${code}.${normalizedMarket}`;
-
-            results.push({
-                name,
-                code: formattedCode,
-                market: normalizedMarket
-            });
-
-            if (results.length >= 5) break;
+    // Helper to add results with deduplication
+    const addResults = (items: SearchResult[]) => {
+        for (const item of items) {
+            if (!seenCodes.has(item.code)) {
+                seenCodes.add(item.code);
+                results.push(item);
+            }
         }
+    };
 
-        return results;
-    } catch (error) {
-        console.error("Smartbox Search Error:", error);
-        return [];
-    }
+    // 1. Define Fetchers
+    const fetchTencent = async (): Promise<SearchResult[]> => {
+        try {
+            const res = await fetch(`http://smartbox.gtimg.cn/s3/?t=all&q=${encodeURIComponent(query)}`, { cache: 'no-store' });
+            const text = await res.text();
+            const match = text.match(/"([^"]*)"/);
+            if (!match || !match[1] || match[1] === "N") return [];
+
+            return match[1].split("^").map(line => {
+                const parts = line.split("~");
+                if (parts.length < 3) return null;
+                let [market, code, name] = [parts[0], parts[1], parts[2]];
+
+                // Fix Unicode
+                try { name = JSON.parse(`"${name}"`); } catch (e) { }
+
+                let normalizedMarket = "";
+                if (market === "hk") normalizedMarket = "HK";
+                else if (market === "us") normalizedMarket = "US";
+                else if (market === "sh") normalizedMarket = "SH";
+                else if (market === "sz") normalizedMarket = "SZ";
+                else if (market === "bj") normalizedMarket = "BJ";
+
+                if (!normalizedMarket) return null;
+                return { name, code: `${code}.${normalizedMarket}`, market: normalizedMarket };
+            }).filter(item => item !== null) as SearchResult[];
+        } catch (e) {
+            console.error("Tencent Search Error:", e);
+            return [];
+        }
+    };
+
+    const fetchSina = async (): Promise<SearchResult[]> => {
+        try {
+            const res = await fetch(`https://suggest3.sinajs.cn/suggest/type=&key=${encodeURIComponent(query)}`, {
+                cache: 'no-store',
+                headers: { "User-Agent": "Mozilla/5.0" }
+            });
+            const buffer = await res.arrayBuffer();
+            const decoder = new TextDecoder("gbk");
+            const text = decoder.decode(buffer);
+            const match = text.match(/"([^"]*)"/);
+            if (!match || !match[1]) return [];
+
+            return match[1].split(";").map(line => {
+                const parts = line.split(",");
+                if (parts.length < 5) return null;
+                const type = parts[1];
+                const code = parts[2];
+                const marketCode = parts[3];
+                const name = parts[4];
+
+                // Prioritize BJ here, others might be duplicates of Tencent
+                // 11=A, 31=HK, 41=US
+                if (!["11", "31", "41"].includes(type) && !marketCode.startsWith("bj")) return null;
+
+                let normalizedMarket = "";
+                let cleanCode = code;
+
+                if (marketCode.startsWith("sh")) normalizedMarket = "SH";
+                else if (marketCode.startsWith("sz")) normalizedMarket = "SZ";
+                else if (marketCode.startsWith("bj")) normalizedMarket = "BJ";
+                else if (marketCode.startsWith("hk")) normalizedMarket = "HK";
+                else if (marketCode.startsWith("us")) normalizedMarket = "US";
+                if (!normalizedMarket && type === "41") normalizedMarket = "US";
+
+                if (!normalizedMarket) return null;
+                return { name, code: `${cleanCode}.${normalizedMarket}`, market: normalizedMarket };
+            }).filter(item => item !== null) as SearchResult[];
+        } catch (e) {
+            console.error("Sina Search Error:", e);
+            return [];
+        }
+    };
+
+    // 2. Execute in Parallel
+    const [tencentResults, sinaResults] = await Promise.all([fetchTencent(), fetchSina()]);
+
+    // 3. Merge: Prioritize Tencent results (better quality/rank usually), append Sina (covers BJ)
+    addResults(tencentResults);
+    addResults(sinaResults);
+
+    // Limit total
+    return results.slice(0, 10);
 }
 
 // Tencent Qt API for Quotes
@@ -80,7 +125,12 @@ export async function getStockQuote(fullCode: string): Promise<StockQuote | null
     if (!code || !market) return null;
 
     const marketPrefix = market.toLowerCase();
-    const queryCode = `${marketPrefix}${code}`;
+    // Clean code for US: strip suffixes like .n, .oq, etc.
+    let cleanCode = code.toUpperCase();
+    if (marketPrefix === "us") {
+        cleanCode = cleanCode.split(".")[0];
+    }
+    const queryCode = `${marketPrefix}${cleanCode}`;
 
     try {
         const res = await fetch(`http://qt.gtimg.cn/q=${queryCode}`, {
@@ -129,6 +179,85 @@ export async function getStockQuote(fullCode: string): Promise<StockQuote | null
 
     } catch (error) {
         console.error("Quote Fetch Error:", error);
+        return null;
+    }
+}
+
+// Helper to map our code format to EastMoney SecID
+// 00700.HK -> 116.00700
+// 600519.SH -> 1.600519
+// 000001.SZ -> 0.000001
+function mapToSecId(formattedCode: string): string | null {
+    const [code, market] = formattedCode.split(".");
+    if (!code || !market) return null;
+
+    // Ensure code is uppercase (important for US tickers if secid heavily relies on string match)
+    const upperCode = code.toUpperCase();
+
+    if (market === "HK") return `116.${upperCode}`;
+    if (market === "SH") return `1.${upperCode}`;
+    if (market === "SZ") return `0.${upperCode}`;
+    if (market === "US") return `105.${upperCode}`; // Rough guess for US, might need search
+    // BJ? 
+    if (market === "BJ") return `0.${code}`; // Often same as SZ/SH internal logic in some APIs, strictly 0 or 1.
+
+    return null;
+}
+
+export interface FundamentalData {
+    pe_ttm: string; // 市盈率
+    pb: string;      // 市净率
+    total_market_cap: string; // 总市值
+    gross_profit_margin: string; // 毛利率 (mock or fetch)
+    main_force_inflow: string; // 主力净流入
+}
+
+export async function fetchStockFundamentals(fullCode: string): Promise<FundamentalData | null> {
+    const secId = mapToSecId(fullCode);
+    if (!secId) return null;
+
+    // EastMoney Fields: 
+    // f162: PE (Static/TTM?) (Verified for A-share/BJ)
+    // f164: PE (Dynamic/TTM?) (Verified for HK)
+    // f167: PB (Verified)
+    // f116: Total Market Cap (Verified)
+    // f135: Main Force Net Inflow (Today) (Verified)
+
+    // URL for snapshot Data
+    const url = `https://push2.eastmoney.com/api/qt/stock/get?invt=2&fltt=2&fields=f162,f164,f167,f116,f135&secid=${secId}`;
+
+    try {
+        const res = await fetch(url, { headers: { "Referer": "https://eastmoney.com" }, next: { revalidate: 60 } });
+        const json = await res.json();
+        const data = json.data;
+
+        if (!data) return null;
+
+        // Convert large numbers
+        const cleanNumber = (num: number) => {
+            if (!num) return "--";
+            if (typeof num === "string" && (num as string) === "-") return "--";
+
+            if (num > 100000000) return (num / 100000000).toFixed(2) + "亿";
+            if (num > 10000) return (num / 10000).toFixed(2) + "万";
+            return num.toString();
+        };
+
+        const pe = (!data.f162 || data.f162 === "-") ? (data.f164 || "亏损") : data.f162;
+        const pb = data.f167;
+        const mcap = cleanNumber(data.f116);
+        const inflow = cleanNumber(data.f135);
+
+        return {
+            pe_ttm: pe === "-" ? "亏损" : pe,
+            pb: pb,
+            total_market_cap: mcap,
+            gross_profit_margin: "--", // Not available in this endpoint yet
+            main_force_inflow: inflow
+        };
+
+    } catch (e) {
+        console.error("Fundamentall Fetch Error:", e);
         return null;
     }
 }

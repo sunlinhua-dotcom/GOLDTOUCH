@@ -2,7 +2,7 @@
 
 import { useState, KeyboardEvent, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { identifyStock, searchStocksAction } from "@/app/actions/stock"; // Import new action
+import { identifyStock, searchStocksAction } from "@/app/actions/stock";
 import styles from "@/app/page.module.css";
 import { SearchResult } from "@/lib/market";
 
@@ -14,6 +14,14 @@ export default function SearchInput() {
 
     const router = useRouter();
     const wrapperRef = useRef<HTMLDivElement>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    // Focus on mount (Client Side Only) to avoid SSR Mismatch
+    useEffect(() => {
+        if (inputRef.current) {
+            inputRef.current.focus();
+        }
+    }, []);
 
     // Debounce Search Logic
     useEffect(() => {
@@ -80,6 +88,7 @@ export default function SearchInput() {
     return (
         <div className={styles.searchWrapper} ref={wrapperRef}>
             <input
+                ref={inputRef}
                 type="text"
                 className={styles.searchInput}
                 placeholder={loading ? "AI 正在识别..." : "输入股票代码 / 简称..."}
@@ -88,7 +97,8 @@ export default function SearchInput() {
                 onKeyDown={handleKeyDown}
                 disabled={loading}
                 onFocus={() => { if (suggestions.length > 0) setShowDropdown(true); }}
-                autoFocus
+                autoComplete="off"
+                suppressHydrationWarning={true}
             />
 
             {/* Suggestions Dropdown */}
@@ -109,4 +119,3 @@ export default function SearchInput() {
         </div>
     );
 }
-

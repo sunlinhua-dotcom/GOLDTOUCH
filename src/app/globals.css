@@ -1,16 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   /* Premium Dark Theme Palette */
-  --bg-deep: #050511;       /* Midnight Blue/Black */
-  --bg-card: #121226;       /* Slightly lighter card bg */
-  
+  --bg-deep: #050511;
+  /* Midnight Blue/Black */
+  --bg-card: #121226;
+  /* Slightly lighter card bg */
+
   --text-primary: #ffffff;
   --text-secondary: #a0a0b0;
-  
-  --accent-gold: #F4D03F;   /* Luxury Gold */
-  --accent-blue: #3498db;   /* Technology Blue (for AI vibes) */
-  --accent-red: #ff4d4f;    /* Stock Up */
-  --accent-green: #27c25b;  /* Stock Down (CN Market) */
-  
+
+  --accent-gold: #F4D03F;
+  /* Luxury Gold */
+  --accent-blue: #3498db;
+  /* Technology Blue (for AI vibes) */
+  --accent-red: #ff4d4f;
+  /* Stock Up */
+  --accent-green: #27c25b;
+  /* Stock Down (CN Market) */
+
   /* Glassmorphism */
   --glass-bg: rgba(255, 255, 255, 0.05);
   --glass-border: rgba(255, 255, 255, 0.1);
@@ -35,8 +45,25 @@ body {
 }
 
 /* Utilities */
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: .5;
+  }
+}
+
 .container {
-  max-width: 600px; /* Mobile focused max width */
+  max-width: 600px;
+  /* Mobile focused max width */
   margin: 0 auto;
   min-height: 100vh;
   position: relative;

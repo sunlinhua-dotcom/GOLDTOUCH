@@ -12,13 +12,14 @@ datasource db {
 
 model User {
   id            String   @id @default(cuid())
-  phone         String?  @unique
+  phone         String   @unique
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
   
-  // Free quota logic: Check if orders > 0 or specific logic. 
-  // Requirement: "Everyone gets 1 free analysis".
-  freeQuotaUsed Boolean  @default(false)
+  // Quota & VIP
+  freeQuotaUsed Int      @default(0) // 0 or 1
+  isVip         Boolean  @default(false)
+  vipExpireDate DateTime?
   
   orders        Order[]
   reports       AnalysisReport[]

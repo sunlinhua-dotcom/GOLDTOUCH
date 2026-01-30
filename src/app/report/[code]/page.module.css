@@ -18,12 +18,73 @@
 }
 
 .pulsingIcon {
-    width: 60px;
-    height: 60px;
-    background: radial-gradient(circle, var(--accent-blue) 0%, transparent 70%);
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-    margin-bottom: 2rem;
+    /* Deprecated or kept for fallback */
+    display: none;
+}
+
+.progressWrapper {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.progressContainer {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progressBar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-gold));
+    border-radius: 2px;
+    transition: width 0.2s ease-out;
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+    position: relative;
+}
+
+.progressBar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.4),
+            transparent);
+    transform: translateX(-100%);
+    animation: shimmer 1.5s infinite;
+}
+
+.progressText {
+    position: absolute;
+    right: 0;
+    top: -24px;
+    font-size: 0.8rem;
+    font-family: 'JetBrains Mono', monospace;
+    /* Use monospace for "precise" feel */
+    color: var(--accent-gold);
+    font-weight: 600;
+}
+
+.progressLabel {
+    position: absolute;
+    left: 0;
+    top: -24px;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+@keyframes shimmer {
+    100% {
+        transform: translateX(100%);
+    }
 }
 
 .loadingText {
@@ -196,4 +257,83 @@
     font-weight: 600;
     border: 1px solid var(--accent-gold);
     cursor: pointer;
+}
+
+/* Full Page Paywall for Quota Exhausted */
+.fullPaywall {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 2rem;
+    margin-top: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+}
+
+.paywallIcon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    filter: drop-shadow(0 0 10px var(--accent-gold));
+}
+
+.paywallDesc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+}
+
+.paywallOptions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+.paywallCard {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+.paywallCard:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.cardFeatured {
+    border: 1px solid var(--accent-gold);
+    background: linear-gradient(135deg, rgba(244, 208, 63, 0.05) 0%, transparent 100%);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.cardHeader {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.cardPrice {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1.5rem;
+}
+
+.paywallCard button {
+    width: 100%;
+}
+
+@media (max-width: 480px) {
+    .paywallOptions {
+        grid-template-columns: 1fr;
+    }
 }

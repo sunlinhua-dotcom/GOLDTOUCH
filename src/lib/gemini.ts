@@ -2,7 +2,7 @@ const apiKey = process.env.GEMINI_API_KEY;
 const baseUrl = process.env.GEMINI_BASE_URL || "https://generativelanguage.googleapis.com/v1beta";
 const modelName = process.env.GEMINI_MODEL || "gemini-1.5-pro";
 
-export async function generateContent(prompt: string): Promise<string> {
+export async function generateContent(prompt: string, systemInstruction?: string): Promise<string> {
     if (!apiKey) {
         throw new Error("Gemini API Key not set");
     }
@@ -10,16 +10,28 @@ export async function generateContent(prompt: string): Promise<string> {
     const url = `${baseUrl}/models/${modelName}:generateContent?key=${apiKey}`;
 
     try {
+        const payload: any = {
+            contents: [{
+                parts: [{ text: prompt }]
+            }],
+            generationConfig: {
+                temperature: 0.2,
+                maxOutputTokens: 8192,
+            }
+        };
+
+        if (systemInstruction) {
+            payload.system_instruction = {
+                parts: [{ text: systemInstruction }]
+            };
+        }
+
         const response = await fetch(url, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-                contents: [{
-                    parts: [{ text: prompt }]
-                }]
-            })
+            body: JSON.stringify(payload)
         });
 
         if (!response.ok) {

@@ -32,3 +32,10 @@ export async function identifyStock(query: string): Promise<StockData | null> {
 export async function fetchRealTimeQuote(code: string): Promise<StockQuote | null> {
     return await getStockQuote(code);
 }
+
+import { fetchStockFundamentals, FundamentalData } from "@/lib/market";
+
+export async function getDeepInsightsAction(code: string): Promise<FundamentalData | null> {
+    const data = await fetchStockFundamentals(code);
+    return data;
+}
