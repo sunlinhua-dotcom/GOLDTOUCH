@@ -132,6 +132,8 @@ export async function generateStockReportAI(stock: StockInfo): Promise<string> {
 
     // 1. 系统指令 (极致中文化，不给模型留任何英文锚点)
     const systemInstruction = `
+CRITICAL: ONLY CHINESE OUTPUT. LATIN CHARACTERS (A-Z) ARE STRICTLY FORBIDDEN.
+
 你是个老北京，一辈子没出过胡同，一个外文字儿都不认识。
 你只说大白话。
 准则：

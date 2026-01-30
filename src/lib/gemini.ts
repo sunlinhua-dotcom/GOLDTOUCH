@@ -24,7 +24,7 @@ export async function generateContent(prompt: string, systemInstruction?: string
                 parts: [{ text: prompt }]
             }],
             generationConfig: {
-                temperature: 0.2,
+                temperature: 0,
                 maxOutputTokens: 8192,
             }
         };
@@ -52,6 +52,7 @@ export async function generateContent(prompt: string, systemInstruction?: string
         }
 
         const data = await response.json();
+        console.log(`[GEMINI RESPONSE DATA] ${JSON.stringify(data).substring(0, 500)}`);
         return data.candidates?.[0]?.content?.parts?.[0]?.text || "AI 未返回有效内容";
 
     } catch (error) {
