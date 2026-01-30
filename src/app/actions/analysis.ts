@@ -220,7 +220,14 @@ export async function generateStockReportAI(stock: StockInfo): Promise<string> {
     }
 }
 
-export async function generateDeepInsightAI(stock: StockInfo, fundamentals: any): Promise<string> {
+interface StockFundamentals {
+    pe_ttm: string | number;
+    pb: string | number;
+    main_force_inflow: string | number;
+    total_market_cap: string | number;
+}
+
+export async function generateDeepInsightAI(stock: StockInfo, fundamentals: StockFundamentals): Promise<string> {
     if (!process.env.GEMINI_API_KEY) {
         return `**错误**: 未配置 Gemini API Key。`;
     }

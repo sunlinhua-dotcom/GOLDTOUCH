@@ -2,6 +2,15 @@ const apiKey = process.env.GEMINI_API_KEY;
 const baseUrl = process.env.GEMINI_BASE_URL || "https://generativelanguage.googleapis.com/v1beta";
 const modelName = process.env.GEMINI_MODEL || "gemini-1.5-pro";
 
+interface GeminiPayload {
+    contents: { parts: { text: string }[] }[];
+    generationConfig: {
+        temperature: number;
+        maxOutputTokens: number;
+    };
+    system_instruction?: { parts: { text: string }[] };
+}
+
 export async function generateContent(prompt: string, systemInstruction?: string): Promise<string> {
     if (!apiKey) {
         throw new Error("Gemini API Key not set");
@@ -10,7 +19,7 @@ export async function generateContent(prompt: string, systemInstruction?: string
     const url = `${baseUrl}/models/${modelName}:generateContent?key=${apiKey}`;
 
     try {
-        const payload: any = {
+        const payload: GeminiPayload = {
             contents: [{
                 parts: [{ text: prompt }]
             }],
