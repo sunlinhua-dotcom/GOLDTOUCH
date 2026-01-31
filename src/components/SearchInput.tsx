@@ -2,7 +2,7 @@
 
 import { useState, KeyboardEvent, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { identifyStock, searchStocksAction } from "@/app/actions/stock";
+import { identifyStock } from "@/app/actions/stock";
 import styles from "@/app/page.module.css";
 import { SearchResult } from "@/lib/market";
 
@@ -27,9 +27,16 @@ export default function SearchInput() {
     useEffect(() => {
         const delayDebounceFn = setTimeout(async () => {
             if (query.trim().length > 1) {
-                const results = await searchStocksAction(query);
-                setSuggestions(results);
-                setShowDropdown(true);
+                // Use Proxy API to avoid Cloud IP Blocking
+                try {
+                    const res = await fetch(`/api/proxy/search?q=${encodeURIComponent(query)}`);
+                    const data = await res.json();
+                    setSuggestions(data.results || []);
+                    setShowDropdown(true);
+                } catch (e) {
+                    console.error("Proxy search failed", e);
+                    setSuggestions([]);
+                }
             } else {
                 setSuggestions([]);
                 setShowDropdown(false);
