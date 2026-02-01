@@ -130,6 +130,14 @@ export async function searchStocks(query: string): Promise<SearchResult[]> {
 // URL: http://qt.gtimg.cn/q={market}{code}
 // e.g. q=hk00700, q=sh600519
 export async function getStockQuote(fullCode: string): Promise<StockQuote | null> {
+    // 1. Auto-fix incomplete codes (e.g. "01810" -> "01810.HK")
+    if (!fullCode.includes(".")) {
+        if (fullCode.length === 5) fullCode += ".HK"; // 00700 -> 00700.HK
+        else if (fullCode.length === 6 && (fullCode.startsWith("6") || fullCode.startsWith("9") || fullCode.startsWith("5") || fullCode.startsWith("1"))) fullCode += ".SH"; // 600xxx -> SH
+        else if (fullCode.length === 6 && (fullCode.startsWith("0") || fullCode.startsWith("3") || fullCode.startsWith("1"))) fullCode += ".SZ"; // 000xxx -> SZ
+        else if (fullCode.length <= 4) fullCode += ".US"; // AAPL -> AAPL.US (Fallback)
+    }
+
     // fullCode ex: "00700.HK", "600519.SH"
     const [code, market] = fullCode.split(".");
     if (!code || !market) return null;
@@ -244,13 +252,15 @@ export async function fetchStockFundamentals(fullCode: string): Promise<Fundamen
         if (!data) return null;
 
         // Convert large numbers
-        const cleanNumber = (num: number) => {
-            if (!num) return "--";
-            if (typeof num === "string" && (num as string) === "-") return "--";
+        const cleanNumber = (num: number | string) => {
+            if (num === null || num === undefined) return "--";
+            if (typeof num === "string" && (num === "-" || num.trim() === "")) return "--";
+            const val = Number(num);
+            if (isNaN(val)) return "--";
 
-            if (num > 100000000) return (num / 100000000).toFixed(2) + "亿";
-            if (num > 10000) return (num / 10000).toFixed(2) + "万";
-            return num.toString();
+            if (val > 100000000) return (val / 100000000).toFixed(2) + "亿";
+            if (val > 10000) return (val / 10000).toFixed(2) + "万";
+            return val.toString();
         };
 
         const pe = (!data.f162 || data.f162 === "-") ? (data.f164 || "亏损") : data.f162;
