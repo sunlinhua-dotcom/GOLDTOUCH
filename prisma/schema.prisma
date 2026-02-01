@@ -6,12 +6,12 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id            String   @id @default(cuid())
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
   phone         String   @unique
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
@@ -26,21 +26,34 @@ model User {
 }
 
 model AnalysisReport {
-  id        String   @id @default(cuid())
-  stockCode String   // e.g. 00700.HK
-  stockName String?
-  content   String   // The full markdown report
-  userId    String
+  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  stockCode   String
+  stockName   String?
+  
+  // Content
+  type        ReportType @default(BASIC)
+  summary     String     // Short summary or signal
+  content     String     // Full markdown report (JSON stringified or raw text)
+  aiScore     Int?       // stored AI score
+  deepInsight String?    // Premium content
+  isUnlocked  Boolean    @default(false)
+  
+  userId      String     @db.ObjectId
+  user        User       @relation(fields: [userId], references: [id])
+  createdAt   DateTime   @default(now())
+}
+
+model Order {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  amount    Int
+  type      String
+  status    String
+  userId    String   @db.ObjectId
   user      User     @relation(fields: [userId], references: [id])
   createdAt DateTime @default(now())
 }
 
-model Order {
-  id        String   @id @default(cuid())
-  amount    Int      // 2000 (20.00 RMB) or 19900 (199.00 RMB)
-  type      String   // SINGLE or MONTHLY
-  status    String   // PENDING, PAID
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
-  createdAt DateTime @default(now())
+enum ReportType {
+  BASIC
+  PRO
 }

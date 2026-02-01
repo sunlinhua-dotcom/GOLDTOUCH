@@ -1,0 +1,15 @@
+
+# 部署配置文件 for Zeabur
+
+# 1. 前端服务 (Next.js)
+[[services]]
+name = "mojin-web"
+dir = "."
+type = "nextjs"
+
+# 2. 后端量化核心 (Python/Docker)
+[[services]]
+name = "mojin-quant"
+dir = "python-core"
+type = "docker"
+dockerfile = "Dockerfile"

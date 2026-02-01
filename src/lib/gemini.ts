@@ -17,6 +17,9 @@ export async function generateContent(prompt: string, systemInstruction?: string
     }
 
     const url = `${baseUrl}/models/${modelName}:generateContent?key=${apiKey}`;
+    const controller = new AbortController();
+    // Increase timeout to 120s for "Thinking" models which are slower
+    const timeoutId = setTimeout(() => controller.abort(), 120000);
 
     try {
         const payload: GeminiPayload = {
@@ -40,22 +43,30 @@ export async function generateContent(prompt: string, systemInstruction?: string
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(payload)
+            body: JSON.stringify(payload),
+            signal: controller.signal
         });
+
+        clearTimeout(timeoutId); // Clear timeout on response
 
         console.log(`[GEMINI REQUEST] Payload built with systemInstruction: ${!!systemInstruction}`);
 
         if (!response.ok) {
             const errorText = await response.text();
             console.error("Gemini API Error:", response.status, errorText);
-            throw new Error(`Gemini API Failed: ${response.statusText}`);
+            throw new Error(`API Error ${response.status}: ${response.statusText}`);
         }
 
         const data = await response.json();
         console.log(`[GEMINI RESPONSE DATA] ${JSON.stringify(data).substring(0, 500)}`);
         return data.candidates?.[0]?.content?.parts?.[0]?.text || "AI 未返回有效内容";
 
-    } catch (error) {
+    } catch (error: any) {
+        clearTimeout(timeoutId);
+        if (error.name === 'AbortError') {
+            console.error("Gemini Request Timed Out (120s limit)");
+            throw new Error("Connection Timeout (120s): AI Thinking took too long.");
+        }
         console.error("Gemini Request Failed:", error);
         throw error;
     }

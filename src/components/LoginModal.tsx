@@ -48,14 +48,21 @@ export default function LoginModal({ onSuccess }: LoginModalProps) {
         setLoading(true);
 
         try {
+            console.log('[LoginModal] 开始登录...', { phone, code });
             const res = await loginWithPhone(phone, code);
+            console.log('[LoginModal] 登录响应:', res);
+
             if (res.success && res.userId) {
+                console.log('[LoginModal] 登录成功, 用户ID:', res.userId);
                 onSuccess(res.userId, res.isNewUser || false);
             } else {
+                console.error('[LoginModal] 登录失败:', res.message);
                 setError(res.message || "登录失败");
             }
         } catch (e) {
-            setError("系统错误");
+            console.error('[LoginModal] 登录异常:', e);
+            const errorMsg = e instanceof Error ? e.message : "系统错误";
+            setError(errorMsg);
         } finally {
             setLoading(false);
         }

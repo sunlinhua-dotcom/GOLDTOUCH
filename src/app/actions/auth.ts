@@ -20,11 +20,15 @@ export async function sendMockSms(phone: string) {
 }
 
 export async function loginWithPhone(phone: string, code: string) {
+    console.log('[Auth] 开始登录流程:', { phone, code });
+
     if (code !== MOCK_CODE) {
+        console.log('[Auth] 验证码错误');
         return { success: false, message: "验证码错误" };
     }
 
     try {
+        console.log('[Auth] 查找用户...');
         // 1. Find or Create User
         let user = await prisma.user.findUnique({
             where: { phone },
@@ -33,6 +37,7 @@ export async function loginWithPhone(phone: string, code: string) {
         let isNewUser = false;
 
         if (!user) {
+            console.log(`[Auth] 用户不存在,创建新用户 phone=${phone}...`);
             user = await prisma.user.create({
                 data: {
                     phone,
@@ -41,10 +46,14 @@ export async function loginWithPhone(phone: string, code: string) {
                 },
             });
             isNewUser = true;
+            console.log('[Auth] 新用户创建成功, ID:', user.id);
+        } else {
+            console.log('[Auth] 找到已有用户:', user.id);
         }
 
         // 2. Set Session Cookie (Simple ID for now, JWT in real prod)
         // We use a simple coherent session value: "USER_ID"
+        console.log('[Auth] 设置Cookie...');
         const cookieStore = await cookies();
         cookieStore.set("mojin_session", user.id, {
             httpOnly: true,
@@ -53,6 +62,7 @@ export async function loginWithPhone(phone: string, code: string) {
             path: "/",
         });
 
+        console.log('[Auth] 登录成功');
         return {
             success: true,
             userId: user.id,
@@ -61,8 +71,10 @@ export async function loginWithPhone(phone: string, code: string) {
         };
 
     } catch (error) {
-        console.error("Login Error:", error);
-        return { success: false, message: "系统错误" };
+        console.error("[Auth] 登录错误:", error);
+        // 返回更详细的错误信息
+        const errorMessage = error instanceof Error ? error.message : "系统错误";
+        return { success: false, message: `系统错误: ${errorMessage}` };
     }
 }
 
@@ -78,10 +90,21 @@ export async function checkSession() {
 
     if (!userId) return null;
 
-    const user = await prisma.user.findUnique({
-        where: { id: userId },
-        select: { id: true, phone: true, freeQuotaUsed: true, isVip: true }
-    });
+    // Validate MongoDB ObjectID format (24 hex characters)
+    if (!/^[0-9a-fA-F]{24}$/.test(userId)) {
+        console.warn(`[Auth] Invalid Session ID format detected (Migration cleanup): ${userId}`);
+        cookieStore.delete("mojin_session");
+        return null;
+    }
 
-    return user;
+    try {
+        const user = await prisma.user.findUnique({
+            where: { id: userId },
+            select: { id: true, phone: true, freeQuotaUsed: true, isVip: true }
+        });
+        return user;
+    } catch (e) {
+        console.error("Session Check Error:", e);
+        return null;
+    }
 }
