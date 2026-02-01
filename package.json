@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "node scripts/init_remote_rs.js && next start",
     "lint": "eslint",
     "postinstall": "DATABASE_URL='mongodb://nodb:27017/dummy' prisma generate"
   },
