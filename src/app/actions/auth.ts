@@ -38,13 +38,24 @@ export async function loginWithPhone(phone: string, code: string) {
 
         if (!user) {
             console.log(`[Auth] 用户不存在,创建新用户 phone=${phone}...`);
-            user = await prisma.user.create({
-                data: {
+            // Create user using createMany to avoid transaction requirement on standalone MongoDB
+            await prisma.user.createMany({
+                data: [{
                     phone,
-                    // New user gets 0 quota used (meaning 1 free try available)
                     freeQuotaUsed: 0,
-                },
+                }]
             });
+
+            // Refetch the user to get the ID
+            const newUser = await prisma.user.findUnique({
+                where: { phone }
+            });
+
+            if (!newUser) {
+                throw new Error("User creation failed");
+            }
+            user = newUser;
+
             isNewUser = true;
             console.log('[Auth] 新用户创建成功, ID:', user.id);
         } else {
