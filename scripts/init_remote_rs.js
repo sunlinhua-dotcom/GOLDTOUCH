@@ -1,11 +1,24 @@
 const { MongoClient } = require('mongodb');
 
-// Internal Zeabur Connection URL (for running inside the cluster)
-// Username: mongo
-// Password: ***REMOVED***
-// Host: mongo (Zeabur service name)
-// Port: 27017 (Internal port)
-const url = 'mongodb://mongo:***REMOVED***@mongo:27017/mojin?authSource=admin&directConnection=true';
+const { MongoClient } = require('mongodb');
+
+// Dynamically get URL from environment (Zeabur injects this)
+let url = process.env.DATABASE_URL;
+
+if (!url) {
+    console.warn('⚠️ DATABASE_URL is not set. Skipping RS init.');
+    // We exit successfully to allow the app to attempt startup anyway
+    process.exit(0);
+}
+
+// Force directConnection=true for the initialization step
+// This allows connecting to the instance even before it's a Replica Set
+if (!url.includes('directConnection=true') && !url.includes('replicaSet=')) {
+    const separator = url.includes('?') ? '&' : '?';
+    url = `${url}${separator}directConnection=true`;
+}
+
+console.log('Using Database URL for Init:', url.replace(/:([^:@]+)@/, ':****@')); // Hide password in logs
 
 const client = new MongoClient(url, {
     connectTimeoutMS: 5000,
