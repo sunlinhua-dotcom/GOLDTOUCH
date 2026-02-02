@@ -204,7 +204,7 @@ async def start_full_initialization(
 async def start_basic_sync(
     request: SyncRequest,
     background_tasks: BackgroundTasks,
-    current_user: dict = Depends(get_current_user)
+    # current_user: dict = Depends(get_current_user)  # 开发环境暂时禁用
 ):
     """
     启动基础信息同步

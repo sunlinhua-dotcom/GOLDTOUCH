@@ -11,7 +11,10 @@ import re
 
 from app.routers.auth_db import get_current_user
 from app.core.database import get_mongo_db
+from app.core.database import get_mongo_db
 from app.core.response import ok
+import asyncio
+import akshare as ak
 
 logger = logging.getLogger(__name__)
 
@@ -217,7 +220,7 @@ async def get_fundamentals(
     code: str,
     source: Optional[str] = Query(None, description="数据源 (tushare/akshare/baostock/multi_source)"),
     force_refresh: bool = Query(False, description="是否强制刷新（跳过缓存）"),
-    current_user: dict = Depends(get_current_user)
+    # current_user: dict = Depends(get_current_user)  # 开发环境暂时禁用认证
 ):
     """
     获取基础面快照（支持A股/港股/美股）
@@ -285,8 +288,58 @@ async def get_fundamentals(
             if b:
                 logger.warning(f"⚠️ 使用旧数据（无 source 字段）: {code6}")
 
+        # 🔥 数据库无数据时，实时从 AKShare 获取
         if not b:
-            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="未找到该股票的基础信息")
+            logger.warning(f"⚠️ 数据库无数据，尝试实时从 AKShare 获取: {code6}")
+            try:
+                from tradingagents.dataflows.providers.china.akshare import AKShareProvider
+
+                akshare = AKShareProvider()
+
+                # 获取股票基础信息和实时行情（包含 PE、PB、市值等指标）
+                stock_quotes = await akshare.get_stock_quotes(code6)
+
+                if stock_quotes:
+                    b = {
+                        "code": code6,
+                        "name": stock_quotes.get("name", f"股票{code6}"),
+                        "industry": "",  # 实时接口不提供行业信息
+                        "market": "主板",  # 默认主板
+                        "pe": stock_quotes.get("pe"),  # 🔥 实时 PE
+                        "pe_ttm": stock_quotes.get("pe_ttm"),  # 🔥 实时 PE TTM
+                        "pb": stock_quotes.get("pb"),  # 🔥 实时 PB
+                        "total_mv": stock_quotes.get("market_cap"),  # 🔥 实时市值
+                        "source": "akshare_realtime"
+                    }
+
+                    # 🔥 如果实时PE/PB为空，尝试从历史数据获取最近的PE/PB
+                    if not b.get("pe") or not b.get("pb"):
+                        logger.info(f"⚠️ 实时PE/PB为空，尝试获取历史数据: {code6}")
+                        try:
+                            # 从 stock_daily_quotes 获取最近的PE/PB数据
+                            historical_quote = await db["stock_daily_quotes"].find_one(
+                                {"code": code6},
+                                {"pe": 1, "pb": 1, "pe_ttm": 1, "trade_date": 1},
+                                sort=[("trade_date", -1)]
+                            )
+                            if historical_quote:
+                                if not b.get("pe") and historical_quote.get("pe"):
+                                    b["pe"] = historical_quote["pe"]
+                                    b["pe_source"] = f"historical_{historical_quote.get('trade_date')}"
+                                if not b.get("pb") and historical_quote.get("pb"):
+                                    b["pb"] = historical_quote["pb"]
+                                if not b.get("pe_ttm") and historical_quote.get("pe_ttm"):
+                                    b["pe_ttm"] = historical_quote["pe_ttm"]
+                                logger.info(f"✅ 使用历史数据填充: PE={b.get('pe')}, PB={b.get('pb')} (日期: {historical_quote.get('trade_date')})")
+                        except Exception as e:
+                            logger.warning(f"⚠️ 获取历史PE/PB失败: {e}")
+
+                    logger.info(f"✅ 实时获取成功: {code6} - {b.get('name')} (PE: {b.get('pe')}, PB: {b.get('pb')}, 市值: {b.get('total_mv')})")
+                else:
+                    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"未找到股票 {code6} 的信息")
+            except Exception as e:
+                logger.error(f"❌ 实时获取失败: {code6}, 错误: {e}")
+                raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"未找到该股票的基础信息: {str(e)}")
 
     # 2. 尝试从 stock_financial_data 获取最新财务指标
     # 🔥 按数据源优先级查询，而不是按时间戳，避免混用不同数据源的数据
@@ -318,13 +371,55 @@ async def get_fundamentals(
                 break
 
         if not financial_data:
-            logger.warning(f"⚠️ 未找到 {code6} 的财务数据")
+            logger.warning(f"⚠️ 数据库未找到 {code6} 的财务数据，尝试从 AKShare 实时获取...")
+            try:
+                # 🔥 Fallback Mechanism: Fetch from AKShare directly
+                from typing import List, Dict, Any
+                
+                # Helper to extract value from AKShare records list (Mirroring api.py logic)
+                def get_val(records: List[Dict], key_list: List[str]) -> Any:
+                    if not records: return None
+                    for r in records:
+                        label = r.get('指标') or r.get('item') or r.get('项目') or r.get('项目说明')
+                        if label in key_list:
+                            # Extract data columns (excluding labels)
+                            data_keys = [k for k in r.keys() if k.isdigit()]
+                            # Sort keys numerically (dates) to find latest
+                            date_keys = sorted(data_keys, reverse=True)
+                            if date_keys: return r.get(date_keys[0])
+                    return None
+
+                df_main = await asyncio.to_thread(ak.stock_financial_abstract, symbol=code6)
+
+                if df_main is not None and not df_main.empty:
+                    main_recs = df_main.to_dict('records')
+
+                    # Construct a temporary financial_data object
+                    financial_data = {
+                        'eps': get_val(main_recs, ['基本每股收益', '每股收益']),
+                        'bvps': get_val(main_recs, ['每股净资产']),
+                        'roe': get_val(main_recs, ['净资产收益率(ROE)', '净资产收益率']),
+                        'roa': get_val(main_recs, ['总资产报酬率', 'ROA']), # Try to get ROA
+                        'revenue': get_val(main_recs, ['营业总收入', '营业收入']),
+                        'net_profit': get_val(main_recs, ['归母净利润', '净利润']),
+                        'net_profit_parent': get_val(main_recs, ['归母净利润']), # Alias
+                        'gross_margin': get_val(main_recs, ['毛利率', '销售毛利率']),
+                        'net_profit_margin': get_val(main_recs, ['净利率', '销售净利率']), # Try to get Net Margin
+                        'debt_to_assets': get_val(main_recs, ['资产负债率']),
+                        'report_period': 'realtime_fallback',
+                        'source': 'akshare_fallback'
+                    }
+
+                    logger.info(f"✅ 从 AKShare 实时获取财务数据成功 (Source: {financial_data['source']})")
+                else:
+                    logger.warning(f"⚠️ AKShare 实时获取财务数据为空: {code6}")
+            except Exception as e:
+                logger.error(f"❌ AKShare 实时获取财务数据失败: {e}")
     except Exception as e:
         logger.error(f"获取财务数据失败: {e}")
 
     # 3. 获取实时PE/PB（优先使用实时计算）
     from tradingagents.dataflows.realtime_metrics import get_pe_pb_with_fallback
-    import asyncio
 
     # 在线程池中执行同步的实时计算
     realtime_metrics = await asyncio.to_thread(
@@ -332,6 +427,87 @@ async def get_fundamentals(
         code6,
         db.client
     )
+
+    # 🔥 如果实时PE/PB为空，尝试从历史数据获取最近的PE/PB（周末/节假日fallback）
+    if not realtime_metrics.get("pe") or not realtime_metrics.get("pb"):
+        logger.info(f"⚠️ 实时PE/PB为空，尝试从历史行情数据获取: {code6}")
+        try:
+            # 从 stock_daily_quotes 获取最近的PE/PB数据
+            historical_quote = await db["stock_daily_quotes"].find_one(
+                {"code": code6},
+                {"pe": 1, "pb": 1, "pe_ttm": 1, "trade_date": 1},
+                sort=[("trade_date", -1)]
+            )
+            if historical_quote:
+                fallback_used = False
+                if not realtime_metrics.get("pe") and historical_quote.get("pe"):
+                    realtime_metrics["pe"] = historical_quote["pe"]
+                    realtime_metrics["pe_source"] = f"historical_{historical_quote.get('trade_date')}"
+                    fallback_used = True
+                if not realtime_metrics.get("pb") and historical_quote.get("pb"):
+                    realtime_metrics["pb"] = historical_quote["pb"]
+                    fallback_used = True
+                if not realtime_metrics.get("pe_ttm") and historical_quote.get("pe_ttm"):
+                    realtime_metrics["pe_ttm"] = historical_quote["pe_ttm"]
+                    fallback_used = True
+                if fallback_used:
+                    logger.info(f"✅ 使用历史数据填充: PE={realtime_metrics.get('pe')}, PB={realtime_metrics.get('pb')}, PE_TTM={realtime_metrics.get('pe_ttm')} (日期: {historical_quote.get('trade_date')})")
+            else:
+                # 🔥 数据库也没有，最后尝试从AKShare获取最近几天的历史数据
+                logger.info(f"⚠️ 数据库无历史数据，尝试从AKShare获取: {code6}")
+                from tradingagents.dataflows.providers.china.akshare import AKShareProvider
+                from datetime import datetime, timedelta
+
+                akshare = AKShareProvider()
+                # 获取最近10天的历史数据（确保能跨过周末）
+                end_date = datetime.now()
+                start_date = end_date - timedelta(days=10)
+
+                hist_data = await akshare.get_historical_data(
+                    code6,
+                    start_date=start_date.strftime("%Y%m%d"),
+                    end_date=end_date.strftime("%Y%m%d")
+                )
+
+                # 检查是否有返回数据（可能是DataFrame或list）
+                import pandas as pd
+                has_data = False
+                if hist_data is not None:
+                    if isinstance(hist_data, pd.DataFrame):
+                        has_data = not hist_data.empty
+                    elif isinstance(hist_data, list):
+                        has_data = len(hist_data) > 0
+
+                if has_data:
+                    # 获取最新一天的数据
+                    if isinstance(hist_data, pd.DataFrame):
+                        latest_row = hist_data.iloc[-1]
+                        latest = {
+                            "pe": latest_row.get("pe"),
+                            "pb": latest_row.get("pb"),
+                            "pe_ttm": latest_row.get("pe_ttm"),
+                            "trade_date": latest_row.get("trade_date")
+                        }
+                    else:
+                        latest = hist_data[-1]
+
+                    fallback_used = False
+                    if not realtime_metrics.get("pe") and latest.get("pe"):
+                        realtime_metrics["pe"] = float(latest["pe"]) if latest["pe"] else None
+                        realtime_metrics["pe_source"] = f"akshare_historical_{latest.get('trade_date')}"
+                        fallback_used = True
+                    if not realtime_metrics.get("pb") and latest.get("pb"):
+                        realtime_metrics["pb"] = float(latest["pb"]) if latest["pb"] else None
+                        fallback_used = True
+                    if not realtime_metrics.get("pe_ttm") and latest.get("pe_ttm"):
+                        realtime_metrics["pe_ttm"] = float(latest["pe_ttm"]) if latest["pe_ttm"] else None
+                        fallback_used = True
+                    if fallback_used:
+                        logger.info(f"✅ 使用AKShare历史数据: PE={realtime_metrics.get('pe')}, PB={realtime_metrics.get('pb')} (日期: {latest.get('trade_date')})")
+                else:
+                    logger.warning(f"⚠️ AKShare也无法获取历史数据: {code6}")
+        except Exception as e:
+            logger.warning(f"⚠️ 获取历史PE/PB失败: {e}")
 
     # 4. 构建返回数据
     # 🔥 优先使用实时市值，降级到 stock_basic_info 的静态市值
@@ -385,8 +561,8 @@ async def get_fundamentals(
     # 5. 从财务数据中提取 ROE、负债率和计算 PS
     if financial_data:
         # ROE（净资产收益率）
-        if financial_data.get("financial_indicators"):
-            indicators = financial_data["financial_indicators"]
+        indicators = financial_data.get("financial_indicators") or {}
+        if indicators:
             data["roe"] = indicators.get("roe")
             data["debt_ratio"] = indicators.get("debt_to_assets")
 
@@ -395,6 +571,18 @@ async def get_fundamentals(
             data["roe"] = financial_data.get("roe")
         if data["debt_ratio"] is None:
             data["debt_ratio"] = financial_data.get("debt_to_assets")
+
+        # 🔥 Map missing core financial fields
+        data["revenue"] = financial_data.get("revenue")
+        data["net_profit"] = financial_data.get("net_profit")
+        data["net_profit_parent"] = financial_data.get("net_profit_parent")
+        data["gross_margin"] = financial_data.get("gross_margin")
+        data["net_profit_margin"] = financial_data.get("net_profit_margin")
+        
+        # Extract per-share data (check both root and indicators)
+        data["eps"] = financial_data.get("eps") or indicators.get("eps")
+        data["bvps"] = financial_data.get("bvps") or indicators.get("bvps") 
+        data["roa"] = financial_data.get("roa") or indicators.get("roa")
 
         # 🔥 动态计算 PS（市销率）- 使用实时市值
         # 优先使用 TTM 营业收入，如果没有则使用单期营业收入

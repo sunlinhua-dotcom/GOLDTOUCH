@@ -1257,3 +1257,177 @@ async def delete_task(
     except Exception as e:
         logger.error(f"❌ 删除任务失败: {e}")
         raise HTTPException(status_code=500, detail=f"删除任务失败: {str(e)}")
+
+# ============================================
+# 深度分析 API (Trading Agents 完整系统)
+# ============================================
+
+class DeepAnalysisRequest(BaseModel):
+    """深度分析请求"""
+    stock_code: str = Field(..., description="股票代码")
+    user_id: str = Field(..., description="用户ID")
+
+
+@router.post("/deep-analysis", response_model=Dict[str, Any])
+async def deep_analysis(
+    request: DeepAnalysisRequest,
+    background_tasks: BackgroundTasks
+):
+    """
+    深度分析接口 - 调用完整的 Trading Agents 系统
+
+    返回结构化的机构级分析：
+    - CIO 最终决策
+    - 多空双方辩论
+    - 风险评估
+    - 技术面深度分析
+    - 基本面分析
+    """
+    import asyncio
+
+    try:
+        logger.info(f"🔥 收到深度分析请求: {request.stock_code}")
+
+        from tradingagents.graph.trading_graph import TradingAgentsGraph
+        from tradingagents.default_config import DEFAULT_CONFIG
+        from datetime import date
+
+        # 初始化 Trading Agents Graph
+        config = DEFAULT_CONFIG.copy()
+        config["company_of_interest"] = request.stock_code
+
+        graph = TradingAgentsGraph(
+            selected_analysts=["market", "fundamentals", "news", "social"],
+            debug=False,
+            config=config
+        )
+
+        # 执行分析 - 添加150秒超时保护
+        trade_date = date.today().strftime("%Y-%m-%d")
+
+        try:
+            # 使用asyncio.wait_for包装同步调用，防止无限等待 (Python 3.10兼容)
+            logger.info(f"⏱️ [Timeout] 开始执行深度分析，最大耗时150秒")
+            # 使用asyncio.to_thread在线程池中运行同步代码
+            final_state = await asyncio.wait_for(
+                asyncio.to_thread(
+                    graph.graph.invoke,
+                    {
+                        "company_of_interest": request.stock_code,
+                        "trade_date": trade_date,
+                        "messages": [],
+                        "market_report": "",
+                        "sentiment_report": "",
+                        "news_report": "",
+                        "fundamentals_report": "",
+                        "investment_debate_state": {
+                            "bull_history": "",
+                            "bear_history": "",
+                            "history": "",
+                            "current_response": "",
+                            "judge_decision": "",
+                            "count": 0,
+                        },
+                        "trader_investment_plan": "",
+                        "risk_debate_state": {
+                            "risky_history": "",
+                            "safe_history": "",
+                            "neutral_history": "",
+                            "history": "",
+                            "judge_decision": "",
+                            "count": 0,
+                        },
+                        "investment_plan": "",
+                        "final_trade_decision": "",
+                    }
+                ),
+                timeout=150  # 150秒超时
+            )
+        except asyncio.TimeoutError:
+            logger.error(f"⏱️ [Timeout] 深度分析超时（150秒）: {request.stock_code}")
+            raise HTTPException(
+                status_code=504,
+                detail=f"深度分析超时（150秒）。股票代码: {request.stock_code}，请稍后重试或联系技术支持。"
+            )
+       
+        # 提取结构化结果
+        investment_debate = final_state.get("investment_debate_state", {})
+        risk_debate = final_state.get("risk_debate_state", {})
+
+        # 构建 deep_insight（合并多维度分析为Markdown格式）
+        deep_insight_parts = []
+
+        # CIO决策
+        cio_decision = investment_debate.get("judge_decision", "")
+        if cio_decision:
+            deep_insight_parts.append(f"## 📊 CIO投资决策\n\n{cio_decision}")
+
+        # 多空辩论摘要
+        bull_case = investment_debate.get("bull_history", "")
+        bear_case = investment_debate.get("bear_history", "")
+        if bull_case or bear_case:
+            deep_insight_parts.append(f"## 🐂 多头观点\n\n{bull_case[:1000]}...")
+            deep_insight_parts.append(f"## 🐻 空头观点\n\n{bear_case[:1000]}...")
+
+        # 风险评估
+        risk_assessment = risk_debate.get("judge_decision", "")
+        if risk_assessment:
+            deep_insight_parts.append(f"## ⚠️ 风险评估\n\n{risk_assessment}")
+
+        # 各维度分析
+        market_report = final_state.get("market_report", "")
+        fundamentals_report = final_state.get("fundamentals_report", "")
+
+        if market_report:
+            deep_insight_parts.append(f"## 📈 技术面分析\n\n{market_report[:800]}")
+        if fundamentals_report:
+            deep_insight_parts.append(f"## 💼 基本面分析\n\n{fundamentals_report[:800]}")
+
+        # 合并为完整的 deep_insight
+        deep_insight = "\n\n---\n\n".join(deep_insight_parts) if deep_insight_parts else "暂无深度分析"
+
+        # 提取信号（从最终决策中提取）
+        final_decision = final_state.get("final_trade_decision", "")
+        signal = "观望"  # 默认
+        if "买入" in final_decision or "看多" in final_decision:
+            signal = "看多"
+        elif "卖出" in final_decision or "看空" in final_decision:
+            signal = "看空"
+        elif "持有" in final_decision:
+            signal = "持有"
+
+        result = {
+            "stock_code": request.stock_code,
+            "analysis_date": trade_date,
+
+            # 🔥 前端PRO页面期望的字段
+            "deep_insight": deep_insight,
+            "signal": signal,
+            "strategy": {
+                "rationale": final_state.get("trader_investment_plan", "")[:500]
+            },
+            "ai_score": 75,  # 可以从置信度计算
+
+            # 原始数据（保留用于详细查看）
+            "cio_decision": cio_decision,
+            "bull_case": bull_case,
+            "bear_case": bear_case,
+            "risk_assessment": risk_assessment,
+            "market_analysis": market_report,
+            "fundamentals": fundamentals_report,
+            "news_analysis": final_state.get("news_report", ""),
+            "sentiment": final_state.get("sentiment_report", ""),
+            "trading_plan": final_state.get("trader_investment_plan", ""),
+            "final_decision": final_decision,
+        }
+       
+        logger.info(f"✅ 深度分析完成: {request.stock_code}")
+       
+        return {
+            "success": True,
+            "data": result
+        }
+       
+    except Exception as e:
+        logger.error(f"❌ 深度分析失败: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"深度分析失败: {str(e)}")

@@ -15,7 +15,6 @@ import logging
 
 from bson import ObjectId
 
-from app.core.database import get_mongo_db
 from app.core.config import settings
 from .serialization import serialize_document
 
@@ -44,6 +43,7 @@ async def create_backup_native(name: str, backup_dir: str, collections: Optional
     if not _check_mongodump_available():
         raise Exception("mongodump 命令不可用，请安装 MongoDB Database Tools 或使用 create_backup() 方法")
 
+    from app.core.database import get_mongo_db
     db = get_mongo_db()
 
     backup_id = str(ObjectId())
@@ -140,6 +140,7 @@ async def create_backup(name: str, backup_dir: str, collections: Optional[List[s
 
     对于大数据量（>100MB），建议使用 create_backup_native() 方法
     """
+    from app.core.database import get_mongo_db
     db = get_mongo_db()
 
     backup_id = str(ObjectId())
@@ -201,6 +202,7 @@ async def create_backup(name: str, backup_dir: str, collections: Optional[List[s
 
 
 async def list_backups() -> List[Dict[str, Any]]:
+    from app.core.database import get_mongo_db
     db = get_mongo_db()
     backups: List[Dict[str, Any]] = []
     async for backup in db.database_backups.find().sort("created_at", -1):
@@ -217,6 +219,7 @@ async def list_backups() -> List[Dict[str, Any]]:
 
 
 async def delete_backup(backup_id: str) -> None:
+    from app.core.database import get_mongo_db
     db = get_mongo_db()
     backup = await db.database_backups.find_one({"_id": ObjectId(backup_id)})
     if not backup:
@@ -270,6 +273,7 @@ async def import_data(content: bytes, collection: str, *, format: str = "json", 
     1. 单集合模式：导入数据到指定集合
     2. 多集合模式：导入包含多个集合的导出文件（自动检测）
     """
+    from app.core.database import get_mongo_db
     db = get_mongo_db()
 
     if format.lower() == "json":
@@ -449,6 +453,7 @@ async def export_data(collections: Optional[List[str]] = None, *, export_dir: st
     import pandas as pd
 
     # 🔥 使用异步数据库连接
+    from app.core.database import get_mongo_db
     db = get_mongo_db()
     timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
 

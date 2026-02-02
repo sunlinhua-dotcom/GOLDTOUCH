@@ -6,10 +6,9 @@ from __future__ import annotations
 from datetime import datetime, timedelta
 from typing import Any, Dict
 
-from app.core.database import get_mongo_db
-
 
 async def cleanup_old_data(days: int) -> Dict[str, Any]:
+    from app.core.database import get_mongo_db
     db = get_mongo_db()
     cutoff_date = datetime.utcnow() - timedelta(days=days)
 

@@ -50,7 +50,7 @@ export async function fetchFundamentals(code: string): Promise<FundamentalsData 
         const cleanCode = code.split('.')[0];
         console.log(`[FUNDAMENTALS] 开始获取财务数据: ${cleanCode}`);
 
-        const response = await fetch(`http://localhost:8000/fundamentals/${cleanCode}`, {
+        const response = await fetch(`http://localhost:8000/api/stocks/${cleanCode}/fundamentals`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -68,7 +68,7 @@ export async function fetchFundamentals(code: string): Promise<FundamentalsData 
 
         const data = await response.json();
         console.log(`[FUNDAMENTALS] 数据获取成功: ${cleanCode}`);
-        return data as FundamentalsData;
+        return data.data as FundamentalsData; // ✅ Unwrapped data
     } catch (error: unknown) {
         clearTimeout(timeoutId);
         if (error instanceof Error && error.name === 'AbortError') {

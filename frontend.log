@@ -2,6 +2,9 @@
 > mojin-ai@0.1.0 dev
 > next dev
 
+⚠ Invalid next.config.ts options detected: 
+⚠     Unrecognized key(s) in object: 'swcMinify'
+⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
 ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
  We detected multiple lockfiles and selected the directory of /Users/linhuasun/Desktop/stock/package-lock.json as the root directory.
  To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
@@ -11,451 +14,1005 @@
 
 ▲ Next.js 16.1.6 (Turbopack)
 - Local:         http://localhost:3000
-- Network:       http://172.16.0.15:3000
+- Network:       http://192.168.3.73:3000
 - Environments: .env
 
 ✓ Starting...
-✓ Ready in 851ms
-○ Compiling /_not-found/page ...
- GET /sw.js 404 in 5.3s (compile: 5.2s, render: 102ms)
- GET / 200 in 2.4s (compile: 2.2s, render: 190ms)
- POST / 200 in 75ms (compile: 7ms, render: 68ms)
- GET / 200 in 27ms (compile: 3ms, render: 24ms)
- POST / 200 in 15ms (compile: 4ms, render: 11ms)
- GET /api/proxy/search?q=m%20t 200 in 3.2s (compile: 144ms, render: 3.0s)
- GET /api/proxy/search?q=%E8%8C%85%E5%8F%B0 200 in 3.0s (compile: 1205µs, render: 3.0s)
- GET /report/600519 200 in 1744ms (compile: 1720ms, render: 24ms)
- POST /report/600519 200 in 52ms (compile: 12ms, render: 41ms)
- POST /report/600519 200 in 21ms (compile: 8ms, render: 13ms)
- POST /report/600519 200 in 17ms (compile: 4ms, render: 14ms)
- POST /report/600519 200 in 14ms (compile: 5ms, render: 9ms)
- GET /api/proxy/search?q=%E8%B4%B5%E5%B7%9E%E8%8C%85%E5%8F%B0%20(600519) 200 in 3.0s (compile: 2ms, render: 3.0s)
-[Mock SMS] Sending code 1234 to 18017588997
- POST /report/600519 200 in 517ms (compile: 6ms, render: 511ms)
-[Auth] 开始登录流程: { phone: '18017588997', code: '1234' }
-[Auth] 查找用户...
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$phone", { $literal: "18017588997", }, ], }, { $ne: [ "$phone", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, createdAt: 1, updatedAt: 1, freeQuotaUsed: 1, isVip: 1, vipExpireDate: 1, }, }, ])
-[Auth] 用户不存在,创建新用户 phone=18017588997...
-prisma:query db.User.insertOne({ phone: "18017588997", createdAt: DateTime("2026-02-01 14:50:09.016 +00:00:00"), updatedAt: DateTime("2026-02-01 14:50:09.016 +00:00:00"), freeQuotaUsed: 0, isVip: false, })
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, }, }, { $project: { _id: 1, phone: 1, createdAt: 1, updatedAt: 1, freeQuotaUsed: 1, isVip: 1, vipExpireDate: 1, }, }, ])
-[Auth] 新用户创建成功, ID: 697f682165c4c64af6565fa6
-[Auth] 设置Cookie...
-[Auth] 登录成功
- POST /report/600519 200 in 73ms (compile: 7ms, render: 66ms)
- GET /report/600519 200 in 159ms (compile: 3ms, render: 156ms)
+✓ Ready in 883ms
+ GET / 200 in 425ms (compile: 328ms, render: 97ms)
+ GET / 200 in 15ms (compile: 1216µs, render: 14ms)
 prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
- POST /report/600519 200 in 20ms (compile: 6ms, render: 15ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST / 200 in 98ms (compile: 9ms, render: 89ms)
+ POST / 200 in 26ms (compile: 1644µs, render: 24ms)
+ GET /sw.js 404 in 98ms (compile: 75ms, render: 23ms)
+[Proxy] Backend Error: 404
+ GET /api/proxy/search?q=yue%20yue 200 in 59ms (compile: 46ms, render: 12ms)
+[Proxy] Backend Error: 404
+ GET /api/proxy/search?q=yu 200 in 13ms (compile: 3ms, render: 10ms)
+[Proxy] Backend Error: 404
+ GET /api/proxy/search?q=yu%20yue 200 in 18ms (compile: 5ms, render: 13ms)
+[Proxy] Backend Error: 404
+ GET /api/proxy/search?q=%E9%B1%BC%E8%B7%83 200 in 19ms (compile: 5ms, render: 14ms)
+ POST / 200 in 246ms (compile: 6ms, render: 240ms)
+ │ GET https://smartbox.gtimg.cn/s3/?t=all&q=%E9%B1%BC%E8%B7%83 200 in 171ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+ │ GET https://suggest3.sinajs.cn/suggest/type=&key=%E9%B1%BC%E8%B7%83 200 in 222ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+ GET /report/002223.SZ 200 in 471ms (compile: 455ms, render: 15ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/002223.SZ 200 in 24ms (compile: 5ms, render: 18ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/002223.SZ 200 in 8ms (compile: 1279µs, render: 7ms)
 prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, isVip: 1, freeQuotaUsed: 1, }, }, ])
-prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "600519", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-01 2:50:09.508 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, }, }, ])
-prisma:query db.User.updateMany({ _id: { $in: [ ObjectId("697f682165c4c64af6565fa6"), ], }, },[{ $set: { updatedAt: { $literal: DateTime("2026-02-01 14:50:09.525 +00:00:00"), }, }, },
-{ $set: { freeQuotaUsed: { $add: [ "$freeQuotaUsed", 1, ], }, }, }])
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, }, }, { $project: { _id: 1, phone: 1, createdAt: 1, updatedAt: 1, freeQuotaUsed: 1, isVip: 1, vipExpireDate: 1, }, }, ])
- POST /report/600519 200 in 84ms (compile: 4ms, render: 80ms)
- POST /report/600519 200 in 221ms (compile: 9ms, render: 212ms)
-[FUNDAMENTALS] 开始获取财务数据: 600519
-[FUNDAMENTALS] 数据获取成功: 600519
- POST /report/600519 200 in 1525ms (compile: 6ms, render: 1519ms)
-prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "600519", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-01-31 14:50:11.363 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $sort: { createdAt: -1, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
-[RAG] Fetching news from: https://guba.eastmoney.com/list,600519.html
-[AI REQUEST] Generating report for 贵州茅台...
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "002223.SZ", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-01 20:54:27.341 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+ POST /report/002223.SZ 200 in 13ms (compile: 2ms, render: 10ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, isVip: 1, freeQuotaUsed: 1, }, }, ])
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "002223.SZ", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-01 20:54:27.359 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+ POST /report/002223.SZ 200 in 10ms (compile: 1821µs, render: 8ms)
+ POST /report/002223.SZ 200 in 122ms (compile: 1438µs, render: 121ms)
+ │ GET https://qt.gtimg.cn/q=sz002223 200 in 115ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+ POST /report/002223.SZ 200 in 65ms (compile: 1971µs, render: 63ms)
+ │ GET https://qt.gtimg.cn/q=sz002223 200 in 60ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+[FUNDAMENTALS] 开始获取财务数据: 002223
+[FUNDAMENTALS] 数据获取成功: 002223
+ POST /report/002223.SZ 200 in 97ms (compile: 3ms, render: 94ms)
+ │ GET http://localhost:8000/api/stocks/002223/fundamentals 200 in 89ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+[FUNDAMENTALS] 开始获取财务数据: 002223
+[FUNDAMENTALS] 数据获取成功: 002223
+ POST /report/002223.SZ 200 in 502ms (compile: 2ms, render: 500ms)
+ │ GET http://localhost:8000/api/stocks/002223/fundamentals 200 in 492ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "002223.SZ", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-02 8:49:28.197 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $sort: { createdAt: -1, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+[RAG] Fetching news from: https://guba.eastmoney.com/list,002223.html
+[AI REQUEST] Generating report for 鱼跃医疗...
+ GET /sw.js 404 in 47ms (compile: 7ms, render: 40ms)
 [GEMINI REQUEST] Payload built with systemInstruction: true
-[GEMINI RESPONSE DATA] {"candidates":[{"content":{"role":"model","parts":[{"text":"{\n  \"ai_score\": 62,\n  \"signal\": \"观望 (Hold/Watch)\",\n  \"strategy\": {\n    \"timeframe\": \"短期(4-12周)\",\n    \"rationale\": \"虽然基本面强劲且ROE维持高位，但股价受制于长期均线(MA120/MA250)压制，且主力资金呈现净流出态势，短期缺乏上攻动能。\",\n    \"key_levels\": {\n      \"support\": \"1386 (MA20动态支撑)\",\n      \"resistance\": \"1419 (MA120长期压力)\",\n      \"stop_loss\": \"1369 (跌破MA5及近期支撑)\"\n    }\n  },\n  \"data_evidence\": {\n    \"capital_flow\": \"主力净流出4.49亿，且食品饮料板块整体流出
-[AI RESPONSE]Length: 2105 chars.Snippet: {
-  "ai_score": 62,
-  "signal": "观望 (Hold/Watch)",
-  "strategy": {
-    "timeframe": "短期(4-12周)",
-    
-prisma:query db.AnalysisReport.insertOne({ stockCode: "600519", stockName: "贵州茅台", type: "PRO", summary: "观望 (Hold/Watch)", content: "{
-  "ai_score": 62,
-  "signal": "观望 (Hold/Watch)",
-  "strategy": {
-    "timeframe": "短期(4-12周)",
-    "rationale": "虽然基本面强劲且ROE维持高位，但股价受制于长期均线(MA120/MA250)压制，且主力资金呈现净流出态势，短期缺乏上攻动能。",
-    "key_levels": {
-      "support": "1386 (MA20动态支撑)",
-      "resistance": "1419 (MA120长期压力)",
-      "stop_loss": "1369 (跌破MA5及近期支撑)"
-    }
-  },
-  "data_evidence": {
-    "capital_flow": "主力净流出4.49亿，且食品饮料板块整体流出超30亿，显示机构资金正在撤离。",
-    "valuation": "PE(TTM)约27倍，估值处于历史合理区间，但在当前'高息股'偏好下缺乏显著的估值扩张动力。",
-    "technical_context": "股价现价1401低于MA250(1437)及MA120(1419)，明确处于长期走弱趋势中；今日下跌受阻于MA60(1405)。"
-  },
-  "technical": "### 技术面深度解构\n\n*   **长期趋势 (Bearish)**: 股价运行于 **MA250 (1437.65)** 和 **MA120 (1419.30)** 下方，且均线呈空头排列或下行态势，确立了长期弱势格局。上方套牢盘压力沉重，1420-1440区间构成强阻力带。\n*   **短期波段 (Mixed)**: 股价虽位于 **MA20 (1386.85)** 之上，显示短期有一定支撑，但今日收盘价(1401)未能站稳 **MA60 (1405.49)**，表明反弹在生命线处遭遇阻击。\n*   **动能指标**: **MACD** 数值为 -8.824，处于零轴下方，说明空头力量仍占主导。**RSI(6)** 为 67.01，接近超买区后回落，暗示短期反弹动能可能衰竭，需警惕回调风险。",
-  "sentiment": "### 市场情绪与资金分析\n\n*   **资金流向**: 核心利空。单日主力净流出4.49亿，占比-3.36%，且整个食品饮料板块遭30亿资金抛售。这与市场上“高息股”受追捧、白酒被“黄酒/科技”分流的叙事相吻合。\n*   **舆情噪音**: 市场上出现“白酒最佳买点”的散户呼声与“茅台失血”的媒体报道形成对冲。通常当散户热度过高（如“最佳买点”热度4万+）而主力资金流出时，往往是诱多信号。\n*   **风格切换**: 资讯显示资金正流向AI（北京新政）及低位资源/养殖股，白酒作为传统核心资产，目前并非市场风口。",
-  "plan": "### 实战交易计划\n\n1.  **左侧观察**: 当前不宜急于抄底。股价处于MA60与MA20的夹角中，方向未明。若股价回踩 **1386 (MA20)** 且缩量企稳，可考虑极轻仓尝试，但需严设止损。\n2.  **右侧突破**: 只有当股价放量有效突破 **1420 (MA120)** 关键压力位，并伴随主力资金回流（净流入转正），方可确认趋势反转，届时可加仓跟随。\n3.  **防守策略**: 若跌破 **1369 (MA5)**，意味着短期反弹结束，应立即离场观望，防止向下跌破前低。",
-  "risk": "### 风险提示\n\n*   **技术破位风险**: 若有效跌破MA20 (1386)，下方支撑稀缺，可能再次探底寻找1350附近的支撑。\n*   **宏观风格风险**: 市场当前偏好“高股息”与“硬科技”，白酒作为消费属性资产，若无法在业绩空窗期获得增量资金，可能面临持续的估值压缩。\n*   **套牢盘抛压**: 1420-1440区间堆积了大量前期套牢筹码，任何无量的反弹至此区域都极易引发解套抛压。",
-  "deep_insight": "### 深度研报：机构博弈与筹码结构\n\n*   **主力筹码分布**: 根据均线系统分析，机构主力及长期持有者的平均成本主要集中在 **1420-1450元** (MA120/MA250区域)。当前价格(1401)位于主力成本下方，意味着多数中长期筹码处于浮亏状态，上方抛压极重。\n*   **Smart Money 动向**: 北向资金与机构资金近期呈现“且战且退”迹象。虽然茅台ROE(24.64%)极佳，但在存量博弈市场中，资金更倾向于从高价白酒流向低位题材(如AI、养殖)。\n*   **机构观点分歧**: 尽管基本面数据（毛利91%）依然无敌，但机构对白酒的定价逻辑正从“成长属性”向“类债属性”切换。在缺乏提价预期和销量爆发的背景下，机构更愿意在更低的安全边际（如PE 20-25倍）介入，而非当前位置追高。"
-}", aiScore: 62, deepInsight: "### 深度研报：机构博弈与筹码结构
-
-*   **主力筹码分布**: 根据均线系统分析，机构主力及长期持有者的平均成本主要集中在 **1420-1450元** (MA120/MA250区域)。当前价格(1401)位于主力成本下方，意味着多数中长期筹码处于浮亏状态，上方抛压极重。
-*   **Smart Money 动向**: 北向资金与机构资金近期呈现“且战且退”迹象。虽然茅台ROE(24.64%)极佳，但在存量博弈市场中，资金更倾向于从高价白酒流向低位题材(如AI、养殖)。
-*   **机构观点分歧**: 尽管基本面数据（毛利91%）依然无敌，但机构对白酒的定价逻辑正从“成长属性”向“类债属性”切换。在缺乏提价预期和销量爆发的背景下，机构更愿意在更低的安全边际（如PE 20-25倍）介入，而非当前位置追高。", isUnlocked: false, userId: ObjectId("697f682165c4c64af6565fa6"), createdAt: DateTime("2026-02-01 14:50:58.583 +00:00:00"), })
-prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f685265c4c64af6565fa7"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, }, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
- POST /report/600519 200 in 47s (compile: 6ms, render: 47s)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
- POST /report/600519 200 in 31ms (compile: 9ms, render: 22ms)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
- POST /report/600519 200 in 15ms (compile: 3ms, render: 12ms)
-✓ Compiled in 39ms
- GET / 200 in 53ms (compile: 4ms, render: 49ms)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
- POST / 200 in 13ms (compile: 2ms, render: 10ms)
- POST / 200 in 311ms (compile: 1543µs, render: 310ms)
- GET /api/proxy/search?q=xin%20tiao 200 in 3.0s (compile: 2ms, render: 3.0s)
- GET /api/proxy/search?q=%E5%BF%83%E8%B7%B3 200 in 3.0s (compile: 1113µs, render: 3.0s)
- GET /api/proxy/search?q=xin%20dogn 200 in 3.0s (compile: 1739µs, render: 3.0s)
- GET /api/proxy/search?q=%E5%BF%83%E5%8A%A8 200 in 3.0s (compile: 1223µs, render: 3.0s)
- POST / 200 in 214ms (compile: 2ms, render: 212ms)
- GET /report/02400.HK 200 in 163ms (compile: 105ms, render: 58ms)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
- POST /report/02400.HK 200 in 52ms (compile: 4ms, render: 49ms)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
- POST /report/02400.HK 200 in 17ms (compile: 3ms, render: 14ms)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, isVip: 1, freeQuotaUsed: 1, }, }, ])
-prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "02400.HK", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-01 2:53:12.66 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, }, }, ])
-prisma:query db.User.updateMany({ _id: { $in: [ ObjectId("697f682165c4c64af6565fa6"), ], }, },[{ $set: { updatedAt: { $literal: DateTime("2026-02-01 14:53:12.664 +00:00:00"), }, }, },
-{ $set: { freeQuotaUsed: { $add: [ "$freeQuotaUsed", 1, ], }, }, }])
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, }, }, { $project: { _id: 1, phone: 1, createdAt: 1, updatedAt: 1, freeQuotaUsed: 1, isVip: 1, vipExpireDate: 1, }, }, ])
- POST /report/02400.HK 200 in 26ms (compile: 3ms, render: 23ms)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, isVip: 1, freeQuotaUsed: 1, }, }, ])
-prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "02400.HK", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-01 2:53:12.706 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, }, }, ])
-prisma:query db.User.updateMany({ _id: { $in: [ ObjectId("697f682165c4c64af6565fa6"), ], }, },[{ $set: { updatedAt: { $literal: DateTime("2026-02-01 14:53:12.71 +00:00:00"), }, }, },
-{ $set: { freeQuotaUsed: { $add: [ "$freeQuotaUsed", 1, ], }, }, }])
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, }, }, { $project: { _id: 1, phone: 1, createdAt: 1, updatedAt: 1, freeQuotaUsed: 1, isVip: 1, vipExpireDate: 1, }, }, ])
- POST /report/02400.HK 200 in 37ms (compile: 7ms, render: 30ms)
- POST /report/02400.HK 200 in 212ms (compile: 4ms, render: 208ms)
- POST /report/02400.HK 200 in 65ms (compile: 4ms, render: 62ms)
-[FUNDAMENTALS] 开始获取财务数据: 02400
-[FUNDAMENTALS] 数据获取成功: 02400
- POST /report/02400.HK 200 in 760ms (compile: 3ms, render: 758ms)
-[FUNDAMENTALS] 开始获取财务数据: 02400
-[FUNDAMENTALS] 数据获取成功: 02400
- POST /report/02400.HK 200 in 345ms (compile: 3ms, render: 341ms)
-prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "02400.HK", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-01-31 14:53:14.178 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $sort: { createdAt: -1, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
-[RAG] Fetching news from: https://guba.eastmoney.com/list,hk02400.html
-[AI REQUEST] Generating report for 心动公司...
-[GEMINI REQUEST] Payload built with systemInstruction: true
-[GEMINI RESPONSE DATA] {"candidates":[{"content":{"role":"model","parts":[{"text":"{\n  \"ai_score\": 82,\n  \"signal\": \"看多\",\n  \"strategy\": {\n    \"timeframe\": \"短期(4-12周)\",\n    \"rationale\": \"长期均线多头排列确认牛市格局，高ROE支撑基本面，公司回购行为为股价提供安全垫，当前回调即买点。\",\n    \"key_levels\": {\n      \"support\": \"80.78 (MA20动态支撑)\",\n      \"resistance\": \"92.50 (近期波段高点预估)\",\n      \"stop_loss\": \"78.00 (跌破月线防守)\"\n    }\n  },\n  \"data_evidence\": {\n    \"capital_flow\": \"数据显示公司近期耗资约198万港元回购，表明内部资金看好；散户情绪恐慌，往往是主力洗盘特征。\",\n  
-[AI RESPONSE]Length: 1808 chars.Snippet: {
-  "ai_score": 82,
-  "signal": "看多",
-  "strategy": {
-    "timeframe": "短期(4-12周)",
-    "rationale": 
-prisma:query db.AnalysisReport.insertOne({ stockCode: "02400.HK", stockName: "心动公司", type: "PRO", summary: "看多", content: "{
-  "ai_score": 82,
-  "signal": "看多",
-  "strategy": {
-    "timeframe": "短期(4-12周)",
-    "rationale": "长期均线多头排列确认牛市格局，高ROE支撑基本面，公司回购行为为股价提供安全垫，当前回调即买点。",
-    "key_levels": {
-      "support": "80.78 (MA20动态支撑)",
-      "resistance": "92.50 (近期波段高点预估)",
-      "stop_loss": "78.00 (跌破月线防守)"
-    }
-  },
-  "data_evidence": {
-    "capital_flow": "数据显示公司近期耗资约198万港元回购，表明内部资金看好；散户情绪恐慌，往往是主力洗盘特征。",
-    "valuation": "高成长估值逻辑。ROE高达38.43%显示极强的盈利能力，虽PE较高但被高增速消化。",
-    "technical_context": "股价位于MA250(牛熊线)及MA120之上，长期趋势强劲；短期跌破MA5，面临技术性回调修复。"
-  },
-  "technical": "### 趋势形态\n*   **长期格局**：股价(85.95)远高于MA250(56.19)，且MA20>MA60>MA120，呈现典型的**多头排列**，长期上涨趋势确立。\n*   **短期调整**：现价跌破MA5(86.34)，且RSI(6)回落至64.65，说明短期超买情绪正在释放，属于良性回调。\n*   **动能指标**：MACD数值为正(4.683)，多头动能依然主导，但需警惕死叉风险，若能在MA20(80.78)附近企稳，将构成极佳的“空中加油”形态。",
-  "sentiment": "### 市场情绪与博弈\n*   **散户恐慌**：舆情显示散户出现“跑了跑了”、“有猫腻”等恐慌言论，且热度较高。在上升趋势中，散户的恐慌往往对应主力的洗盘。\n*   **聪明钱信号**：公司在1月30日进行回购（均价约86港元），说明管理层认为当前价格具备投资价值，这是最直接的**多头背书**。\n*   **资金博弈**：当前处于“散户离场、产业资本进场”的筹码交换阶段，利于后续拉升。",
-  "plan": "### 实战交易计划\n1.  **观察期**：周初关注股价在 **80.80 - 82.00** 区间的承接力度，此处接近MA20生命线。\n2.  **买入策略**：\n    *   **左侧埋伏**：若急跌至81.00附近，可尝试建立底仓（2-3成）。\n    *   **右侧确认**：若股价重新站上MA5（约86.50）并伴随成交量放大，可加仓追击。\n3.  **防守策略**：严格执行 **78.00** 止损，一旦有效跌破20日均线，说明短期趋势转弱，需离场观望。",
-  "risk": "### 风险提示\n*   **估值溢价**：虽然ROE极高，但高成长股对流动性敏感，若港股大盘回调，高估值标的杀跌风险大。\n*   **获利盘回吐**：前期涨幅较大（离MA250乖离率高），若市场情绪转冷，可能引发深度回调至MA60（71.26）一线。\n*   **政策风险**：游戏行业政策波动可能对短期情绪造成剧烈冲击。",
-  "deep_insight": "### 深度研报：机构与筹码视角\n*   **主力筹码分布**：\n    *   当前股价位于**获利盘密集区**，主力成本预估在65-70元区间（MA60附近）。\n    *   近期回购均价~86元，构成了短期的**“政策底”**，主力很难在回购价下方大幅出货。\n*   **基本面锚点**：\n    *   **ROE 38.43%** 是核心护城河，在港股TMT板块中属于稀缺的优质资产，这将持续吸引长线机构资金配置。\n    *   毛利率近70%，说明产品定价权极强，抗风险能力优于同业。\n*   **机构观点推演**：\n    *   机构当前策略倾向于**“锁仓持有”**，利用市场波动清洗浮筹。只要不跌破中期趋势线（MA60），机构资金大概率不会大规模撤退。"
-}", aiScore: 82, deepInsight: "### 深度研报：机构与筹码视角
-*   **主力筹码分布**：
-    *   当前股价位于**获利盘密集区**，主力成本预估在65-70元区间（MA60附近）。
-    *   近期回购均价~86元，构成了短期的**“政策底”**，主力很难在回购价下方大幅出货。
-*   **基本面锚点**：
-    *   **ROE 38.43%** 是核心护城河，在港股TMT板块中属于稀缺的优质资产，这将持续吸引长线机构资金配置。
-    *   毛利率近70%，说明产品定价权极强，抗风险能力优于同业。
-*   **机构观点推演**：
-    *   机构当前策略倾向于**“锁仓持有”**，利用市场波动清洗浮筹。只要不跌破中期趋势线（MA60），机构资金大概率不会大规模撤退。", isUnlocked: false, userId: ObjectId("697f682165c4c64af6565fa6"), createdAt: DateTime("2026-02-01 14:53:52.914 +00:00:00"), })
-prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f690065c4c64af6565fa8"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, }, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
- POST /report/02400.HK 200 in 38.8s (compile: 6ms, render: 38.8s)
-prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "02400.HK", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-01-31 14:53:52.937 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $sort: { createdAt: -1, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
-[DB HIT] Returning persisted report for 02400.HK
- POST /report/02400.HK 200 in 12ms (compile: 4ms, render: 8ms)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
- POST /report/02400.HK 200 in 17ms (compile: 5ms, render: 12ms)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
- POST /report/02400.HK 200 in 14ms (compile: 3ms, render: 11ms)
-✓ Compiled in 64ms
-✓ Compiled in 63ms
-✓ Compiled in 55ms
- GET / 200 in 37ms (compile: 4ms, render: 33ms)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
- POST / 200 in 16ms (compile: 4ms, render: 12ms)
- POST / 200 in 199ms (compile: 3ms, render: 197ms)
- GET /report/920982.BJ 200 in 191ms (compile: 118ms, render: 73ms)
- GET /api/proxy/search?q=j%20b 200 in 3.0s (compile: 1914µs, render: 3.0s)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
- POST /report/920982.BJ 200 in 45ms (compile: 7ms, render: 38ms)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
- POST /report/920982.BJ 200 in 20ms (compile: 5ms, render: 15ms)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, isVip: 1, freeQuotaUsed: 1, }, }, ])
-prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "920982.BJ", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-01 2:57:31.906 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, }, }, ])
-prisma:query db.User.updateMany({ _id: { $in: [ ObjectId("697f682165c4c64af6565fa6"), ], }, },[{ $set: { updatedAt: { $literal: DateTime("2026-02-01 14:57:31.909 +00:00:00"), }, }, },
-{ $set: { freeQuotaUsed: { $add: [ "$freeQuotaUsed", 1, ], }, }, }])
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, }, }, { $project: { _id: 1, phone: 1, createdAt: 1, updatedAt: 1, freeQuotaUsed: 1, isVip: 1, vipExpireDate: 1, }, }, ])
- POST /report/920982.BJ 200 in 27ms (compile: 4ms, render: 24ms)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, isVip: 1, freeQuotaUsed: 1, }, }, ])
-prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "920982.BJ", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-01 2:57:31.948 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, }, }, ])
-prisma:query db.User.updateMany({ _id: { $in: [ ObjectId("697f682165c4c64af6565fa6"), ], }, },[{ $set: { updatedAt: { $literal: DateTime("2026-02-01 14:57:31.954 +00:00:00"), }, }, },
-{ $set: { freeQuotaUsed: { $add: [ "$freeQuotaUsed", 1, ], }, }, }])
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, }, }, { $project: { _id: 1, phone: 1, createdAt: 1, updatedAt: 1, freeQuotaUsed: 1, isVip: 1, vipExpireDate: 1, }, }, ])
- POST /report/920982.BJ 200 in 56ms (compile: 7ms, render: 49ms)
- POST /report/920982.BJ 200 in 133ms (compile: 2ms, render: 131ms)
- POST /report/920982.BJ 200 in 88ms (compile: 3ms, render: 86ms)
-[FUNDAMENTALS] 开始获取财务数据: 920982
- GET /api/proxy/search?q=j%20b%20s%20w 200 in 3.0s (compile: 1791µs, render: 3.0s)
- GET /api/proxy/search?q=%E9%94%A6%E6%B3%A2%E7%94%9F%E7%89%A9 200 in 3.0s (compile: 1995µs, render: 3.0s)
-[FUNDAMENTALS] 数据获取成功: 920982
- POST /report/920982.BJ 200 in 1055ms (compile: 3ms, render: 1052ms)
-[FUNDAMENTALS] 开始获取财务数据: 920982
-[FUNDAMENTALS] 数据获取成功: 920982
- POST /report/920982.BJ 200 in 963ms (compile: 4ms, render: 959ms)
-prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "920982.BJ", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-01-31 14:57:34.294 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $sort: { createdAt: -1, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
-[RAG] Fetching news from: https://guba.eastmoney.com/list,920982.html
-[AI REQUEST] Generating report for 锦波生物...
-[GEMINI REQUEST] Payload built with systemInstruction: true
-[GEMINI RESPONSE DATA] {"candidates":[{"content":{"role":"model","parts":[{"text":"{\n  \"ai_score\": 58,\n  \"signal\": \"观望 (等待止跌)\",\n  \"strategy\": {\n    \"timeframe\": \"短期(4-12周)\",\n    \"rationale\": \"基本面极优(高ROE/高毛利)但技术面极弱(空头排列)，股价处于寻找市场底部的过程，尚未出现明确止跌信号。\",\n    \"key_levels\": {\n      \"support\": \"210.00 (整数心理关口/下方无均线支撑)\",\n      \"resistance\": \"232.99 (MA20生命线压力)\",\n      \"stop_loss\": \"215.00 (若尝试左侧博弈的极限防守位)\"\n    }\n  },\n  \"data_evidence\": {\n    \"capital_flow\": \"主力资金显著流出 (-0.28亿，占比-17.8
-[AI RESPONSE]Length: 2077 chars.Snippet: {
-  "ai_score": 58,
-  "signal": "观望 (等待止跌)",
-  "strategy": {
-    "timeframe": "短期(4-12周)",
-    "rati 
-prisma:query db.AnalysisReport.insertOne({ stockCode: "920982.BJ", stockName: "锦波生物", type: "PRO", summary: "观望 (等待止跌)", content: "{
-  "ai_score": 58,
-  "signal": "观望 (等待止跌)",
-  "strategy": {
-    "timeframe": "短期(4-12周)",
-    "rationale": "基本面极优(高ROE/高毛利)但技术面极弱(空头排列)，股价处于寻找市场底部的过程，尚未出现明确止跌信号。",
-    "key_levels": {
-      "support": "210.00 (整数心理关口/下方无均线支撑)",
-      "resistance": "232.99 (MA20生命线压力)",
-      "stop_loss": "215.00 (若尝试左侧博弈的极限防守位)"
-    }
-  },
-  "data_evidence": {
-    "capital_flow": "主力资金显著流出 (-0.28亿，占比-17.83%)，显示机构抛压沉重。",
-    "valuation": "高景气度赛道，ROE 32.25% 及 毛利率 90.80% 显示极强盈利能力，但当前处于杀估值阶段。",
-    "technical_context": "股价位于所有均线下方 (Price < MA5 < MA20 < MA250)，属于典型的空头下跌趋势。"
-  },
-  "technical": "### 📉 趋势深度解构\n*   **长期趋势 (极弱)**：股价 (221.39) 远低于 **MA250 (274.00)** 和 **MA120 (263.06)**，且均线呈发散向下形态，确认处于长期熊市调整通道中，上方套牢盘极重。\n*   **短期动能 (超卖)**：**MA5 (226.37)** 成为即时压力，股价沿5日线单边下跌。**RSI(6) 为 36.30**，接近30的超卖区，暗示短期可能有技术性反抽，但缺乏量能配合。\n*   **指标状态**：MACD (-4.392) 在零轴下方持续发散，空头动能尚未衰竭，暂无底背离迹象。",
-  "sentiment": "### 🌪 市场情绪与资金\n*   **散户心态崩塌**：评论区充斥“300本金何时回本”、“当钉子户”等言论，显示散户处于深度被套后的无奈与恐慌阶段，这是底部特征之一，但往往意味着磨底时间漫长。\n*   **利好钝化**：公司获得“人体结构性材料”发明专利，且销售热度高，但股价不涨反跌 (-2.42%)，属于典型的“利好出尽”或市场无视利好，是弱势市场的显著特征。\n*   **资金态度**：主力资金净流出占比高达17.83%，说明大资金仍在坚决离场，未见承接意愿。",
-  "plan": "### ⚔️ 实战交易计划\n1.  **左侧交易者 (激进)**：当前不宜直接接飞刀。若股价急跌至 **200-210** 区间且 RSI < 25，可尝试极小仓位博弈超跌反弹，快进快出。\n2.  **右侧交易者 (稳健)**：**严禁入场**。必须等待股价重新站上 **MA20 (232.99)** 且均线开始走平上翘，或者出现放量大阳线吞没短期跌幅后，再考虑跟随趋势。\n3.  **持仓处理**：若持有被套，反弹至 **MA20 (233左右)** 附近是减仓降低成本的机会，切勿在下跌趋势中盲目补仓。",
-  "risk": "### ⚠️ 核心风险提示\n*   **流动性风险**：作为北交所 (920xxx) 标的，流动性通常弱于主板，一旦下跌趋势形成，可能出现无量阴跌，难以出逃。\n*   **技术破位**：下方已无均线支撑，若跌破220整数关口，可能引发新一轮恐慌性抛盘（目标指向新闻中提及的空头目标179）。\n*   **业绩不确定性**：市场对业绩预告迟迟未出表现出焦虑，需警惕业绩不及预期的“黑天鹅”。",
-  "deep_insight": "### 🔍 深度研报：基本面与筹码博弈\n*   **主力筹码分布**：\n    *   当前股价 (221.39) 远低于 MA120 (263) 和 MA250 (274)，意味着过去半年至一年买入的投资者 **90%以上处于亏损状态**。\n    *   主力资金持续流出，推测机构成本区可能在 **250元上方**，当前处于机构止损或被动减仓阶段。\n*   **聪明钱动向**：\n    *   北向/主力资金呈现大幅净流出 (-17.83%)，说明“聪明钱”并不认可当前的性价比，或者正在进行仓位切换。\n*   **机构观点分歧**：\n    *   **基本面多头**：看重 90.8% 的超高毛利和胶原蛋白赛道的稀缺性 (专利授权)。\n    *   **趋势空头**：担忧高估值消化过程及北交所流动性折价。目前空头力量占据绝对主导。\n*   **结论**：好公司不等于好股票。锦波生物属于“极质优但极弱势”的标的，需等待“估值底”与“市场底”的共振，目前尚未企稳。"
-}", aiScore: 58, deepInsight: "### 🔍 深度研报：基本面与筹码博弈
-*   **主力筹码分布**：
-    *   当前股价 (221.39) 远低于 MA120 (263) 和 MA250 (274)，意味着过去半年至一年买入的投资者 **90%以上处于亏损状态**。
-    *   主力资金持续流出，推测机构成本区可能在 **250元上方**，当前处于机构止损或被动减仓阶段。
-*   **聪明钱动向**：
-    *   北向/主力资金呈现大幅净流出 (-17.83%)，说明“聪明钱”并不认可当前的性价比，或者正在进行仓位切换。
-*   **机构观点分歧**：
-    *   **基本面多头**：看重 90.8% 的超高毛利和胶原蛋白赛道的稀缺性 (专利授权)。
-    *   **趋势空头**：担忧高估值消化过程及北交所流动性折价。目前空头力量占据绝对主导。
-*   **结论**：好公司不等于好股票。锦波生物属于“极质优但极弱势”的标的，需等待“估值底”与“市场底”的共振，目前尚未企稳。", isUnlocked: false, userId: ObjectId("697f682165c4c64af6565fa6"), createdAt: DateTime("2026-02-01 14:58:22.562 +00:00:00"), })
-prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f6a0e65c4c64af6565fa9"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, }, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
- POST /report/920982.BJ 200 in 48s (compile: 6ms, render: 48s)
-prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "920982.BJ", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-01-31 14:58:22.584 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $sort: { createdAt: -1, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
-[DB HIT] Returning persisted report for 920982.BJ
- POST /report/920982.BJ 200 in 14ms (compile: 4ms, render: 10ms)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
- POST /report/920982.BJ 200 in 15ms (compile: 2ms, render: 13ms)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
- POST /report/920982.BJ 200 in 14ms (compile: 3ms, render: 12ms)
- GET /report/920982.BJ 200 in 244ms (compile: 130ms, render: 115ms)
- GET / 200 in 32ms (compile: 5ms, render: 27ms)
- GET / 200 in 230ms (compile: 2ms, render: 228ms)
- GET /report/920982.BJ 200 in 217ms (compile: 112ms, render: 104ms)
-✓ Compiled in 42ms
- GET /sw.js 404 in 45ms (compile: 6ms, render: 39ms)
-✓ Compiled in 52ms
-✓ Compiled in 237ms
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
- POST /report/920982.BJ 200 in 432ms (compile: 348ms, render: 84ms)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, isVip: 1, freeQuotaUsed: 1, }, }, ])
-prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "920982.BJ", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-01 3:21:11.293 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
- POST /report/920982.BJ 200 in 14ms (compile: 4ms, render: 10ms)
- POST /report/920982.BJ 200 in 292ms (compile: 2ms, render: 290ms)
-[FUNDAMENTALS] 开始获取财务数据: 920982
-[FUNDAMENTALS] 数据获取成功: 920982
- POST /report/920982.BJ 200 in 1267ms (compile: 17ms, render: 1250ms)
-prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "920982.BJ", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-01-31 15:21:12.903 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $sort: { createdAt: -1, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
-[DB HIT] Returning persisted report for 920982.BJ
- POST /report/920982.BJ 200 in 15ms (compile: 5ms, render: 11ms)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
- POST /report/920982.BJ 200 in 14ms (compile: 5ms, render: 9ms)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
- POST /report/920982.BJ 200 in 8ms (compile: 1641µs, render: 6ms)
-✓ Compiled in 125ms
-✓ Compiled in 55ms
- GET /sw.js 404 in 70ms (compile: 15ms, render: 56ms)
- GET / 200 in 57ms (compile: 7ms, render: 50ms)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
- POST / 200 in 38ms (compile: 3ms, render: 35ms)
- GET /api/proxy/search?q=xin%20t 200 in 3.0s (compile: 7ms, render: 3.0s)
- POST / 200 in 257ms (compile: 3ms, render: 253ms)
- GET /report/02400.HK 200 in 142ms (compile: 113ms, render: 29ms)
- GET /api/proxy/search?q=xi 200 in 3.0s (compile: 4ms, render: 3.0s)
- GET /api/proxy/search?q=xin%20o 200 in 3.0s (compile: 5ms, render: 3.0s)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
- POST /report/02400.HK 200 in 29ms (compile: 5ms, render: 23ms)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
- POST /report/02400.HK 200 in 13ms (compile: 1832µs, render: 11ms)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, isVip: 1, freeQuotaUsed: 1, }, }, ])
-prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "02400.HK", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-01 3:23:55.784 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
- POST /report/02400.HK 200 in 10ms (compile: 2ms, render: 8ms)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, isVip: 1, freeQuotaUsed: 1, }, }, ])
-prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "02400.HK", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-01 3:23:55.804 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
- POST /report/02400.HK 200 in 12ms (compile: 3ms, render: 9ms)
- POST /report/02400.HK 200 in 122ms (compile: 3ms, render: 119ms)
- POST /report/02400.HK 200 in 95ms (compile: 2ms, render: 92ms)
-[FUNDAMENTALS] 开始获取财务数据: 02400
- GET /api/proxy/search?q=xin%20dong 200 in 3.0s (compile: 3ms, render: 3.0s)
-[FUNDAMENTALS] 数据获取成功: 02400
- POST /report/02400.HK 200 in 518ms (compile: 3ms, render: 515ms)
-[FUNDAMENTALS] 开始获取财务数据: 02400
- GET /api/proxy/search?q=%E5%BF%83%E5%8A%A8 200 in 3.0s (compile: 3ms, render: 3.0s)
-[FUNDAMENTALS] 数据获取成功: 02400
- POST /report/02400.HK 200 in 252ms (compile: 4ms, render: 248ms)
-prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "02400.HK", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-01-31 15:23:56.862 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $sort: { createdAt: -1, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
-[DB HIT] Returning persisted report for 02400.HK
- POST /report/02400.HK 200 in 9ms (compile: 3ms, render: 7ms)
-prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "02400.HK", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-01-31 15:23:56.872 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $sort: { createdAt: -1, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
-[DB HIT] Returning persisted report for 02400.HK
- POST /report/02400.HK 200 in 10ms (compile: 1233µs, render: 9ms)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
- POST /report/02400.HK 200 in 7ms (compile: 1510µs, render: 5ms)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
- POST /report/02400.HK 200 in 8ms (compile: 1797µs, render: 6ms)
-✓ Compiled in 42ms
-✓ Compiled in 53ms
-✓ Compiled in 43ms
-✓ Compiled in 59ms
- GET /sw.js 404 in 43ms (compile: 11ms, render: 32ms)
-✓ Compiled in 46ms
- GET /report/02400.HK 200 in 4.6s (compile: 1449ms, render: 3.1s)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
- POST /report/02400.HK 200 in 45ms (compile: 4ms, render: 40ms)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, isVip: 1, freeQuotaUsed: 1, }, }, ])
-prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "02400.HK", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-01 3:27:08.788 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
- POST /report/02400.HK 200 in 16ms (compile: 5ms, render: 11ms)
- POST /report/02400.HK 200 in 146ms (compile: 6ms, render: 140ms)
-[FUNDAMENTALS] 开始获取财务数据: 02400
-[FUNDAMENTALS] 数据获取成功: 02400
- POST /report/02400.HK 200 in 617ms (compile: 3ms, render: 614ms)
-prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "02400.HK", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-01-31 15:27:09.616 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $sort: { createdAt: -1, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
-[DB HIT] Returning persisted report for 02400.HK
- POST /report/02400.HK 200 in 11ms (compile: 3ms, render: 8ms)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
- POST /report/02400.HK 200 in 8ms (compile: 1555µs, render: 7ms)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
- POST /report/02400.HK 200 in 9ms (compile: 1793µs, render: 7ms)
- GET /report/02400.HK 200 in 176ms (compile: 120ms, render: 56ms)
- GET / 200 in 176ms (compile: 4ms, render: 172ms)
- GET / 200 in 163ms (compile: 3ms, render: 160ms)
- GET /report/02400.HK 200 in 154ms (compile: 114ms, render: 40ms)
- GET /sw.js 404 in 41ms (compile: 7ms, render: 35ms)
-✓ Compiled in 563ms
- GET /sw.js 404 in 44ms (compile: 15ms, render: 29ms)
- GET / 200 in 59ms (compile: 9ms, render: 50ms)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
- POST / 200 in 16ms (compile: 1306µs, render: 15ms)
- GET /api/proxy/search?q=%E5%B0%8F%E7%B1%B3 200 in 3.0s (compile: 19ms, render: 3.0s)
- GET /report/01810 200 in 32ms (compile: 11ms, render: 21ms)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
- POST /report/01810 200 in 24ms (compile: 3ms, render: 21ms)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
- POST /report/01810 200 in 20ms (compile: 1905µs, render: 18ms)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, isVip: 1, freeQuotaUsed: 1, }, }, ])
-prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "01810", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-01 4:03:26.458 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, }, }, ])
-prisma:query db.User.updateMany({ _id: { $in: [ ObjectId("697f682165c4c64af6565fa6"), ], }, },[{ $set: { updatedAt: { $literal: DateTime("2026-02-01 16:03:26.46 +00:00:00"), }, }, },
-{ $set: { freeQuotaUsed: { $add: [ "$freeQuotaUsed", 1, ], }, }, }])
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, }, }, { $project: { _id: 1, phone: 1, createdAt: 1, updatedAt: 1, freeQuotaUsed: 1, isVip: 1, vipExpireDate: 1, }, }, ])
- POST /report/01810 200 in 13ms (compile: 1668µs, render: 11ms)
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, isVip: 1, freeQuotaUsed: 1, }, }, ])
-prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "01810", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-01 4:03:26.501 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, }, }, ])
-prisma:query db.User.updateMany({ _id: { $in: [ ObjectId("697f682165c4c64af6565fa6"), ], }, },[{ $set: { updatedAt: { $literal: DateTime("2026-02-01 16:03:26.504 +00:00:00"), }, }, },
-{ $set: { freeQuotaUsed: { $add: [ "$freeQuotaUsed", 1, ], }, }, }])
-prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, }, }, { $project: { _id: 1, phone: 1, createdAt: 1, updatedAt: 1, freeQuotaUsed: 1, isVip: 1, vipExpireDate: 1, }, }, ])
- POST /report/01810 200 in 21ms (compile: 4ms, render: 17ms)
- POST /report/01810 200 in 184ms (compile: 1164µs, render: 183ms)
- POST /report/01810 200 in 98ms (compile: 3ms, render: 94ms)
-[FUNDAMENTALS] 开始获取财务数据: 01810
-[FUNDAMENTALS] 数据获取成功: 01810
- POST /report/01810 200 in 653ms (compile: 3ms, render: 650ms)
-[FUNDAMENTALS] 开始获取财务数据: 01810
-[FUNDAMENTALS] 数据获取成功: 01810
- POST /report/01810 200 in 337ms (compile: 5ms, render: 332ms)
-prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "01810", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-01-31 16:03:27.845 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $sort: { createdAt: -1, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
-[RAG] Fetching news from: https://guba.eastmoney.com/list,01810.html
-[AI REQUEST] Generating report for 小米集团-W...
-[GEMINI REQUEST] Payload built with systemInstruction: true
-[GEMINI RESPONSE DATA] {"candidates":[{"content":{"role":"model","parts":[{"text":"{\n  \"ai_score\": 42,\n  \"signal\": \"看空 (Bearish)\",\n  \"short_term\": {\n    \"timeframe\": \"短期 (4-12周)\",\n    \"rationale\": \"股价处于典型的空头排列（价格 < MA5 < MA20 < MA60），短期趋势极弱。MA20 (36.98) 构成直接压制，MACD指标在零轴下方运行且数值为负 (-1.131)，显示下跌动能尚未耗尽。RSI (52.86) 处于中性区域，意味着下跌过程中并未出现明显的超卖反弹信号，仍有下行空间。\",\n    \"key_levels\": {\n      \"support\": 34.20,\n      \"resistance\": 36.98,\n      \"stop_loss\": 33.00\n    }\n  },\n  \"long_term\": {\n    \"tim
-[AI RESPONSE]Length: 2384 chars.Snippet: {
-  "ai_score": 42,
-  "signal": "看空 (Bearish)",
+[GEMINI RESPONSE DATA] {"candidates":[{"content":{"role":"model","parts":[{"text":"{\n  \"ai_score\": 68,\n  \"signal\": \"观望 / 左侧潜伏\",\n  \"short_term\": {\n    \"timeframe\": \"短期 (4-12周)\",\n    \"rationale\": \"股价目前位于38.72元，处于MA20(约40.50元)下方，呈现弱势探底形态。虽然日内下跌近3%，但资讯显示'板块筑底'且有海外业务利好支撑，短期存在超跌反弹需求，但需等待止跌信号。\",\n    \"key_levels\": {\n      \"support\": 37.50,\n      \"resistance\": 40.80,\n      \"stop_loss\": 36.20\n    }\n  },\n  \"long_term\": {\n    \"timeframe\": \"长期 (6-12个月)\",\n    \"rationale\": \"1. 趋势判断：股价目前
+[AI RESPONSE]Length: 1831 chars.Snippet: {
+  "ai_score": 68,
+  "signal": "观望 / 左侧潜伏",
   "short_term": {
     "timeframe": "短期 (4-12周)",
-    
-prisma:query db.AnalysisReport.insertOne({ stockCode: "01810", stockName: "小米集团-W", type: "PRO", summary: "看空 (Bearish)", content: "{
-  "ai_score": 42,
-  "signal": "看空 (Bearish)",
+    "r 
+prisma:query db.AnalysisReport.insertOne({ stockCode: "002223.SZ", stockName: "鱼跃医疗", type: "PRO", summary: "观望 / 左侧潜伏", content: "{
+  "ai_score": 68,
+  "signal": "观望 / 左侧潜伏",
   "short_term": {
     "timeframe": "短期 (4-12周)",
-    "rationale": "股价处于典型的空头排列（价格 < MA5 < MA20 < MA60），短期趋势极弱。MA20 (36.98) 构成直接压制，MACD指标在零轴下方运行且数值为负 (-1.131)，显示下跌动能尚未耗尽。RSI (52.86) 处于中性区域，意味着下跌过程中并未出现明显的超卖反弹信号，仍有下行空间。",
+    "rationale": "股价目前位于38.72元，处于MA20(约40.50元)下方，呈现弱势探底形态。虽然日内下跌近3%，但资讯显示'板块筑底'且有海外业务利好支撑，短期存在超跌反弹需求，但需等待止跌信号。",
     "key_levels": {
-      "support": 34.20,
-      "resistance": 36.98,
-      "stop_loss": 33.00
+      "support": 37.50,
+      "resistance": 40.80,
+      "stop_loss": 36.20
     }
   },
   "long_term": {
     "timeframe": "长期 (6-12个月)",
-    "rationale": "长期趋势已完全走坏，现价 (35.50) 远低于牛熊分界线 MA250 (48.74)，处于深度回调阶段。尽管 ROE (13.41%) 显示公司基本面尚可，但当前 PE 约为 37倍 (35.5/0.95)，在长期下行趋势中估值缺乏安全边际。需等待股价企稳并重新站上 MA120 后方可考虑右侧布局。",
+    "rationale": "1. 趋势判断：股价目前远低于MA250(约46.00元)，处于长期价值回归区间。2. 基本面：公司作为家用医疗器械龙头，ROE保持稳定，且2026年资讯重点提及'出海新局'与'急救业务扩容'，新的增长曲线正在形成。3. 估值：当前位置被市场描述为'低位布局窗口'，暗示PE估值已进入历史低分位区（预计15-20倍区间），具备较高安全边际。",
     "key_levels": {
-      "support": 30.00,
-      "resistance": 45.88,
-      "stop_loss": 28.50
+      "support": 35.00,
+      "resistance": 48.50,
+      "stop_loss": 32.80
     }
   },
   "data_evidence": {
-    "capital_flow": "数据缺失。基于价格下跌 3.06% 且位于所有均线下方推断，资金呈现净流出状态，买盘承接力不足。",
-    "valuation": "当前市盈率(PE)约 37.3倍，结合 13.41% 的 ROE，估值处于行业中高位，性价比一般。",
-    "technical_context": "均线系统呈空头排列，上方套牢盘沉重 (MA120/MA250 远高于现价)。"
+    "capital_flow": "散户情绪极度悲观（骂声较多），往往是底部特征；机构研报密集吹风'出海'与'价值'，暗示主力资金可能正在左侧吸筹。",
+    "valuation": "结合'低位布局窗口'资讯判断，当前估值处于行业低估区间，具有中长期吸引力。",
+    "technical_context": "日线级别处于空头排列，但乖离率较大，RSI预计进入超卖区（<30），存在技术性修复需求。"
   },
-  "technical": "### 技术面深度解构\n\n*   **趋势状态**: **极度弱势 (Strong Downtrend)**。股价位于所有主要均线 (MA5, MA20, MA60, MA120, MA250) 下方，这是典型的空头形态。MA20 (36.98) 和 MA60 (39.65) 形成死叉向下发散，构成了层层阻力。\n*   **动量分析**: MACD 为 -1.131，处于水下死叉状态，表明空头主导市场。RSI 为 52.86，处于中性位置，这在下跌趋势中是一个危险信号，暗示股价下跌并非因恐慌性抛售导致（未超卖），而是阴跌，后续可能还有补跌空间。\n*   **乖离率**: 现价距离年线 (MA250) 偏离度较大，长期看有超跌反弹需求，但短期缺乏止跌结构。",
-  "sentiment": "### 市场情绪与资金分析\n\n*   **情绪**: **悲观 (Pessimistic)**。股价单日下跌逾 3%，且无明显下影线支撑，显示市场信心脆弱。\n*   **筹码结构**: 由于现价 (35.50) 远低于 MA120 (45.88) 和 MA250 (48.74)，意味着过去半年至一年买入的投资者绝大部分处于亏损状态。上方存在巨大的套牢盘压力，任何反弹至 40-45 区间都将面临解套抛压。\n*   **资金博弈**: 缺乏主力资金护盘迹象，当前属于“空头控盘”阶段。",
-  "plan": "### 实战交易计划\n\n1.  **观望为主 (Wait & See)**: 当前不宜盲目抄底。股价处于“飞刀”下落阶段，未见底部形态（如双底、头肩底）。\n2.  **短期博弈 (高风险)**: 仅当股价放量突破 MA5 (35.84) 且站稳 36.00 时，可尝试极轻仓短多，目标看至 MA20 (36.98)，止损设在 34.50。\n3.  **长期布局**: 耐心等待股价回落至 30.00-32.00 估值支撑区，或等待股价有效突破 MA60 (39.65) 扭转中期趋势后再进场。当前位置“接飞刀”风险收益比极低。",
-  "risk": "### 风险提示\n\n*   **趋势延续风险**: 均线空头排列未改，下跌趋势可能自我强化，下方支撑仅为预估，可能被击穿。\n*   **估值压缩风险**: 若市场整体风险偏好下降，37倍 PE 的估值可能面临杀估值压力，回归至 25-30倍 PE 区间。\n*   **套牢盘抛压**: 即使反弹，上方 40-48 元区间堆积了大量历史套牢筹码，反弹高度受限。",
-  "deep_insight": "### 深度研报内容 (Institutional Insight)\n\n*   **主力筹码分布**: 估算主力机构平均持仓成本远高于现价 (约在 42-45元区间)。当前股价意味着主力资金也被深套或已在前期高位减仓离场。目前市场主要由散户和游资主导，缺乏长线大资金关照。\n*   **Smart Money 动向**: 在缺乏明确资金流数据的情况下，结合 MACD 水下运行特征，推测“聪明钱”处于净流出或观望状态，未出现明显的左侧吸筹迹象。\n*   **机构观点分歧**: 虽然基本面 ROE 维持在 13% 的健康水平，但市场对硬件业务增长瓶颈和造车业务投入的担忧可能压制了估值。机构共识目前倾向于“回避风险”，等待业绩拐点或技术面右侧信号。"
-}", aiScore: 42, deepInsight: "### 深度研报内容 (Institutional Insight)
+  "technical": "当前股价38.72元，跌幅近3%，技术面呈现典型的'空头陷阱'或'加速赶底'特征。短期均线MA5、MA10死叉向下压制股价，上方MA20（约40.50）和MA60（约42.80）构成重重压力。然而，在长期均线MA250下方深处，往往孕育着较大的反弹空间。若成交量在37-38元区间放大且股价不跌，则构成'量价背离'的底部信号。",
+  "sentiment": "市场情绪呈现极度割裂状态。散户端（资讯1、2、3）充满了'骗子'、'接盘'等愤怒言论，这是典型的底部散户绝望特征，通常是反向买入指标。机构端（资讯4、5、6、8）则统一口径强调'技术领先'、'出海加速'和'低位布局'，这种'散户骂、机构吹'的局面，通常意味着主力资金正在利用利空情绪清洗浮筹，完成低位建仓。",
+  "plan": "1. **左侧激进型**：在37.50-38.00区间尝试建立底仓（不超过20%），博取超跌反弹。\n2. **右侧稳健型**：暂时观望，等待股价重新站上MA20（约40.50元）并企稳后再行介入。\n3. **定投策略**：鉴于长期逻辑（出海+老龄化）未变，可在此价格区间开启网格交易，每跌5%加仓一次。",
+  "risk": "1. **海外拓展不及预期**：虽然资讯看好出海，但国际贸易摩擦可能影响实际落地。\n2. **集采风险**：医疗器械板块始终面临集采降价的政策压制。\n3. **技术破位**：若有效跌破35.00元长期强支撑，则需重新评估估值逻辑。",
+  "deep_insight": "- **主力筹码分布**：根据当前散户的愤怒程度推演，上方45元-50元区间存在大量散户套牢盘。当前38元一线主要是机构的左侧回补成本区与割肉盘的交换区。主力成本估计在36-39元区间。\n- **聪明钱动向**：虽然缺乏实时流向数据，但'出海获国际背书'类新闻的高热度（热度198）表明机构资金正在围绕'国际化'逻辑进行重新定价。北向资金大概率在利用调整缓慢增配。\n- **机构观点共识**：机构普遍认为鱼跃医疗已从单纯的'家用医疗'向'急救+海外'双轮驱动转型，当前股价未能反映这一长期价值跃迁，存在明显的预期差。"
+}", aiScore: 68, deepInsight: "- **主力筹码分布**：根据当前散户的愤怒程度推演，上方45元-50元区间存在大量散户套牢盘。当前38元一线主要是机构的左侧回补成本区与割肉盘的交换区。主力成本估计在36-39元区间。
+- **聪明钱动向**：虽然缺乏实时流向数据，但'出海获国际背书'类新闻的高热度（热度198）表明机构资金正在围绕'国际化'逻辑进行重新定价。北向资金大概率在利用调整缓慢增配。
+- **机构观点共识**：机构普遍认为鱼跃医疗已从单纯的'家用医疗'向'急救+海外'双轮驱动转型，当前股价未能反映这一长期价值跃迁，存在明显的预期差。", isUnlocked: false, userId: ObjectId("697f682165c4c64af6565fa6"), createdAt: DateTime("2026-02-02 8:55:16.305 +00:00:00"), })
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("698066748461dd06b07d8b28"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, }, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+ POST /report/002223.SZ 200 in 48s (compile: 5ms, render: 48s)
+ │ GET https://guba.eastmoney.com/list,002223.html 200 in 5ms (cache hit)
+ │ POST https://api.apiyi.com/v1beta/models/gemini-3-pro-preview:generateContent?key=***REMOVED*** 200 in 47847ms (cache skip)
+ │ │ Cache skipped reason: (fetchCache = default-no-store)
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "002223.SZ", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-02 8:50:16.351 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $sort: { createdAt: -1, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+[DB HIT] Returning persisted report for 002223.SZ
+ POST /report/002223.SZ 200 in 20ms (compile: 7ms, render: 13ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/002223.SZ 200 in 14ms (compile: 4ms, render: 10ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/002223.SZ 200 in 11ms (compile: 3ms, render: 8ms)
+ GET /report/002223.SZ 200 in 120ms (compile: 7ms, render: 113ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/002223.SZ 200 in 24ms (compile: 10ms, render: 15ms)
+[Deep Analysis] Calling Python API: http://localhost:8000/api/analysis/deep-analysis
+[Deep Analysis] Stock: 002223.SZ, User: 697f682165c4c64af6565fa6
+[Deep Analysis] Timeout: 180 seconds
+[Deep Analysis] Python API Error: 500 {"detail":"深度分析失败: 504: 深度分析超时（150秒）。股票代码: 002223.SZ，请稍后重试或联系技术支持。"}
+[Deep Analysis] Error: Error: Python API Error: 500
+    at generateTradingAgentsAnalysis (src/app/actions/analysis.ts:473:19)
+  471 |             const errorText = await response.text();
+  472 |             console.error(`[Deep Analysis] Python API Error: ${response.status}`, errorText);
+> 473 |             throw new Error(`Python API Error: ${response.status}`);
+      |                   ^
+  474 |         }
+  475 |
+  476 |         const result = await response.json();
+⨯ Error: Python API Error: 500
+    at generateTradingAgentsAnalysis (src/app/actions/analysis.ts:473:19)
+  471 |             const errorText = await response.text();
+  472 |             console.error(`[Deep Analysis] Python API Error: ${response.status}`, errorText);
+> 473 |             throw new Error(`Python API Error: ${response.status}`);
+      |                   ^
+  474 |         }
+  475 |
+  476 |         const result = await response.json(); {
+  digest: '3703342743'
+}
+ POST /report/002223.SZ 500 in 2.5min (compile: 1844µs, render: 2.5min)
+ │ POST http://localhost:8000/api/analysis/deep-analysis 500 in 150240ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+ GET /sw.js 404 in 43ms (compile: 7ms, render: 36ms)
+ GET /sw.js 404 in 39ms (compile: 9ms, render: 30ms)
+ GET /sw.js 404 in 37ms (compile: 7ms, render: 31ms)
+ GET / 200 in 32ms (compile: 6ms, render: 27ms)
+ POST / 200 in 4ms (compile: 1107µs, render: 3ms)
+[Proxy] Backend Error: 404
+ GET /api/proxy/search?q=t%20y%20t%20y 200 in 30ms (compile: 6ms, render: 24ms)
+[Proxy] Backend Error: 404
+ GET /api/proxy/search?q=y%20tu 200 in 20ms (compile: 6ms, render: 14ms)
+[Proxy] Backend Error: 404
+ GET /api/proxy/search?q=yu%20yue 200 in 19ms (compile: 4ms, render: 15ms)
+[Proxy] Backend Error: 404
+ GET /api/proxy/search?q=%E9%B1%BC%E8%B7%83 200 in 9ms (compile: 1903µs, render: 7ms)
+ POST / 200 in 209ms (compile: 1075µs, render: 208ms)
+ │ GET https://smartbox.gtimg.cn/s3/?t=all&q=%E9%B1%BC%E8%B7%83 200 in 153ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+ │ GET https://suggest3.sinajs.cn/suggest/type=&key=%E9%B1%BC%E8%B7%83 200 in 201ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+ GET /report/002223.SZ 200 in 27ms (compile: 8ms, render: 18ms)
+ POST /report/002223.SZ 200 in 13ms (compile: 5ms, render: 8ms)
+ POST /report/002223.SZ 200 in 9ms (compile: 2ms, render: 7ms)
+ POST /report/002223.SZ 200 in 9ms (compile: 1825µs, render: 7ms)
+ POST /report/002223.SZ 200 in 8ms (compile: 2ms, render: 6ms)
+[Mock SMS] Sending code 1234 to 18017588997
+ POST /report/002223.SZ 200 in 518ms (compile: 8ms, render: 511ms)
+[Auth] 开始登录流程: { phone: '18017588997', code: '1234' }
+[Auth] 查找用户...
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$phone", { $literal: "18017588997", }, ], }, { $ne: [ "$phone", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, createdAt: 1, updatedAt: 1, freeQuotaUsed: 1, isVip: 1, vipExpireDate: 1, }, }, ])
+[Auth] 找到已有用户: 697f682165c4c64af6565fa6
+[Auth] 设置Cookie...
+[Auth] 登录成功
+ POST /report/002223.SZ 200 in 35ms (compile: 7ms, render: 28ms)
+ GET /report/002223.SZ 200 in 31ms (compile: 4ms, render: 27ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/002223.SZ 200 in 10ms (compile: 3ms, render: 8ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, isVip: 1, freeQuotaUsed: 1, }, }, ])
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "002223.SZ", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-01 21:14:54.399 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+ POST /report/002223.SZ 200 in 8ms (compile: 1235µs, render: 6ms)
+ POST /report/002223.SZ 200 in 119ms (compile: 1679µs, render: 117ms)
+ │ GET https://qt.gtimg.cn/q=sz002223 200 in 112ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+[FUNDAMENTALS] 开始获取财务数据: 002223
+[FUNDAMENTALS] 数据获取成功: 002223
+ POST /report/002223.SZ 200 in 735ms (compile: 3ms, render: 732ms)
+ │ GET http://localhost:8000/api/stocks/002223/fundamentals 200 in 725ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "002223.SZ", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-02 9:09:55.285 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $sort: { createdAt: -1, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+[RAG] Fetching news from: https://guba.eastmoney.com/list,002223.html
+[AI REQUEST] Generating report for 鱼跃医疗...
+[GEMINI REQUEST] Payload built with systemInstruction: true
+[GEMINI RESPONSE DATA] {"candidates":[{"content":{"role":"model","parts":[{"text":"{\n  \"ai_score\": 62,\n  \"signal\": \"观望 / 左侧分批布局\",\n  \"short_term\": {\n    \"timeframe\": \"短期 (4-12周)\",\n    \"rationale\": \"股价跌破39元关口，短期均线(MA20)呈空头排列，市场情绪处于恐慌宣泄期（散户高喊'删自选'）。RSI指标预计进入超卖区(<30)，存在技术性反弹需求，但需确认38元整数关口支撑有效性。\",\n    \"key_levels\": {\n      \"support\": 38.00,\n      \"resistance\": 41.50,\n      \"stop_loss\": 36.80\n    }\n  },\n  \"long_term\": {\n    \"timeframe\": \"长期 (6-12个月)\",\n    \"rationale\": \"尽管股价目前处于
+[AI RESPONSE]Length: 2030 chars.Snippet: {
+  "ai_score": 62,
+  "signal": "观望 / 左侧分批布局",
+  "short_term": {
+    "timeframe": "短期 (4-12周)",
+     
+prisma:query db.AnalysisReport.insertOne({ stockCode: "002223.SZ", stockName: "鱼跃医疗", type: "PRO", summary: "观望 / 左侧分批布局", content: "{
+  "ai_score": 62,
+  "signal": "观望 / 左侧分批布局",
+  "short_term": {
+    "timeframe": "短期 (4-12周)",
+    "rationale": "股价跌破39元关口，短期均线(MA20)呈空头排列，市场情绪处于恐慌宣泄期（散户高喊'删自选'）。RSI指标预计进入超卖区(<30)，存在技术性反弹需求，但需确认38元整数关口支撑有效性。",
+    "key_levels": {
+      "support": 38.00,
+      "resistance": 41.50,
+      "stop_loss": 36.80
+    }
+  },
+  "long_term": {
+    "timeframe": "长期 (6-12个月)",
+    "rationale": "尽管股价目前处于MA250下方（长期弱势），但基本面逻辑未变。鱼跃在急救、呼吸治疗领域的行业地位稳固，随着老龄化加深，营收增长具备韧性。当前估值处于历史中低分位，若ROE能维持在15%左右，当前价格具备长期安全边际。",
+    "key_levels": {
+      "support": 35.50,
+      "resistance": 48.00,
+      "stop_loss": 33.00
+    }
+  },
+  "data_evidence": {
+    "capital_flow": "散户情绪极度悲观（热度高但多为抱怨），通常暗示散户资金正在割肉流出，主力可能在低位悄然承接。",
+    "valuation": "结合行业平均PE及公司历史估值中枢，当前38.72元价格处于相对低估区域，风险收益比逐渐改善。",
+    "technical_context": "日线级别破位下跌，均线系统压制明显，但乖离率过大，随时可能触发超跌反弹。"
+  },
+  "technical": "1. **趋势形态**：股价收于38.72 (-2.96%)，实体阴线击穿近期盘整平台，短期空头动能释放较强。MA5、MA10、MA20呈空头排列，上方40-41元区域已形成密集套牢盘。\n2. **指标状态**：在缺乏具体数据的情况下，基于大跌走势判断，MACD绿柱大概率扩散，KDJ死叉向下。但急跌往往伴随RSI底背离机会，需密切关注成交量是否萎缩（惜售）或放大（恐慌盘涌出）。\n3. **关键位置**：38.00元不仅是整数关口，也是资讯中散户关注的'抄底'心理位，若跌破将考验长期支撑35.50一线。",
+  "sentiment": "1. **散户情绪（极度恐慌）**：社区评论充斥'再见主力'、'死也死个明白'、'都套了吧'，显示市场情绪已接近冰点。根据逆向投资理论，散户绝望之时往往是阶段性底部的左侧区域。\n2. **资金博弈**：资讯中提到'39买回少部分'，说明场内仍有活跃资金试图做T自救，但'三弱生物'的对比评论显示投资者对板块整体信心不足。\n3. **消息面背离**：官方/研报利好（急救业务技术领先）与市场走势背离，这是典型的'利好不涨'弱势特征，需等待业绩落地消除不确定性。",
+  "plan": "1. **左侧交易者（激进）**：若股价触及38.00-38.20区间且出现下影线，可尝试建立首笔底仓（不超过20%），博取超跌反弹。\n2. **右侧交易者（稳健）**：当前不宜盲目抄底。耐心等待股价站稳MA5并突破39.50元压力位，或等待MACD指标出现底背离金叉后再进场。\n3. **止损策略**：严格执行纪律，若有效跌破36.80元，说明下跌空间打开，需无条件离场规避风险。",
+  "risk": "1. **业绩不及预期风险**：市场高度关注即将发布的业绩（'还不出业绩'），若净利润增速下滑或不及预期，可能引发新一轮杀跌。\n2. **行业集采风险**：医疗器械板块受集采政策情绪影响较大，需警惕政策面的突发利空。\n3. **技术破位风险**：若38元支撑无效，下方缺乏明显技术支撑，可能加速探底至35元一线。",
+  "deep_insight": "- **主力筹码分布**: 预估上方42-45元区间堆积了大量前期套牢筹码（占比>50%），当前价格38.72元下方获利盘极少，主力资金成本大概率在35-37元区间或更高，目前处于洗盘或被动随市调整阶段。\n- **聪明钱动向**: 在缺乏具体流向数据时，观察到散户恐慌离场，通常意味着'聪明钱'（长线机构/北向资金）正在左侧缓慢吸筹，等待情绪反转。\n- **机构观点分歧**: 研报强调'急救业务'和'市场扩容'的长期逻辑，而市场资金短期用脚投票。这种基本面与股价的背离，通常是价值投资者关注的'错杀'机会，但需警惕机构调仓换股带来的短期抛压。"
+}", aiScore: 62, deepInsight: "- **主力筹码分布**: 预估上方42-45元区间堆积了大量前期套牢筹码（占比>50%），当前价格38.72元下方获利盘极少，主力资金成本大概率在35-37元区间或更高，目前处于洗盘或被动随市调整阶段。
+- **聪明钱动向**: 在缺乏具体流向数据时，观察到散户恐慌离场，通常意味着'聪明钱'（长线机构/北向资金）正在左侧缓慢吸筹，等待情绪反转。
+- **机构观点分歧**: 研报强调'急救业务'和'市场扩容'的长期逻辑，而市场资金短期用脚投票。这种基本面与股价的背离，通常是价值投资者关注的'错杀'机会，但需警惕机构调仓换股带来的短期抛压。", isUnlocked: false, userId: ObjectId("697f682165c4c64af6565fa6"), createdAt: DateTime("2026-02-02 9:15:38.832 +00:00:00"), })
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("69806b3a8461dd06b07d8b29"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, }, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+ POST /report/002223.SZ 200 in 44s (compile: 4ms, render: 44s)
+ │ GET https://guba.eastmoney.com/list,002223.html 200 in 2ms (cache hit)
+ │ POST https://api.apiyi.com/v1beta/models/gemini-3-pro-preview:generateContent?key=***REMOVED*** 200 in 43320ms (cache skip)
+ │ │ Cache skipped reason: (fetchCache = default-no-store)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/002223.SZ 200 in 20ms (compile: 10ms, render: 10ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/002223.SZ 200 in 11ms (compile: 1729µs, render: 9ms)
+ GET /sw.js 404 in 37ms (compile: 7ms, render: 30ms)
+ GET / 200 in 410ms (compile: 6ms, render: 404ms)
+ GET /report/002223.SZ 200 in 381ms (compile: 154ms, render: 227ms)
+ GET /report/002223.SZ 200 in 381ms (compile: 199ms, render: 182ms)
+ GET /report/002223.SZ 200 in 184ms (compile: 5ms, render: 179ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/002223.SZ 200 in 27ms (compile: 7ms, render: 20ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, isVip: 1, freeQuotaUsed: 1, }, }, ])
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "002223.SZ", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-01 21:18:39.761 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+ POST /report/002223.SZ 200 in 18ms (compile: 3ms, render: 16ms)
+ POST /report/002223.SZ 200 in 130ms (compile: 2ms, render: 128ms)
+ │ GET https://qt.gtimg.cn/q=sz002223 200 in 120ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+[FUNDAMENTALS] 开始获取财务数据: 002223
+[FUNDAMENTALS] 数据获取成功: 002223
+ POST /report/002223.SZ 200 in 668ms (compile: 6ms, render: 662ms)
+ │ GET http://localhost:8000/api/stocks/002223/fundamentals 200 in 656ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "002223.SZ", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-02 9:13:40.61 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $sort: { createdAt: -1, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+[DB HIT] Returning persisted report for 002223.SZ
+ POST /report/002223.SZ 200 in 12ms (compile: 4ms, render: 9ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/002223.SZ 200 in 9ms (compile: 2ms, render: 7ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/002223.SZ 200 in 10ms (compile: 3ms, render: 8ms)
+ GET /sw.js 404 in 39ms (compile: 12ms, render: 27ms)
+ GET / 200 in 35ms (compile: 5ms, render: 30ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST / 200 in 9ms (compile: 1931µs, render: 7ms)
+[Proxy] Backend Error: 404
+ GET /api/proxy/search?q=bei%20fang 200 in 20ms (compile: 5ms, render: 15ms)
+[Proxy] Backend Error: 404
+ GET /api/proxy/search?q=%E5%8C%97%E6%96%B9 200 in 16ms (compile: 4ms, render: 12ms)
+ POST / 200 in 228ms (compile: 4ms, render: 224ms)
+ │ GET https://smartbox.gtimg.cn/s3/?t=all&q=%E5%8C%97%E6%96%B9 200 in 163ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+ │ GET https://suggest3.sinajs.cn/suggest/type=&key=%E5%8C%97%E6%96%B9 200 in 204ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+ GET /report/600111.SH 200 in 19ms (compile: 7ms, render: 12ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/600111.SH 200 in 16ms (compile: 3ms, render: 12ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/600111.SH 200 in 10ms (compile: 2ms, render: 7ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, isVip: 1, freeQuotaUsed: 1, }, }, ])
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "600111.SH", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-01 21:19:03.903 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, }, }, ])
+prisma:query db.User.updateMany({ _id: { $in: [ ObjectId("697f682165c4c64af6565fa6"), ], }, },[{ $set: { updatedAt: { $literal: DateTime("2026-02-02 9:19:03.904 +00:00:00"), }, }, },
+{ $set: { freeQuotaUsed: { $add: [ "$freeQuotaUsed", 1, ], }, }, }])
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, }, }, { $project: { _id: 1, phone: 1, createdAt: 1, updatedAt: 1, freeQuotaUsed: 1, isVip: 1, vipExpireDate: 1, }, }, ])
+ POST /report/600111.SH 200 in 16ms (compile: 1771µs, render: 14ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, isVip: 1, freeQuotaUsed: 1, }, }, ])
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "600111.SH", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-01 21:19:03.943 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, }, }, ])
+prisma:query db.User.updateMany({ _id: { $in: [ ObjectId("697f682165c4c64af6565fa6"), ], }, },[{ $set: { updatedAt: { $literal: DateTime("2026-02-02 9:19:03.947 +00:00:00"), }, }, },
+{ $set: { freeQuotaUsed: { $add: [ "$freeQuotaUsed", 1, ], }, }, }])
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, }, }, { $project: { _id: 1, phone: 1, createdAt: 1, updatedAt: 1, freeQuotaUsed: 1, isVip: 1, vipExpireDate: 1, }, }, ])
+ POST /report/600111.SH 200 in 31ms (compile: 3ms, render: 27ms)
+ POST /report/600111.SH 200 in 132ms (compile: 7ms, render: 125ms)
+ │ GET https://qt.gtimg.cn/q=sh600111 200 in 121ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+ POST /report/600111.SH 200 in 63ms (compile: 1876µs, render: 61ms)
+ │ GET https://qt.gtimg.cn/q=sh600111 200 in 57ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+[FUNDAMENTALS] 开始获取财务数据: 600111
+[FUNDAMENTALS] 数据获取成功: 600111
+ POST /report/600111.SH 200 in 853ms (compile: 3ms, render: 850ms)
+ │ GET http://localhost:8000/api/stocks/600111/fundamentals 200 in 846ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+[FUNDAMENTALS] 开始获取财务数据: 600111
+[FUNDAMENTALS] 数据获取成功: 600111
+ POST /report/600111.SH 200 in 481ms (compile: 4ms, render: 477ms)
+ │ GET http://localhost:8000/api/stocks/600111/fundamentals 200 in 470ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "600111.SH", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-02 9:14:05.561 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $sort: { createdAt: -1, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+[RAG] Fetching news from: https://guba.eastmoney.com/list,600111.html
+[AI REQUEST] Generating report for 北方稀土...
+[GEMINI REQUEST] Payload built with systemInstruction: true
+[GEMINI RESPONSE DATA] {"candidates":[{"content":{"role":"model","parts":[{"text":"{\n  \"ai_score\": 68,\n  \"signal\": \"观望 (等待企稳)\",\n  \"short_term\": {\n    \"timeframe\": \"短期 (4-12周)\",\n    \"rationale\": \"股价遭遇急跌(-7.62%)，短期均线(MA5/MA10)已破位，呈现'断头铡刀'形态。虽然RSI进入超卖区，但市场情绪处于恐慌释放期，需等待MA60附近的支撑确认，不宜盲目接飞刀。\",\n    \"key_levels\": {\n      \"support\": 43.50,\n      \"resistance\": 52.80,\n      \"stop_loss\": 41.20\n    }\n  },\n  \"long_term\": {\n    \"timeframe\": \"长期 (6-12个月)\",\n    \"rationale\": \"尽管当前PE(约111倍)
+[AI RESPONSE]Length: 2071 chars.Snippet: {
+  "ai_score": 68,
+  "signal": "观望 (等待企稳)",
+  "short_term": {
+    "timeframe": "短期 (4-12周)",
+    "r 
+prisma:query db.AnalysisReport.insertOne({ stockCode: "600111.SH", stockName: "北方稀土", type: "PRO", summary: "观望 (等待企稳)", content: "{
+  "ai_score": 68,
+  "signal": "观望 (等待企稳)",
+  "short_term": {
+    "timeframe": "短期 (4-12周)",
+    "rationale": "股价遭遇急跌(-7.62%)，短期均线(MA5/MA10)已破位，呈现'断头铡刀'形态。虽然RSI进入超卖区，但市场情绪处于恐慌释放期，需等待MA60附近的支撑确认，不宜盲目接飞刀。",
+    "key_levels": {
+      "support": 43.50,
+      "resistance": 52.80,
+      "stop_loss": 41.20
+    }
+  },
+  "long_term": {
+    "timeframe": "长期 (6-12个月)",
+    "rationale": "尽管当前PE(约111倍)处于高位，但核心逻辑在于稀土镨钕价格暴涨(40万涨至90万/吨)。作为行业龙头，业绩释放有滞后性，高大宗商品价格将大幅修复未来的ROE和净利润。长期看，只要稀土价格维持高位，当前回调是估值消化过程。",
+    "key_levels": {
+      "support": 36.80,
+      "resistance": 65.00,
+      "stop_loss": 34.50
+    }
+  },
+  "data_evidence": {
+    "capital_flow": "恐慌性抛盘涌出，主力资金借势洗盘，成交量放大显示筹码松动。",
+    "valuation": "当前PE 111x 显著高于行业平均，透支了未来业绩预期，需业绩兑现来消化估值。",
+    "technical_context": "日线级别出现大阴线跌破短期平台，MACD高位死叉向下发散，短期空头排列。"
+  },
+  "technical": "### 技术面深度解构\n*   **趋势状态**: 短期趋势由多转空，单日大跌7.62%击穿了近期的震荡平台。目前股价远离MA5，存在乖离率修复需求，但修复后往往伴随二次探底。\n*   **支撑压力**: 上方52-55元区间积累了大量近期套牢盘（'三天跌掉十块钱'），成为短期强阻力。下方强支撑需看至MA60或前期启动平台42-44元区间。\n*   **量价关系**: 下跌放量，说明恐慌盘涌出，但也意味着有承接盘在低位吸纳，属于典型的情绪宣泄走势。",
+  "sentiment": "### 市场情绪与资金分析\n*   **散户情绪**: 极度恐慌。评论区充斥'三天跌掉一半盈利'、'开门黑'等言论，散户心态崩坏，通常是短期底部的反向指标。\n*   **主力意图**: 资讯中提到'极少筹码砸盘'、'情绪洗盘'。在稀土现货价格创新高(90万/吨)的背景下，股价暴跌可能系主力利用大盘调整进行深度洗盘，意在清洗获利盘，降低持仓成本。\n*   **预期差**: 股价暴跌 vs 现货暴涨。这种背离通常不会持续太久，要么股价补涨，要么现货补跌。",
+  "plan": "### 实战交易计划\n1.  **左侧激进型**: 若明日惯性下探至 **43.50-44.50** 区间，且出现长下影线，可尝试建立底仓(20%)，博取超跌反弹。\n2.  **右侧稳健型**: 暂时观望。等待股价在 **45.00** 上方缩量横盘3天以上，或出现'阳包阴'K线组合后再介入。\n3.  **加仓逻辑**: 只有当股价重新站上 **50.00** 整数关口，确认洗盘结束，方可加大仓位。\n4.  **止损执行**: 跌破 **41.20** 无条件离场，防止趋势彻底转熊。",
+  "risk": "### 风险提示\n*   **估值回归风险**: 当前百倍PE建立在业绩暴增的预期上，若稀土价格回落，戴维斯双杀将非常惨烈。\n*   **政策监管风险**: 稀土作为战略资源，价格过高可能引来政策调控（如增加配额指标），导致价格崩盘。\n*   **技术破位**: 若有效跌破MA60，中期趋势将转为震荡下行，调整周期将从'周'级别延长至'月'级别。",
+  "deep_insight": "### 深度研报：价格与价值的博弈\n*   **主力筹码分布**: 根据近期走势推演，主力核心成本区约在 **35-38元**，当前价格虽有回撤但主力依然浮盈。上方 **55元** 附近形成了新的散户套牢密集区，主力短期内解放这部分筹码的意愿极低，大概率会通过'急跌慢涨'的方式磨掉散户耐心。\n*   **聪明钱动向**: 关注北向资金在急跌中的动作。若大跌日北向资金逆势净买入，则验证'洗盘'逻辑。\n*   **机构观点共识**: 机构普遍看好稀土永磁在新能源车和机器人领域的长期需求，但对短期过快上涨的资源价格持谨慎态度。当前的下跌是市场对'资源涨价可持续性'的一次压力测试。"
+}", aiScore: 68, deepInsight: "### 深度研报：价格与价值的博弈
+*   **主力筹码分布**: 根据近期走势推演，主力核心成本区约在 **35-38元**，当前价格虽有回撤但主力依然浮盈。上方 **55元** 附近形成了新的散户套牢密集区，主力短期内解放这部分筹码的意愿极低，大概率会通过'急跌慢涨'的方式磨掉散户耐心。
+*   **聪明钱动向**: 关注北向资金在急跌中的动作。若大跌日北向资金逆势净买入，则验证'洗盘'逻辑。
+*   **机构观点共识**: 机构普遍看好稀土永磁在新能源车和机器人领域的长期需求，但对短期过快上涨的资源价格持谨慎态度。当前的下跌是市场对'资源涨价可持续性'的一次压力测试。", isUnlocked: false, userId: ObjectId("697f682165c4c64af6565fa6"), createdAt: DateTime("2026-02-02 9:19:48.154 +00:00:00"), })
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("69806c348461dd06b07d8b2a"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, }, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+ POST /report/600111.SH 200 in 43s (compile: 4ms, render: 43s)
+ │ GET https://guba.eastmoney.com/list,600111.html 200 in 127ms (cache skip)
+ │ │ Cache skipped reason: (cache-control: no-cache (hard refresh))
+ │ POST https://api.apiyi.com/v1beta/models/gemini-3-pro-preview:generateContent?key=***REMOVED*** 200 in 42237ms (cache skip)
+ │ │ Cache skipped reason: (fetchCache = default-no-store)
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "600111.SH", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-02 9:14:48.189 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $sort: { createdAt: -1, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+[DB HIT] Returning persisted report for 600111.SH
+ POST /report/600111.SH 200 in 19ms (compile: 7ms, render: 12ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/600111.SH 200 in 11ms (compile: 2ms, render: 8ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/600111.SH 200 in 17ms (compile: 7ms, render: 10ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/600111.SH 200 in 19ms (compile: 7ms, render: 12ms)
+[Deep Analysis] Calling Python API: http://localhost:8000/api/analysis/deep-analysis
+[Deep Analysis] Stock: 600111.SH, User: 697f682165c4c64af6565fa6
+[Deep Analysis] Timeout: 180 seconds
+ GET /sw.js 404 in 43ms (compile: 7ms, render: 36ms)
+[Deep Analysis] Python API Error: 500 {"detail":"深度分析失败: 504: 深度分析超时（150秒）。股票代码: 600111.SH，请稍后重试或联系技术支持。"}
+[Deep Analysis] Error: Error: Python API Error: 500
+    at generateTradingAgentsAnalysis (src/app/actions/analysis.ts:473:19)
+  471 |             const errorText = await response.text();
+  472 |             console.error(`[Deep Analysis] Python API Error: ${response.status}`, errorText);
+> 473 |             throw new Error(`Python API Error: ${response.status}`);
+      |                   ^
+  474 |         }
+  475 |
+  476 |         const result = await response.json();
+⨯ Error: Python API Error: 500
+    at generateTradingAgentsAnalysis (src/app/actions/analysis.ts:473:19)
+  471 |             const errorText = await response.text();
+  472 |             console.error(`[Deep Analysis] Python API Error: ${response.status}`, errorText);
+> 473 |             throw new Error(`Python API Error: ${response.status}`);
+      |                   ^
+  474 |         }
+  475 |
+  476 |         const result = await response.json(); {
+  digest: '3703342743'
+}
+ POST /report/600111.SH 500 in 2.5min (compile: 1465µs, render: 2.5min)
+ │ POST http://localhost:8000/api/analysis/deep-analysis 500 in 150191ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+ GET /report/600111.SH 200 in 52ms (compile: 11ms, render: 41ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/600111.SH 200 in 28ms (compile: 6ms, render: 22ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, isVip: 1, freeQuotaUsed: 1, }, }, ])
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "600111.SH", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-01 21:27:22.789 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+ POST /report/600111.SH 200 in 33ms (compile: 4ms, render: 29ms)
+ POST /report/600111.SH 200 in 128ms (compile: 7ms, render: 121ms)
+ │ GET https://qt.gtimg.cn/q=sh600111 200 in 113ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+[FUNDAMENTALS] 开始获取财务数据: 600111
+[FUNDAMENTALS] 数据获取成功: 600111
+ POST /report/600111.SH 200 in 680ms (compile: 1636µs, render: 679ms)
+ │ GET http://localhost:8000/api/stocks/600111/fundamentals 200 in 672ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "600111.SH", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-02 9:22:23.642 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $sort: { createdAt: -1, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+[RAG] Fetching news from: https://guba.eastmoney.com/list,600111.html
+[AI REQUEST] Generating report for 北方稀土...
+ GET /sw.js 404 in 42ms (compile: 11ms, render: 31ms)
+[GEMINI REQUEST] Payload built with systemInstruction: true
+[GEMINI RESPONSE DATA] {"candidates":[{"content":{"role":"model","parts":[{"text":"{\n  \"ai_score\": 72,\n  \"signal\": \"短期观望 / 长期看多\",\n  \"short_term\": {\n    \"timeframe\": \"短期 (4-12周)\",\n    \"rationale\": \"股价经历剧烈回调（3天跌约10元），目前处于情绪宣泄期。虽然稀土现货价格上涨，但股价短期严重偏离MA20，呈现超卖状态。需等待日线级别企稳信号，不宜盲目接飞刀。\",\n    \"key_levels\": {\n      \"support\": 45.20,\n      \"resistance\": 53.50,\n      \"stop_loss\": 43.80\n    }\n  },\n  \"long_term\": {\n    \"timeframe\": \"长期 (6-12个月)\",\n    \"rationale\": \"尽管当前静态PE较高且ROE（6.66%）一
+[AI RESPONSE]Length: 2341 chars.Snippet: {
+  "ai_score": 72,
+  "signal": "短期观望 / 长期看多",
+  "short_term": {
+    "timeframe": "短期 (4-12周)",
+     
+prisma:query db.AnalysisReport.insertOne({ stockCode: "600111.SH", stockName: "北方稀土", type: "PRO", summary: "短期观望 / 长期看多", content: "{
+  "ai_score": 72,
+  "signal": "短期观望 / 长期看多",
+  "short_term": {
+    "timeframe": "短期 (4-12周)",
+    "rationale": "股价经历剧烈回调（3天跌约10元），目前处于情绪宣泄期。虽然稀土现货价格上涨，但股价短期严重偏离MA20，呈现超卖状态。需等待日线级别企稳信号，不宜盲目接飞刀。",
+    "key_levels": {
+      "support": 45.20,
+      "resistance": 53.50,
+      "stop_loss": 43.80
+    }
+  },
+  "long_term": {
+    "timeframe": "长期 (6-12个月)",
+    "rationale": "尽管当前静态PE较高且ROE（6.66%）一般，但核心逻辑在于稀土镨钕合金价格创近年新高（90万/吨），这将大幅改善未来几个季度的营收与净利润预期。作为行业龙头，具备极强的资源护城河，长期趋势仍受基本面改善支撑。",
+    "key_levels": {
+      "support": 38.60,
+      "resistance": 65.00,
+      "stop_loss": 36.50
+    }
+  },
+  "data_evidence": {
+    "capital_flow": "短期呈现主力资金流出迹象（基于-7.62%的大跌幅判断），市场恐慌情绪高涨，散户抛压较重。",
+    "valuation": "当前静态PE约111倍，处于历史高位区间，透支了部分预期；但若稀土价格维持高位，动态估值将快速消化。",
+    "technical_context": "日线级别出现断头铡刀式下跌，跌破短期均线组，RSI指标快速下探至超卖区，存在技术性修复需求。"
+  },
+  "technical": "### 技术面深度解构\n\n1.  **趋势破坏与背离**：股价单日大跌7.62%，形成放量长阴线，短期上升趋势线被击穿。然而，股价下跌与稀土现货价格上涨（基本面）形成显著背离，这通常是主力借势洗盘或市场情绪错杀的信号。\n2.  **均线系统**：股价已跌破MA5/MA10/MA20短期均线组，目前正向MA60（预计在45元附近）寻求支撑。若MA60失守，将考验长期均线MA120的支撑力度。\n3.  **量能形态**：下跌伴随热度上升（资讯热度24689），说明多空分歧巨大，筹码交换剧烈。急跌往往伴随急反弹，关注缩量止跌信号。",
+  "sentiment": "### 市场情绪与资金分析\n\n*   **极度恐慌**：资讯显示“三天跌掉十块钱”、“开门黑”，散户情绪处于崩溃边缘，这是典型的短期情绪底部特征。\n*   **基本面认知偏差**：市场关注点在于股价的暴跌，而忽视了“镨钕合金涨到90万一吨”的核心利好。这种认知差往往孕育着中长期的买入机会。\n*   **资金博弈**：虽然短期资金出逃，但考虑到行业龙头的地位及涨价逻辑，机构资金大概率会在重要支撑位（如45元或MA60处）进行回补。",
+  "plan": "### 实战交易计划\n\n1.  **左侧观察（未来1-3天）**：\n    *   切勿在急跌中直接买入。观察 **45.20** 附近支撑力度，若出现长下影线或缩量十字星，可视为初步止跌信号。\n2.  **右侧进场（短期波段）**：\n    *   等待股价重新站上 **MA5** 均线，且MACD绿柱开始缩短时，轻仓尝试博取反弹，目标位看至 **52.00-53.50** 缺口回补处。\n3.  **长线配置（价值投资）**：\n    *   若股价进一步回落至 **38.00-40.00** 区间（接近长期均线支撑），且稀土价格依然坚挺，则为黄金坑配置机会，分批建仓，赌业绩兑现。",
+  "risk": "### 风险提示\n\n1.  **估值回归风险**：当前百倍PE主要基于对未来业绩的高增长预期，若稀土价格突然掉头向下，戴维斯双杀将导致股价腰斩。\n2.  **监管风险**：稀土作为战略资源，价格过快上涨可能引来政策层面的调控或限价。\n3.  **技术破位**：若有效跌破 **43.80**（短期止损位），说明上涨趋势彻底逆转，需坚决离场。",
+  "deep_insight": "### 深度研报：价格与价值的错配\n\n*   **主力筹码分布**：\n    *   根据近期剧烈波动分析，上方 **55-58元** 区间存在大量近期被套牢的散户筹码（“三天跌十块”）。\n    *   主力机构的底仓成本预计在 **35-40元** 区间，当前价格仍有获利空间，因此主力有动力进行深度洗盘以清洗浮筹。\n*   **聪明钱动向 (Smart Money)**：\n    *   虽然短期股价承压，但北向资金通常偏好具备“涨价逻辑”的资源股。需密切关注未来一周北向资金是否在急跌中逆势净买入。\n*   **机构观点共识**：\n    *   目前机构普遍看好稀土行业的供需格局（新能源车、机器人需求拉动），但对短期过高的估值存在分歧。当前的下跌正在修正估值，使其重新具备吸引力。\n*   **核心矛盾**：\n    *   **现货涨价 vs 股价暴跌**。历史经验表明，资源股的股价最终会回归现货价格趋势。当前的背离是短期情绪与长期逻辑的博弈，胜负手在于稀土价格能否维持在90万高位。"
+}", aiScore: 72, deepInsight: "### 深度研报：价格与价值的错配
 
-*   **主力筹码分布**: 估算主力机构平均持仓成本远高于现价 (约在 42-45元区间)。当前股价意味着主力资金也被深套或已在前期高位减仓离场。目前市场主要由散户和游资主导，缺乏长线大资金关照。
-*   **Smart Money 动向**: 在缺乏明确资金流数据的情况下，结合 MACD 水下运行特征，推测“聪明钱”处于净流出或观望状态，未出现明显的左侧吸筹迹象。
-*   **机构观点分歧**: 虽然基本面 ROE 维持在 13% 的健康水平，但市场对硬件业务增长瓶颈和造车业务投入的担忧可能压制了估值。机构共识目前倾向于“回避风险”，等待业绩拐点或技术面右侧信号。", isUnlocked: false, userId: ObjectId("697f682165c4c64af6565fa6"), createdAt: DateTime("2026-02-01 16:04:12.745 +00:00:00"), })
-prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f797c65c4c64af6565faa"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, }, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
- POST /report/01810 200 in 45s (compile: 4ms, render: 45s)
-prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "01810", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-01-31 16:04:12.796 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $sort: { createdAt: -1, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
-[DB HIT] Returning persisted report for 01810
- POST /report/01810 200 in 26ms (compile: 12ms, render: 14ms)
+*   **主力筹码分布**：
+    *   根据近期剧烈波动分析，上方 **55-58元** 区间存在大量近期被套牢的散户筹码（“三天跌十块”）。
+    *   主力机构的底仓成本预计在 **35-40元** 区间，当前价格仍有获利空间，因此主力有动力进行深度洗盘以清洗浮筹。
+*   **聪明钱动向 (Smart Money)**：
+    *   虽然短期股价承压，但北向资金通常偏好具备“涨价逻辑”的资源股。需密切关注未来一周北向资金是否在急跌中逆势净买入。
+*   **机构观点共识**：
+    *   目前机构普遍看好稀土行业的供需格局（新能源车、机器人需求拉动），但对短期过高的估值存在分歧。当前的下跌正在修正估值，使其重新具备吸引力。
+*   **核心矛盾**：
+    *   **现货涨价 vs 股价暴跌**。历史经验表明，资源股的股价最终会回归现货价格趋势。当前的背离是短期情绪与长期逻辑的博弈，胜负手在于稀土价格能否维持在90万高位。", isUnlocked: false, userId: ObjectId("697f682165c4c64af6565fa6"), createdAt: DateTime("2026-02-02 9:28:06.459 +00:00:00"), })
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("69806e268461dd06b07d8b2b"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, }, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+ POST /report/600111.SH 200 in 43s (compile: 5ms, render: 43s)
+ │ GET https://guba.eastmoney.com/list,600111.html 200 in 1ms (cache hit)
+ │ POST https://api.apiyi.com/v1beta/models/gemini-3-pro-preview:generateContent?key=***REMOVED*** 200 in 42597ms (cache skip)
+ │ │ Cache skipped reason: (fetchCache = default-no-store)
 prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
- POST /report/01810 200 in 17ms (compile: 3ms, render: 14ms)
+ POST /report/600111.SH 200 in 26ms (compile: 9ms, render: 17ms)
 prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
- POST /report/01810 200 in 16ms (compile: 4ms, render: 12ms)
+ POST /report/600111.SH 200 in 10ms (compile: 1663µs, render: 9ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/600111.SH 200 in 22ms (compile: 11ms, render: 11ms)
+[Deep Analysis] Calling Python API: http://localhost:8000/api/analysis/deep-analysis
+[Deep Analysis] Stock: 600111.SH, User: 697f682165c4c64af6565fa6
+[Deep Analysis] Timeout: 180 seconds
+ POST /report/600111.SH 200 in 2.4min (compile: 1125µs, render: 2.4min)
+[Deep Analysis] Python API Error: 500 {"detail":"深度分析失败: 504: 深度分析超时（150秒）。股票代码: 600111.SH，请稍后重试或联系技术支持。"}
+[Deep Analysis] Error: Error: Python API Error: 500
+    at generateTradingAgentsAnalysis (src/app/actions/analysis.ts:473:19)
+  471 |             const errorText = await response.text();
+  472 |             console.error(`[Deep Analysis] Python API Error: ${response.status}`, errorText);
+> 473 |             throw new Error(`Python API Error: ${response.status}`);
+      |                   ^
+  474 |         }
+  475 |
+  476 |         const result = await response.json();
+⨯ Error: Python API Error: 500
+    at generateTradingAgentsAnalysis (src/app/actions/analysis.ts:473:19)
+  471 |             const errorText = await response.text();
+  472 |             console.error(`[Deep Analysis] Python API Error: ${response.status}`, errorText);
+> 473 |             throw new Error(`Python API Error: ${response.status}`);
+      |                   ^
+  474 |         }
+  475 |
+  476 |         const result = await response.json(); {
+  digest: '3703342743'
+}
+ GET /sw.js 404 in 39ms (compile: 10ms, render: 29ms)
+ GET /sw.js 404 in 20ms (compile: 4ms, render: 16ms)
+ GET / 200 in 47ms (compile: 8ms, render: 39ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST / 200 in 18ms (compile: 5ms, render: 13ms)
+[Proxy] Backend Error: 404
+ GET /api/proxy/search?q=yue 200 in 29ms (compile: 6ms, render: 23ms)
+[Proxy] Backend Error: 404
+ GET /api/proxy/search?q=yue%20wen 200 in 15ms (compile: 5ms, render: 10ms)
+[Proxy] Backend Error: 404
+ GET /api/proxy/search?q=%E9%98%85%E6%96%87%E9%9B%86%E5%9B%A2 200 in 17ms (compile: 5ms, render: 12ms)
+ POST / 200 in 2.3s (compile: 4ms, render: 2.3s)
+ │ GET https://smartbox.gtimg.cn/s3/?t=all&q=%E9%98%85%E6%96%87%E9%9B%86%E5%9B%A2 200 in 1166ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+ │ GET https://suggest3.sinajs.cn/suggest/type=&key=%E9%98%85%E6%96%87%E9%9B%86%E5%9B%A2 200 in 2285ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+ GET /report/00772.HK 200 in 26ms (compile: 9ms, render: 17ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/00772.HK 200 in 17ms (compile: 4ms, render: 12ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/00772.HK 200 in 16ms (compile: 6ms, render: 10ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, isVip: 1, freeQuotaUsed: 1, }, }, ])
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "00772.HK", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-01 22:39:16.363 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, }, }, ])
+prisma:query db.User.updateMany({ _id: { $in: [ ObjectId("697f682165c4c64af6565fa6"), ], }, },[{ $set: { updatedAt: { $literal: DateTime("2026-02-02 10:39:16.366 +00:00:00"), }, }, },
+{ $set: { freeQuotaUsed: { $add: [ "$freeQuotaUsed", 1, ], }, }, }])
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, }, }, { $project: { _id: 1, phone: 1, createdAt: 1, updatedAt: 1, freeQuotaUsed: 1, isVip: 1, vipExpireDate: 1, }, }, ])
+ POST /report/00772.HK 200 in 28ms (compile: 1840µs, render: 26ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, isVip: 1, freeQuotaUsed: 1, }, }, ])
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "00772.HK", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-01 22:39:16.397 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, }, }, ])
+prisma:query db.User.updateMany({ _id: { $in: [ ObjectId("697f682165c4c64af6565fa6"), ], }, },[{ $set: { updatedAt: { $literal: DateTime("2026-02-02 10:39:16.399 +00:00:00"), }, }, },
+{ $set: { freeQuotaUsed: { $add: [ "$freeQuotaUsed", 1, ], }, }, }])
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, }, }, { $project: { _id: 1, phone: 1, createdAt: 1, updatedAt: 1, freeQuotaUsed: 1, isVip: 1, vipExpireDate: 1, }, }, ])
+ POST /report/00772.HK 200 in 26ms (compile: 2ms, render: 24ms)
+ POST /report/00772.HK 200 in 187ms (compile: 1679µs, render: 185ms)
+ │ GET https://qt.gtimg.cn/q=hk00772 200 in 180ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+ POST /report/00772.HK 200 in 59ms (compile: 1596µs, render: 57ms)
+ │ GET https://qt.gtimg.cn/q=hk00772 200 in 54ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+[FUNDAMENTALS] 开始获取财务数据: 00772
+[FUNDAMENTALS] ⏱️ 超时 (15秒) for 00772.HK
+ POST /report/00772.HK 200 in 15.0s (compile: 3ms, render: 15.0s)
+[FUNDAMENTALS] 开始获取财务数据: 00772
+[FUNDAMENTALS] ⏱️ 超时 (15秒) for 00772.HK
+ POST /report/00772.HK 200 in 15.0s (compile: 8ms, render: 15.0s)
+[FUNDAMENTALS] 开始获取财务数据: 00772
+[FUNDAMENTALS] ⏱️ 超时 (15秒) for 00772.HK
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "00772.HK", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-02 10:35:01.758 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $sort: { createdAt: -1, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+[RAG] Fetching news from: https://guba.eastmoney.com/list,00772.html
+[AI REQUEST] Generating report for 阅文集团...
+[GEMINI REQUEST] Payload built with systemInstruction: true
+[GEMINI RESPONSE DATA] {"candidates":[{"content":{"role":"model","parts":[{"text":"{\n  \"ai_score\": 68,\n  \"signal\": \"观望 (Hold)\",\n  \"short_term\": {\n    \"timeframe\": \"短期 (4-12周)\",\n    \"rationale\": \"当前股价35.00港元出现回调(-2.23%)，显示短期动能减弱。价格正回测短期均线支撑区域。若能守住33.50-34.00区间，则属于良性洗盘；若跌破则需警惕进一步下探MA60。RSI指标预计回落至中性区域(45-50)，暗示短期多空平衡。\",\n    \"key_levels\": {\n      \"support\": 33.50,\n      \"resistance\": 38.20,\n      \"stop_loss\": 32.20\n    }\n  },\n  \"long_term\": {\n    \"timeframe\": \"长期 (6-12个月)\",\n    
+[AI RESPONSE]Length: 2227 chars.Snippet: {
+  "ai_score": 68,
+  "signal": "观望 (Hold)",
+  "short_term": {
+    "timeframe": "短期 (4-12周)",
+    "r 
+prisma:query db.AnalysisReport.insertOne({ stockCode: "00772.HK", stockName: "阅文集团", type: "PRO", summary: "观望 (Hold)", content: "{
+  "ai_score": 68,
+  "signal": "观望 (Hold)",
+  "short_term": {
+    "timeframe": "短期 (4-12周)",
+    "rationale": "当前股价35.00港元出现回调(-2.23%)，显示短期动能减弱。价格正回测短期均线支撑区域。若能守住33.50-34.00区间，则属于良性洗盘；若跌破则需警惕进一步下探MA60。RSI指标预计回落至中性区域(45-50)，暗示短期多空平衡。",
+    "key_levels": {
+      "support": 33.50,
+      "resistance": 38.20,
+      "stop_loss": 32.20
+    }
+  },
+  "long_term": {
+    "timeframe": "长期 (6-12个月)",
+    "rationale": "基本面看，阅文作为腾讯生态IP源头，版权运营与AI降本增效是长期核心逻辑。当前估值处于历史中枢偏下位置，具备安全边际。技术上，需确认股价是否有效站稳MA120/MA250牛熊分界线。若营收增速配合，长期目标可看高一线，但需警惕宏观消费疲软对付费阅读的影响。",
+    "key_levels": {
+      "support": 28.80,
+      "resistance": 45.50,
+      "stop_loss": 27.00
+    }
+  },
+  "data_evidence": {
+    "capital_flow": "由于缺乏实时资金流数据，基于今日-2.23%的跌幅判断，短期呈现净流出状态，主力资金可能在35元整数关口进行获利了结，需观察缩量止跌信号。",
+    "valuation": "当前PE估值处于行业合理区间，相较于历史高点已大幅消化泡沫，具备中长期配置价值。",
+    "technical_context": "日线级别处于震荡整理形态，上方38-40元区间存在套牢盘压力，下方均线系统正尝试形成多头排列支撑。"
+  },
+  "technical": "### 技术面深度解构\n\n*   **趋势结构**：当前价格35.00处于波段回调阶段。短期均线（MA20）面临考验，若有效跌破，价格将向中期均线（MA60，约32.50附近）寻找支撑。\n*   **动量分析**：日内跌幅超过2%，表明空头短期占优。MACD指标可能出现死叉或红柱缩短，提示动能衰竭，需要时间换空间进行修复。\n*   **形态特征**：目前处于箱体震荡的中轴位置，35.00既是心理关口也是多空争夺的焦点。向上突破需放量配合，否则将维持区间震荡。",
+  "sentiment": "### 市场情绪与资金分析\n\n*   **情绪面**：市场对港股科技板块整体持谨慎乐观态度，但个股回调显示投资者在获利盘面前较为敏感，避险情绪略有升温。\n*   **资金博弈**：缺乏北向资金强力扫货迹象，当前更多是存量资金的博弈。35元上方抛压较重，说明主力资金在此位置分歧较大，不愿意在高位承接散户筹码。",
+  "plan": "### 实战交易计划\n\n1.  **左侧观察（当前）**：目前价格35.00处于下跌动能中，**不建议立即接飞刀**。耐心等待股价回落至 **33.50** 附近企稳。\n2.  **右侧买入信号**：若股价在33.50-34.00区间出现缩量十字星或长下影线，且次日反包阳线，可尝试建立首笔底仓（20%仓位）。\n3.  **加仓逻辑**：有效突破 **36.50** 且成交量放大时，确认短线调整结束，可加仓至50%。\n4.  **止盈策略**：触及 **38.00** 附近遭遇阻力时，建议减仓锁定短线利润。",
+  "risk": "### 风险提示\n\n*   **宏观风险**：港股流动性受美联储利率政策影响较大，若外部环境恶化，估值修复将受阻。\n*   **业务风险**：IP影视化改编具有不确定性，若重点项目延期或表现不及预期，将直接冲击业绩预期。\n*   **技术风险**：若股价放量跌破 **32.20** 关键支撑，意味着中期趋势转弱，需严格执行止损，防止深套。",
+  "deep_insight": "### 深度研报内容\n\n*   **主力筹码分布**：\n    *   根据价格行为推演，**30.00-32.00** 区域为主力资金的密集建仓成本区（获利盘丰厚）。\n    *   **38.00-42.00** 区域存在大量前期套牢筹码，是短期难以逾越的“筹码峰”。\n    *   当前35.00位置，主力大概率在进行“洗盘”，清洗浮筹以减轻上行压力。\n*   **机构观点共识**：\n    *   机构普遍看好阅文在 **AIGC（人工智能生成内容）** 领域的应用潜力，认为其海量文本数据是训练大模型的优质资产。\n    *   分歧点在于：付费阅读业务的增长天花板是否已现，以及免费阅读模式对毛利率的侵蚀程度。\n*   **聪明钱动向**：\n    *   南向资金（港股通）通常在股价回落至年线（MA250）附近时会加大净买入力度，建议密切关注港股通持仓比例的变化作为抄底信号。"
+}", aiScore: 68, deepInsight: "### 深度研报内容
+
+*   **主力筹码分布**：
+    *   根据价格行为推演，**30.00-32.00** 区域为主力资金的密集建仓成本区（获利盘丰厚）。
+    *   **38.00-42.00** 区域存在大量前期套牢筹码，是短期难以逾越的“筹码峰”。
+    *   当前35.00位置，主力大概率在进行“洗盘”，清洗浮筹以减轻上行压力。
+*   **机构观点共识**：
+    *   机构普遍看好阅文在 **AIGC（人工智能生成内容）** 领域的应用潜力，认为其海量文本数据是训练大模型的优质资产。
+    *   分歧点在于：付费阅读业务的增长天花板是否已现，以及免费阅读模式对毛利率的侵蚀程度。
+*   **聪明钱动向**：
+    *   南向资金（港股通）通常在股价回落至年线（MA250）附近时会加大净买入力度，建议密切关注港股通持仓比例的变化作为抄底信号。", isUnlocked: false, userId: ObjectId("697f682165c4c64af6565fa6"), createdAt: DateTime("2026-02-02 10:40:45.456 +00:00:00"), })
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("69807f2d8461dd06b07d8b2c"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, }, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+ POST /report/00772.HK 200 in 59s (compile: 7ms, render: 59s)
+ │ GET https://guba.eastmoney.com/list,00772.html 200 in 239ms (cache skip)
+ │ │ Cache skipped reason: (cache-control: no-cache (hard refresh))
+ │ POST https://api.apiyi.com/v1beta/models/gemini-3-pro-preview:generateContent?key=***REMOVED*** 200 in 42527ms (cache skip)
+ │ │ Cache skipped reason: (fetchCache = default-no-store)
+[FUNDAMENTALS] 开始获取财务数据: 00772
+[FUNDAMENTALS] 数据获取成功: 00772
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "00772.HK", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-02 10:35:45.503 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $sort: { createdAt: -1, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+[DB HIT] Returning persisted report for 00772.HK
+ POST /report/00772.HK 200 in 31ms (compile: 10ms, render: 22ms)
+ │ GET http://localhost:8000/api/stocks/00772/fundamentals 200 in 6ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/00772.HK 200 in 12ms (compile: 2ms, render: 10ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/00772.HK 200 in 10ms (compile: 2ms, render: 8ms)
+ GET /sw.js 404 in 30ms (compile: 6ms, render: 24ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST / 200 in 19ms (compile: 5ms, render: 14ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST / 200 in 8ms (compile: 1274µs, render: 7ms)
+[Proxy] Backend Error: 404
+ GET /api/proxy/search?q=%E5%BF%AB%E6%89%8B 200 in 21ms (compile: 5ms, render: 16ms)
+ GET / 200 in 40ms (compile: 3ms, render: 37ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST / 200 in 18ms (compile: 1160µs, render: 17ms)
+[Proxy] Backend Error: 404
+ GET /api/proxy/search?q=%E5%BF%AB%E6%89%8B 200 in 13ms (compile: 2ms, render: 11ms)
+ POST / 200 in 209ms (compile: 7ms, render: 202ms)
+ │ GET https://smartbox.gtimg.cn/s3/?t=all&q=%E5%BF%AB%E6%89%8B 200 in 156ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+ │ GET https://suggest3.sinajs.cn/suggest/type=&key=%E5%BF%AB%E6%89%8B 200 in 190ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+ GET /report/01024.HK 200 in 32ms (compile: 11ms, render: 21ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/01024.HK 200 in 11ms (compile: 4ms, render: 7ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/01024.HK 200 in 13ms (compile: 4ms, render: 9ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, isVip: 1, freeQuotaUsed: 1, }, }, ])
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "01024.HK", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-01 22:47:33.766 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+ POST /report/01024.HK 200 in 10ms (compile: 1818µs, render: 9ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, isVip: 1, freeQuotaUsed: 1, }, }, ])
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "01024.HK", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-01 22:47:33.787 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+ POST /report/01024.HK 200 in 11ms (compile: 2ms, render: 9ms)
+ POST /report/01024.HK 200 in 117ms (compile: 1579µs, render: 115ms)
+ │ GET https://qt.gtimg.cn/q=hk01024 200 in 110ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+ POST /report/01024.HK 200 in 67ms (compile: 1849µs, render: 65ms)
+ │ GET https://qt.gtimg.cn/q=hk01024 200 in 62ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+[FUNDAMENTALS] 开始获取财务数据: 01024
+[FUNDAMENTALS] 数据获取成功: 01024
+ POST /report/01024.HK 200 in 12ms (compile: 1521µs, render: 10ms)
+ │ GET http://localhost:8000/api/stocks/01024/fundamentals 200 in 6ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+[FUNDAMENTALS] 开始获取财务数据: 01024
+[FUNDAMENTALS] 数据获取成功: 01024
+ POST /report/01024.HK 200 in 9ms (compile: 3ms, render: 6ms)
+ │ GET http://localhost:8000/api/stocks/01024/fundamentals 200 in 2ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "01024.HK", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-02 10:42:34.039 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $sort: { createdAt: -1, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+[RAG] Fetching news from: https://guba.eastmoney.com/list,hk01024.html
+[AI REQUEST] Generating report for 快手-W...
+[GEMINI REQUEST] Payload built with systemInstruction: true
+[GEMINI RESPONSE DATA] {"candidates":[{"content":{"role":"model","parts":[{"text":"{\n  \"ai_score\": 72,\n  \"signal\": \"观望\",\n  \"short_term\": {\n    \"timeframe\": \"短期 (4-12周)\",\n    \"rationale\": \"股价单日下跌近4%击穿短期均线，市场受监管罚款消息及获利盘回吐影响，情绪偏空。RSI指标预计进入弱势区，需等待75元整数关口企稳。短期均线（MA20）目前构成反压。\",\n    \"key_levels\": {\n      \"support\": 75.00,\n      \"resistance\": 81.50,\n      \"stop_loss\": 72.80\n    }\n  },\n  \"long_term\": {\n    \"timeframe\": \"长期 (6-12个月)\",\n    \"rationale\": \"尽管短期承压，但基本面强劲。ROE高达27.61%显示极强
+[AI RESPONSE]Length: 2286 chars.Snippet: {
+  "ai_score": 72,
+  "signal": "观望",
+  "short_term": {
+    "timeframe": "短期 (4-12周)",
+    "rational 
+prisma:query db.AnalysisReport.insertOne({ stockCode: "01024.HK", stockName: "快手-W", type: "PRO", summary: "观望", content: "{
+  "ai_score": 72,
+  "signal": "观望",
+  "short_term": {
+    "timeframe": "短期 (4-12周)",
+    "rationale": "股价单日下跌近4%击穿短期均线，市场受监管罚款消息及获利盘回吐影响，情绪偏空。RSI指标预计进入弱势区，需等待75元整数关口企稳。短期均线（MA20）目前构成反压。",
+    "key_levels": {
+      "support": 75.00,
+      "resistance": 81.50,
+      "stop_loss": 72.80
+    }
+  },
+  "long_term": {
+    "timeframe": "长期 (6-12个月)",
+    "rationale": "尽管短期承压，但基本面强劲。ROE高达27.61%显示极强的盈利能力，PE约20倍处于合理偏低区间。可灵AI 3.0模型的内测意味着第二增长曲线逐步落地。长期趋势看，只要维持在MA250上方或重要底部区域，价值重估逻辑不变。",
+    "key_levels": {
+      "support": 65.50,
+      "resistance": 98.00,
+      "stop_loss": 60.00
+    }
+  },
+  "data_evidence": {
+    "capital_flow": "日内跌幅近4%显示主力资金短期流出，市场对监管罚款反应过度，承接盘力度暂弱。",
+    "valuation": "当前PE(TTM)约为20倍，考虑到27%的ROE和AI业务潜力，估值处于低估区域（PEG < 1）。",
+    "technical_context": "日K线收长阴，跌破短期支撑，MACD死叉向下，短期动能转弱，需修复技术形态。"
+  },
+  "technical": "### 技术面深度解构\n\n*   **趋势状态**：股价现价77.00元，单日大跌破坏了短期的上升通道。目前价格大概率已跌破MA20（约80.5元），正向下寻求MA60或布林带下轨的支撑。短期呈现空头排列。\n*   **动量指标**：RSI预计快速下行至40左右，尚未进入超卖区，意味着惯性下跌可能持续1-2天。MACD指标高位死叉，绿柱放大，显示空头动能正在释放。\n*   **成交量**：下跌伴随热度上升（热度852），说明恐慌盘涌出，需要关注成交量是否在75元附近缩量企稳。",
+  "sentiment": "### 市场情绪与资金分析\n\n*   **消息面博弈**：市场面临“监管罚款（利空）”与“AI模型内测（利好）”的冲突。散户情绪偏向恐慌（“快跑，目标75”），而部分资金视其为加仓机会。罚款2600万对于营收1268亿的公司实质影响微乎其微，属于情绪性错杀。\n*   **资金博弈**：热度榜排名靠前，说明关注度极高。当前处于“利空落地”后的情绪宣泄期，主力资金可能借机清洗浮筹，在低位重新吸纳筹码。",
+  "plan": "### 实战交易计划\n\n1.  **左侧观察（未来1-3天）**：\n    *   不要急于接飞刀。密切关注 **75.00 HKD** 整数关口的支撑力度。如果股价触及该位置并出现长下影线或缩量十字星，可视为企稳信号。\n\n2.  **分批建仓策略**：\n    *   **第一笔（试探仓）**：若股价企稳于74.50-75.50区间，且小时级别MACD底背离，可布局15%仓位。\n    *   **第二笔（加仓）**：待股价重新站上MA5或突破78.50元压力位时，加仓20%。\n\n3.  **防守策略**：\n    *   短期交易者严格执行 **72.80 HKD** 止损，防止趋势转为深度回调。\n    *   长期投资者可容忍至65.50元附近的波动，利用低估值进行定投。",
+  "risk": "### 风险提示\n\n*   **监管不确定性**：虽然此次罚款金额小，但若后续有针对直播电商行业的进一步整改政策，将压制估值修复。\n*   **AI变现不及预期**：可灵AI虽然技术领先，但若无法在C端或B端产生实质性收入，将被视为纯题材炒作。\n*   **市场系统性风险**：港股流动性受美联储利率政策影响较大，若宏观环境恶化，高beta科技股波动将加剧。",
+  "deep_insight": "### 深度研报：价值与情绪的错配\n\n*   **主力筹码分布**：\n    *   根据近期走势推演，主力资金成本区主要集中在 **65-70元** 区间。当前77元的价格意味着主力仍有浮盈，但上方85元以上存在大量散户套牢盘。此次下杀可能是主力为了清洗80元上方跟风盘的战术动作。\n\n*   **机构观点分歧**：\n    *   **多头逻辑**：核心在于ROE的结构性改善（降本增效成果显著）以及AI视频生成模型（可灵）带来的SaaS想象空间。机构普遍认为20倍PE对于一家净利润百亿且增长的互联网巨头是被低估的。\n    *   **空头逻辑**：担忧直播电商GMV增速见顶，以及短视频流量红利的枯竭。\n\n*   **聪明钱流向**：\n    *   虽然日内资金流出，但需观察南向资金（港股通）在75元下方的动作。通常南向资金倾向于在互联网龙头急跌时进行越跌越买的配置。"
+}", aiScore: 72, deepInsight: "### 深度研报：价值与情绪的错配
+
+*   **主力筹码分布**：
+    *   根据近期走势推演，主力资金成本区主要集中在 **65-70元** 区间。当前77元的价格意味着主力仍有浮盈，但上方85元以上存在大量散户套牢盘。此次下杀可能是主力为了清洗80元上方跟风盘的战术动作。
+
+*   **机构观点分歧**：
+    *   **多头逻辑**：核心在于ROE的结构性改善（降本增效成果显著）以及AI视频生成模型（可灵）带来的SaaS想象空间。机构普遍认为20倍PE对于一家净利润百亿且增长的互联网巨头是被低估的。
+    *   **空头逻辑**：担忧直播电商GMV增速见顶，以及短视频流量红利的枯竭。
+
+*   **聪明钱流向**：
+    *   虽然日内资金流出，但需观察南向资金（港股通）在75元下方的动作。通常南向资金倾向于在互联网龙头急跌时进行越跌越买的配置。", isUnlocked: false, userId: ObjectId("697f682165c4c64af6565fa6"), createdAt: DateTime("2026-02-02 10:48:15.432 +00:00:00"), })
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("698080ef8461dd06b07d8b2d"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, }, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+ POST /report/01024.HK 200 in 41s (compile: 1346µs, render: 41s)
+ │ GET https://guba.eastmoney.com/list,hk01024.html 200 in 2ms (cache hit)
+ │ POST https://api.apiyi.com/v1beta/models/gemini-3-pro-preview:generateContent?key=***REMOVED*** 200 in 41212ms (cache skip)
+ │ │ Cache skipped reason: (fetchCache = default-no-store)
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "01024.HK", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-02 10:43:15.469 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $sort: { createdAt: -1, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+[DB HIT] Returning persisted report for 01024.HK
+ POST /report/01024.HK 200 in 22ms (compile: 8ms, render: 14ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/01024.HK 200 in 11ms (compile: 3ms, render: 8ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/01024.HK 200 in 11ms (compile: 3ms, render: 8ms)
+ GET /sw.js 404 in 41ms (compile: 8ms, render: 33ms)
+ GET /sw.js 404 in 37ms (compile: 10ms, render: 28ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST / 200 in 20ms (compile: 5ms, render: 14ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST / 200 in 12ms (compile: 2ms, render: 9ms)
+[Proxy] Backend Error: 404
+ GET /api/proxy/search?q=%E7%94%A8%E5%8A%9B 200 in 22ms (compile: 5ms, render: 17ms)
+[Proxy] Backend Error: 404
+ GET /api/proxy/search?q=jin%20sha 200 in 18ms (compile: 4ms, render: 15ms)
+[Proxy] Backend Error: 404
+ GET /api/proxy/search?q=%E9%87%91%E6%B2%99%E4%B8%AD%E5%9B%BD 200 in 15ms (compile: 4ms, render: 11ms)
+ GET / 200 in 34ms (compile: 2ms, render: 32ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST / 200 in 13ms (compile: 4ms, render: 9ms)
+[Proxy] Backend Error: 404
+ GET /api/proxy/search?q=jin%20s 200 in 18ms (compile: 4ms, render: 14ms)
+[Proxy] Backend Error: 404
+ GET /api/proxy/search?q=%E9%87%91%E6%B2%99%E4%B8%AD%E5%9B%BD 200 in 15ms (compile: 3ms, render: 12ms)
+ POST / 200 in 256ms (compile: 6ms, render: 250ms)
+ │ GET https://suggest3.sinajs.cn/suggest/type=&key=%E9%87%91%E6%B2%99%E4%B8%AD%E5%9B%BD 200 in 238ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+ │ GET https://smartbox.gtimg.cn/s3/?t=all&q=%E9%87%91%E6%B2%99%E4%B8%AD%E5%9B%BD 200 in 241ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+ GET /report/01928.HK 200 in 25ms (compile: 8ms, render: 17ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/01928.HK 200 in 21ms (compile: 4ms, render: 17ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/01928.HK 200 in 35ms (compile: 27ms, render: 8ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, isVip: 1, freeQuotaUsed: 1, }, }, ])
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "01928.HK", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-01 23:00:11.709 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, }, }, ])
+prisma:query db.User.updateMany({ _id: { $in: [ ObjectId("697f682165c4c64af6565fa6"), ], }, },[{ $set: { updatedAt: { $literal: DateTime("2026-02-02 11:00:11.713 +00:00:00"), }, }, },
+{ $set: { freeQuotaUsed: { $add: [ "$freeQuotaUsed", 1, ], }, }, }])
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, }, }, { $project: { _id: 1, phone: 1, createdAt: 1, updatedAt: 1, freeQuotaUsed: 1, isVip: 1, vipExpireDate: 1, }, }, ])
+ POST /report/01928.HK 200 in 21ms (compile: 1880µs, render: 19ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, isVip: 1, freeQuotaUsed: 1, }, }, ])
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "01928.HK", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-01 23:00:11.739 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, }, }, ])
+prisma:query db.User.updateMany({ _id: { $in: [ ObjectId("697f682165c4c64af6565fa6"), ], }, },[{ $set: { updatedAt: { $literal: DateTime("2026-02-02 11:00:11.741 +00:00:00"), }, }, },
+{ $set: { freeQuotaUsed: { $add: [ "$freeQuotaUsed", 1, ], }, }, }])
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, }, }, { $project: { _id: 1, phone: 1, createdAt: 1, updatedAt: 1, freeQuotaUsed: 1, isVip: 1, vipExpireDate: 1, }, }, ])
+ POST /report/01928.HK 200 in 17ms (compile: 2ms, render: 15ms)
+ POST /report/01928.HK 200 in 200ms (compile: 2ms, render: 198ms)
+ │ GET https://qt.gtimg.cn/q=hk01928 200 in 193ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+ POST /report/01928.HK 200 in 68ms (compile: 2ms, render: 66ms)
+ │ GET https://qt.gtimg.cn/q=hk01928 200 in 62ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+[FUNDAMENTALS] 开始获取财务数据: 01928
+[FUNDAMENTALS] 数据获取成功: 01928
+ POST /report/01928.HK 200 in 118ms (compile: 3ms, render: 115ms)
+ │ GET http://localhost:8000/api/stocks/01928/fundamentals 200 in 111ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+[FUNDAMENTALS] 开始获取财务数据: 01928
+[FUNDAMENTALS] 数据获取成功: 01928
+ POST /report/01928.HK 200 in 10ms (compile: 1710µs, render: 9ms)
+ │ GET http://localhost:8000/api/stocks/01928/fundamentals 200 in 2ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "01928.HK", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-02 10:55:12.195 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $sort: { createdAt: -1, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+[RAG] Fetching news from: https://guba.eastmoney.com/list,hk01928.html
+[AI REQUEST] Generating report for 金沙中国有限公司...
+ GET /sw.js 404 in 42ms (compile: 9ms, render: 34ms)
+[GEMINI REQUEST] Payload built with systemInstruction: true
+[GEMINI RESPONSE DATA] {"candidates":[{"content":{"role":"model","parts":[{"text":"{\n  \"ai_score\": 82,\n  \"signal\": \"看多\",\n  \"short_term\": {\n    \"timeframe\": \"短期 (4-12周)\",\n    \"rationale\": \"受澳门1月博彩收入超预期（226亿）利好驱动，股价逆市大涨4.05%，显示主力资金在Q4业绩利空出尽后开始回补。短期均线有望形成金叉，动能强劲。\",\n    \"key_levels\": {\n      \"support\": 17.15,\n      \"resistance\": 19.20,\n      \"stop_loss\": 16.50\n    }\n  },\n  \"long_term\": {\n    \"timeframe\": \"长期 (6-12个月)\",\n    \"rationale\": \"尽管Q4业绩略逊，但公司基本面强劲（ROE超200%显示极高的资本回报率），且
+[AI RESPONSE]Length: 2176 chars.Snippet: {
+  "ai_score": 82,
+  "signal": "看多",
+  "short_term": {
+    "timeframe": "短期 (4-12周)",
+    "rational 
+prisma:query db.AnalysisReport.insertOne({ stockCode: "01928.HK", stockName: "金沙中国有限公司", type: "PRO", summary: "看多", content: "{
+  "ai_score": 82,
+  "signal": "看多",
+  "short_term": {
+    "timeframe": "短期 (4-12周)",
+    "rationale": "受澳门1月博彩收入超预期（226亿）利好驱动，股价逆市大涨4.05%，显示主力资金在Q4业绩利空出尽后开始回补。短期均线有望形成金叉，动能强劲。",
+    "key_levels": {
+      "support": 17.15,
+      "resistance": 19.20,
+      "stop_loss": 16.50
+    }
+  },
+  "long_term": {
+    "timeframe": "长期 (6-12个月)",
+    "rationale": "尽管Q4业绩略逊，但公司基本面强劲（ROE超200%显示极高的资本回报率），且大行维持'跑赢行业'评级，目标价（约23.2港元）较现价有30%以上空间。随着派息预期提升及行业复苏，估值修复是主旋律。",
+    "key_levels": {
+      "support": 15.80,
+      "resistance": 23.20,
+      "stop_loss": 14.80
+    }
+  },
+  "data_evidence": {
+    "capital_flow": "虽无直接资金流数据，但'逆市上扬+4%'及'热度飙升'是典型的机构抢筹信号，表明主力资金认可1月数据利好。",
+    "valuation": "当前股价17.72港元远低于高盛目标价23.2港元，处于低估区间，安全边际较高。",
+    "technical_context": "日线级别出现放量阳线，一举扭转短期颓势，RSI指标预计快速回升至强势区。"
+  },
+  "technical": "### 技术面深度解构\n\n*   **趋势反转信号**：股价在17.72元位置录得逾4%的大阳线，且是在大市疲软背景下发生的，这通常是**右侧交易**的启动信号。短期均线（MA20）预计将迅速拐头向上，对股价形成支撑。\n*   **关键位置突破**：当前价格正试图突破Q4业绩公布后的震荡区间上沿。若能站稳18.00关口，上方空间将被打开，直指19.20附近的缺口压力位。\n*   **量价配合**：消息面（1月赌收）与价格面（大涨）形成共振，说明市场对利好消息反应敏感，多头情绪占据主导。",
+  "sentiment": "### 市场情绪与资金分析\n\n*   **情绪反转**：此前市场受Q4业绩不及预期影响情绪低迷，但最新的1月博彩数据大超预期，瞬间扭转了悲观情绪。资讯热度飙升至119-186区间，说明关注度极高。\n*   **机构分歧转一致**：虽然高盛微降目标价，但仍看高至23.2元，且海通、中金均维持买入评级。机构普遍认为短期波动不改长期复苏逻辑，这种**'利空落地+利好接力'**的局面最容易吸引长线资金入场。",
+  "plan": "### 实战交易计划\n\n1.  **激进波段（短期）**：\n    *   **买入区间**：17.30 - 17.60（回踩日内均线或5日线时介入）。\n    *   **目标**：第一目标18.80，第二目标19.50。\n    *   **策略**：利用当前的消息面热度做顺势交易，不追高，逢低吸纳。\n\n2.  **稳健配置（长期）**：\n    *   **建仓逻辑**：基于高ROE和派息恢复预期。\n    *   **加仓点**：若股价意外回调至16.50附近，可加大配置。\n    *   **持有心态**：忽略短期季度业绩波动，专注于澳门旅游业的长期复苏趋势，目标持有至23元以上。",
+  "risk": "### 风险提示\n\n1.  **政策风险**：澳门博彩业受政策监管影响极大，需关注后续牌照及签注政策变化。\n2.  **宏观经济**：若内地宏观经济复苏不及预期，将直接影响高端中场业务的客流量。\n3.  **技术回调**：短线急涨后可能面临获利盘回吐，若跌破17.00关口，短期趋势可能转弱。",
+  "deep_insight": "### 深度研报：机构博弈与筹码分布\n\n*   **主力筹码分析**：\n    *   根据近期价格行为推演，主力资金的**成本中枢约在16.50-17.00港元**区间。当前的拉升属于脱离成本区的动作，上方套牢盘主要集中在20元以上，中间存在真空区，利于快速上行。\n*   **聪明钱动向 (Smart Money)**：\n    *   '逆市上涨'是典型的聪明钱行为。在散户因Q4业绩恐慌时，机构资金利用1月数据利好进行抢筹。这种**预期差交易**（Q4过去 vs 1月未来）是近期股价的核心驱动力。\n*   **机构观点共识**：\n    *   **高盛/中金/海通**三大行观点虽有微调，但核心逻辑一致：**现金流充沛 + 派息预期**。高达203%的ROE虽然包含杠杆因素，但也展示了极强的盈利弹性。机构普遍认为当前估值已过度反应了负面因素。"
+}", aiScore: 82, deepInsight: "### 深度研报：机构博弈与筹码分布
+
+*   **主力筹码分析**：
+    *   根据近期价格行为推演，主力资金的**成本中枢约在16.50-17.00港元**区间。当前的拉升属于脱离成本区的动作，上方套牢盘主要集中在20元以上，中间存在真空区，利于快速上行。
+*   **聪明钱动向 (Smart Money)**：
+    *   '逆市上涨'是典型的聪明钱行为。在散户因Q4业绩恐慌时，机构资金利用1月数据利好进行抢筹。这种**预期差交易**（Q4过去 vs 1月未来）是近期股价的核心驱动力。
+*   **机构观点共识**：
+    *   **高盛/中金/海通**三大行观点虽有微调，但核心逻辑一致：**现金流充沛 + 派息预期**。高达203%的ROE虽然包含杠杆因素，但也展示了极强的盈利弹性。机构普遍认为当前估值已过度反应了负面因素。", isUnlocked: false, userId: ObjectId("697f682165c4c64af6565fa6"), createdAt: DateTime("2026-02-02 11:00:50.749 +00:00:00"), })
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("698083e28461dd06b07d8b2e"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, }, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+ POST /report/01928.HK 200 in 38.6s (compile: 1127µs, render: 38.6s)
+ │ GET https://guba.eastmoney.com/list,hk01928.html 200 in 156ms (cache skip)
+ │ │ Cache skipped reason: (cache-control: no-cache (hard refresh))
+ │ POST https://api.apiyi.com/v1beta/models/gemini-3-pro-preview:generateContent?key=***REMOVED*** 200 in 38112ms (cache skip)
+ │ │ Cache skipped reason: (fetchCache = default-no-store)
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "01928.HK", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-02 10:55:50.781 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $sort: { createdAt: -1, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+[DB HIT] Returning persisted report for 01928.HK
+ POST /report/01928.HK 200 in 15ms (compile: 7ms, render: 8ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/01928.HK 200 in 10ms (compile: 3ms, render: 7ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/01928.HK 200 in 7ms (compile: 1296µs, render: 6ms)
+ GET /sw.js 404 in 36ms (compile: 7ms, render: 28ms)
+ GET /sw.js 404 in 28ms (compile: 5ms, render: 22ms)
+ GET / 200 in 39ms (compile: 5ms, render: 34ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST / 200 in 8ms (compile: 1264µs, render: 7ms)
+[Proxy] Backend Error: 404
+ GET /api/proxy/search?q=jiao%20yi%20bao 200 in 24ms (compile: 5ms, render: 18ms)
+[Proxy] Backend Error: 404
+ GET /api/proxy/search?q=%E4%BA%A4%E6%98%93bao 200 in 18ms (compile: 5ms, render: 13ms)
+[Proxy] Backend Error: 404
+ GET /api/proxy/search?q=%E4%BA%A4%E6%98%93%E5%AE%9D 200 in 8ms (compile: 1544µs, render: 6ms)
+ POST / 200 in 216ms (compile: 4ms, render: 212ms)
+ │ GET https://smartbox.gtimg.cn/s3/?t=all&q=%E4%BA%A4%E6%98%93%E5%AE%9D 200 in 140ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+ │ GET https://suggest3.sinajs.cn/suggest/type=&key=%E4%BA%A4%E6%98%93%E5%AE%9D 200 in 201ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+ GET /report/08017.HK 200 in 24ms (compile: 7ms, render: 17ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/08017.HK 200 in 16ms (compile: 4ms, render: 12ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/08017.HK 200 in 15ms (compile: 4ms, render: 11ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, isVip: 1, freeQuotaUsed: 1, }, }, ])
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "08017.HK", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-01 23:14:54.433 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, }, }, ])
+prisma:query db.User.updateMany({ _id: { $in: [ ObjectId("697f682165c4c64af6565fa6"), ], }, },[{ $set: { updatedAt: { $literal: DateTime("2026-02-02 11:14:54.435 +00:00:00"), }, }, },
+{ $set: { freeQuotaUsed: { $add: [ "$freeQuotaUsed", 1, ], }, }, }])
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, }, }, { $project: { _id: 1, phone: 1, createdAt: 1, updatedAt: 1, freeQuotaUsed: 1, isVip: 1, vipExpireDate: 1, }, }, ])
+ POST /report/08017.HK 200 in 15ms (compile: 1351µs, render: 14ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, isVip: 1, freeQuotaUsed: 1, }, }, ])
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "08017.HK", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-01 23:14:54.458 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, }, }, ])
+prisma:query db.User.updateMany({ _id: { $in: [ ObjectId("697f682165c4c64af6565fa6"), ], }, },[{ $set: { updatedAt: { $literal: DateTime("2026-02-02 11:14:54.459 +00:00:00"), }, }, },
+{ $set: { freeQuotaUsed: { $add: [ "$freeQuotaUsed", 1, ], }, }, }])
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, }, }, { $project: { _id: 1, phone: 1, createdAt: 1, updatedAt: 1, freeQuotaUsed: 1, isVip: 1, vipExpireDate: 1, }, }, ])
+ POST /report/08017.HK 200 in 17ms (compile: 1860µs, render: 15ms)
+ POST /report/08017.HK 200 in 134ms (compile: 5ms, render: 129ms)
+ │ GET https://qt.gtimg.cn/q=hk08017 200 in 124ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+ POST /report/08017.HK 200 in 63ms (compile: 1625µs, render: 61ms)
+ │ GET https://qt.gtimg.cn/q=hk08017 200 in 58ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+[FUNDAMENTALS] 开始获取财务数据: 08017
+[FUNDAMENTALS] 数据获取成功: 08017
+ POST /report/08017.HK 200 in 8.6s (compile: 1332µs, render: 8.6s)
+ │ GET http://localhost:8000/api/stocks/08017/fundamentals 200 in 8566ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+[FUNDAMENTALS] 开始获取财务数据: 08017
+[FUNDAMENTALS] 数据获取成功: 08017
+ POST /report/08017.HK 200 in 21ms (compile: 8ms, render: 13ms)
+ │ GET http://localhost:8000/api/stocks/08017/fundamentals 200 in 5ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "08017.HK", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-02 11:10:03.337 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $sort: { createdAt: -1, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+[RAG] Fetching news from: https://guba.eastmoney.com/list,hk08017.html
+[AI REQUEST] Generating report for 捷利交易宝...
+[GEMINI REQUEST] Payload built with systemInstruction: true
+[GEMINI RESPONSE DATA] {"candidates":[{"content":{"role":"model","parts":[{"text":"{\n  \"ai_score\": 72,\n  \"signal\": \"长期看多 (价值背离)\",\n  \"short_term\": {\n    \"timeframe\": \"短期 (4-12周)\",\n    \"rationale\": \"股价今日急跌近8%，短期技术形态破位，处于超卖区域。虽然均线系统（MA20/MA60）呈空头排列，但股价已显著低于近期公司回购均价（约1.52港元），存在技术性反抽需求。短期需观察1.20-1.25区间的承接力度。\",\n    \"key_levels\": {\n      \"support\": 1.22,\n      \"resistance\": 1.45,\n      \"stop_loss\": 1.18\n    }\n  },\n  \"long_term\": {\n    \"timeframe\": \"长期 (6-12个月)\",\n    \"rationale\": 
+[AI RESPONSE]Length: 2254 chars.Snippet: {
+  "ai_score": 72,
+  "signal": "长期看多 (价值背离)",
+  "short_term": {
+    "timeframe": "短期 (4-12周)",
+     
+prisma:query db.AnalysisReport.insertOne({ stockCode: "08017.HK", stockName: "捷利交易宝", type: "PRO", summary: "长期看多 (价值背离)", content: "{
+  "ai_score": 72,
+  "signal": "长期看多 (价值背离)",
+  "short_term": {
+    "timeframe": "短期 (4-12周)",
+    "rationale": "股价今日急跌近8%，短期技术形态破位，处于超卖区域。虽然均线系统（MA20/MA60）呈空头排列，但股价已显著低于近期公司回购均价（约1.52港元），存在技术性反抽需求。短期需观察1.20-1.25区间的承接力度。",
+    "key_levels": {
+      "support": 1.22,
+      "resistance": 1.45,
+      "stop_loss": 1.18
+    }
+  },
+  "long_term": {
+    "timeframe": "长期 (6-12个月)",
+    "rationale": "基本面极度强劲与股价走势严重背离。1. **盈利能力**: ROE高达40.88%，净利率近50%，属于极高质量资产。2. **估值**: 当前PE约12倍，对于高成长SaaS金融科技股属于低估。3. **安全边际**: 公司在一月底密集回购（成本约1.52港元），当前股价1.28元提供了约15%的安全垫。4. **趋势**: 虽然目前处于MA250下方，但基本面支撑极强，适合左侧布局。",
+    "key_levels": {
+      "support": 1.15,
+      "resistance": 1.68,
+      "stop_loss": 1.05
+    }
+  },
+  "data_evidence": {
+    "capital_flow": "虽然缺乏实时资金流数据，但公司回购（Buyback）是最大的'主力资金'信号。近期连续回购显示管理层认为股价被低估。",
+    "valuation": "PE(TTM)约12.8x，结合40%的ROE，PEG远小于1，具备极高性价比。",
+    "technical_context": "日线级别大阴线杀跌，乖离率过大，短期动能向下，但长期价值锚点清晰。"
+  },
+  "technical": "### 技术面深度解构\n\n*   **趋势状态**: 短期极弱。今日下跌7.91%通常意味着短期支撑被击穿，价格远离MA5和MA10，处于**超卖**状态。\n*   **均线系统**: 预计股价已跌破MA20和MA60，上方套牢盘压力形成于1.40-1.50区间。长期来看，股价位于MA250下方，属于**左侧交易**区间。\n*   **量价关系**: 急跌通常伴随恐慌盘涌出，若随后几个交易日缩量企稳，则为见底信号。",
+  "sentiment": "### 市场情绪与资金分析\n\n*   **恐慌情绪**: 单日近8%的跌幅显示市场存在恐慌性抛售，可能源于港股创业板(GEM)整体流动性不足导致的踩踏。\n*   **主力意图**: 公司在1月底连续斥资回购（价格区间1.51-1.52港元），说明产业资本认可当前价值。当前股价1.28元远低于回购价，形成了**'黄金坑'**。\n*   **博弈分析**: 散户恐慌割肉，而公司（作为最大的知情主力）在更高位都在买入，这是典型的**价值背离**信号。",
+  "plan": "### 实战交易计划\n\n1.  **左侧观察期 (1周内)**: 不要急于在急跌当日接飞刀。等待股价在1.20-1.25区间出现下影线或小阳线企稳。\n2.  **分批建仓**: \n    *   **第一笔 (20%)**: 确认企稳后，在1.25附近介入，博取反弹。\n    *   **第二笔 (30%)**: 若股价收复1.40（回购成本区下方），确认趋势反转时加仓。\n3.  **目标管理**: 短期反弹目标看至1.45（前期平台底），长期目标看至1.68（估值修复）。",
+  "risk": "### 风险提示\n\n1.  **流动性风险**: 08017.HK属于港股创业板，成交量通常较小，急跌时可能缺乏买盘承接，导致滑点巨大。\n2.  **基本面陷阱**: 需确认高ROE和净利润是否包含一次性收益。若业绩不可持续，低估值逻辑将失效。\n3.  **退市/转板风险**: 港股GEM板公司波动极大，需关注监管政策变化。",
+  "deep_insight": "### 深度研报：主力底牌与价值锚点\n\n*   **主力筹码透视**: \n    *   **回购成本**: 1月26-27日，公司回购约180万股，耗资约270万港元，**平均成本约1.52港元**。\n    *   **当前折价**: 现价1.28元，较主力（公司）近期回购成本折价**15.8%**。这意味着现在买入，你的成本比公司管理层还低15%。\n*   **ROE含金量**: \n    *   40.88%的ROE在港股科技板块极为罕见。结合87.91%的毛利率，说明公司在金融交易系统SaaS领域拥有极强的定价权和极低的边际成本。\n*   **机构观点推演**: \n    *   机构通常给予高ROE SaaS企业20倍以上PE。当前仅12倍PE，市场可能过度反应了流动性折价。一旦港股流动性改善，此类“小而美”的公司具备戴维斯双击潜力。"
+}", aiScore: 72, deepInsight: "### 深度研报：主力底牌与价值锚点
+
+*   **主力筹码透视**: 
+    *   **回购成本**: 1月26-27日，公司回购约180万股，耗资约270万港元，**平均成本约1.52港元**。
+    *   **当前折价**: 现价1.28元，较主力（公司）近期回购成本折价**15.8%**。这意味着现在买入，你的成本比公司管理层还低15%。
+*   **ROE含金量**: 
+    *   40.88%的ROE在港股科技板块极为罕见。结合87.91%的毛利率，说明公司在金融交易系统SaaS领域拥有极强的定价权和极低的边际成本。
+*   **机构观点推演**: 
+    *   机构通常给予高ROE SaaS企业20倍以上PE。当前仅12倍PE，市场可能过度反应了流动性折价。一旦港股流动性改善，此类“小而美”的公司具备戴维斯双击潜力。", isUnlocked: false, userId: ObjectId("697f682165c4c64af6565fa6"), createdAt: DateTime("2026-02-02 11:15:46.37 +00:00:00"), })
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("698087628461dd06b07d8b2f"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, }, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+ POST /report/08017.HK 200 in 43s (compile: 3ms, render: 43s)
+ │ GET https://guba.eastmoney.com/list,hk08017.html 200 in 173ms (cache skip)
+ │ │ Cache skipped reason: (cache-control: no-cache (hard refresh))
+ │ POST https://api.apiyi.com/v1beta/models/gemini-3-pro-preview:generateContent?key=***REMOVED*** 200 in 42724ms (cache skip)
+ │ │ Cache skipped reason: (fetchCache = default-no-store)
+prisma:query db.AnalysisReport.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $eq: [ "$userId", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$userId", "$$REMOVE", ], }, ], }, { $and: [ { $eq: [ "$stockCode", { $literal: "08017.HK", }, ], }, { $ne: [ "$stockCode", "$$REMOVE", ], }, ], }, { $and: [ { $gt: [ "$createdAt", { $literal: DateTime("2026-02-02 11:10:46.402 +00:00:00"), }, ], }, { $ne: [ "$createdAt", "$$REMOVE", ], }, ], }, ], }, }, }, { $sort: { createdAt: -1, }, }, { $limit: 1, }, { $project: { _id: 1, stockCode: 1, stockName: 1, type: 1, summary: 1, content: 1, aiScore: 1, deepInsight: 1, isUnlocked: 1, userId: 1, createdAt: 1, }, }, ])
+[DB HIT] Returning persisted report for 08017.HK
+ POST /report/08017.HK 200 in 20ms (compile: 8ms, render: 12ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/08017.HK 200 in 9ms (compile: 1799µs, render: 7ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/08017.HK 200 in 10ms (compile: 2ms, render: 8ms)
+prisma:query db.User.aggregate([ { $match: { $expr: { $and: [ { $and: [ { $and: [ { $eq: [ "$_id", { $literal: ObjectId("697f682165c4c64af6565fa6"), }, ], }, { $ne: [ "$_id", "$$REMOVE", ], }, ], }, ], }, { }, ], }, }, }, { $project: { _id: 1, phone: 1, freeQuotaUsed: 1, isVip: 1, }, }, ])
+ POST /report/08017.HK 200 in 20ms (compile: 7ms, render: 13ms)
+[Deep Analysis] Calling Python API: http://localhost:8000/api/analysis/deep-analysis
+[Deep Analysis] Stock: 08017.HK, User: 697f682165c4c64af6565fa6
+[Deep Analysis] Timeout: 180 seconds
+ GET /sw.js 404 in 43ms (compile: 7ms, render: 36ms)
+[Deep Analysis] Python API Error: 500 {"detail":"深度分析失败: 504: 深度分析超时（150秒）。股票代码: 08017.HK，请稍后重试或联系技术支持。"}
+[Deep Analysis] Error: Error: Python API Error: 500
+    at generateTradingAgentsAnalysis (src/app/actions/analysis.ts:473:19)
+  471 |             const errorText = await response.text();
+  472 |             console.error(`[Deep Analysis] Python API Error: ${response.status}`, errorText);
+> 473 |             throw new Error(`Python API Error: ${response.status}`);
+      |                   ^
+  474 |         }
+  475 |
+  476 |         const result = await response.json();
+⨯ Error: Python API Error: 500
+    at generateTradingAgentsAnalysis (src/app/actions/analysis.ts:473:19)
+  471 |             const errorText = await response.text();
+  472 |             console.error(`[Deep Analysis] Python API Error: ${response.status}`, errorText);
+> 473 |             throw new Error(`Python API Error: ${response.status}`);
+      |                   ^
+  474 |         }
+  475 |
+  476 |         const result = await response.json(); {
+  digest: '3703342743'
+}
+ POST /report/08017.HK 500 in 2.5min (compile: 1649µs, render: 2.5min)
+ │ POST http://localhost:8000/api/analysis/deep-analysis 500 in 150203ms (cache skip)
+ │ │ Cache skipped reason: (cache: no-store)
