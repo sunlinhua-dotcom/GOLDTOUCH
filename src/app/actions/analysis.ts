@@ -129,17 +129,17 @@ export async function generateStockReportAI(stock: StockInfo, fundamentals?: Fun
     */
     if (userId) {
         try {
-            // Check for existing report (valid for 24h or if it's in history)
-            // Actually, for "History" function, we might want to return it regardless of time?
-            // But for "Live Analysis", we want fresh.
-            // Let's stick to a 24h cache for now to prevent spamming AI.
-            const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
+            // Check for existing report (valid for 5 minutes for development)
+            // Reduced from 24h to 5 minutes to allow more frequent updates during development
+            // TODO: In production, consider increasing to 1-2 hours to reduce API costs
+            const cacheMinutes = 5; // 开发环境：5分钟缓存
+            const cacheTime = new Date(Date.now() - cacheMinutes * 60 * 1000);
 
             const cachedReport = await prisma.analysisReport.findFirst({
                 where: {
                     userId,
                     stockCode: stock.code,
-                    createdAt: { gt: twentyFourHoursAgo }
+                    createdAt: { gt: cacheTime }
                 },
                 orderBy: { createdAt: 'desc' }
             });
@@ -428,5 +428,69 @@ export async function generateDeepInsightAI(stock: StockInfo, fundamentals: Stoc
     } catch (error) {
         console.error("Gemini Deep Insight Error:", error);
         return "深度分析暂时不可用 (API Limit)。";
+    }
+}
+
+/**
+ * 调用完整的 Trading Agents 深度分析系统
+ * 返回机构级多维度分析结果
+ */
+export async function generateTradingAgentsAnalysis(stockCode: string, userId: string) {
+    'use server';
+
+    // 创建 AbortController 用于超时控制
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 180000); // 180秒 (3分钟) 超时
+
+    try {
+        // Server Action 可以直接访问环境变量，调用 Python 后端
+        const quantApiUrl = process.env.QUANT_API_URL || 'http://localhost:8000';
+
+        console.log(`[Deep Analysis] Calling Python API: ${quantApiUrl}/api/analysis/deep-analysis`);
+        console.log(`[Deep Analysis] Stock: ${stockCode}, User: ${userId}`);
+        console.log(`[Deep Analysis] Timeout: 180 seconds`);
+
+        const response = await fetch(`${quantApiUrl}/api/analysis/deep-analysis`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                stock_code: stockCode,
+                user_id: userId,
+            }),
+            // 禁用缓存，确保每次都是新数据
+            cache: 'no-store',
+            // 添加超时信号
+            signal: controller.signal,
+        });
+
+        clearTimeout(timeoutId);
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error(`[Deep Analysis] Python API Error: ${response.status}`, errorText);
+            throw new Error(`Python API Error: ${response.status}`);
+        }
+
+        const result = await response.json();
+        console.log(`[Deep Analysis] Success for ${stockCode}`);
+
+        if (!result.success) {
+            throw new Error(result.message || 'Deep analysis failed');
+        }
+
+        return result.data;
+    } catch (error) {
+        clearTimeout(timeoutId);
+
+        // 检测超时错误
+        if (error instanceof Error && error.name === 'AbortError') {
+            console.error('[Deep Analysis] Timeout (180 seconds)');
+            throw new Error('深度分析超时（180秒）。请稍后重试。');
+        }
+
+        console.error('[Deep Analysis] Error:', error);
+        throw error;
     }
 }

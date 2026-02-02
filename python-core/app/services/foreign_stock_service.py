@@ -554,7 +554,8 @@ class ForeignStockService:
         # 数据源名称映射
         source_handlers = {
             'akshare': ('akshare', self._get_hk_info_from_akshare),
-            'yahoo_finance': ('yfinance', self._get_hk_info_from_yfinance),
+            'yahoo_finance': ('yahoo_finance', self._get_hk_info_from_yfinance),
+            'yfinance': ('yahoo_finance', self._get_hk_info_from_yfinance), # Alias
             'finnhub': ('finnhub', self._get_hk_info_from_finnhub),
         }
 
@@ -571,6 +572,11 @@ class ForeignStockService:
             logger.warning("⚠️ 数据库中没有配置有效的港股基础信息数据源，使用默认顺序")
             valid_priority = ['akshare', 'yahoo_finance', 'finnhub']
 
+        # 🔥 强制确保有能够提供元数据的数据源参与（即使数据库没配）
+        if 'yahoo_finance' not in [s.lower() for s in valid_priority] and 'yfinance' not in [s.lower() for s in valid_priority]:
+            valid_priority.append('yahoo_finance')
+            logger.info("➕ [HK数据源] 强制追加 yahoo_finance 用于元数据补充")
+
         logger.info(f"📊 [HK基础信息有效数据源] {valid_priority}")
 
         for source_name in valid_priority:
@@ -579,12 +585,25 @@ class ForeignStockService:
             try:
                 # 🔥 使用 asyncio.to_thread 避免阻塞事件循环
                 import asyncio
-                info_data = await asyncio.to_thread(handler_func, code)
-                data_source = handler_name
+                current_info = await asyncio.to_thread(handler_func, code)
+                
+                if current_info:
+                    logger.info(f"✅ {handler_name}获取港股基础信息成功: {code}")
+                    if not info_data:
+                        info_data = current_info
+                        data_source = handler_name
+                    else:
+                        # 补充缺失字段 (Enrichment)
+                        for field, value in current_info.items():
+                            # 如果主数据源没提供该字段，或者字段为空，则补充
+                            if (info_data.get(field) is None or info_data.get(field) == "") and value:
+                                info_data[field] = value
+                                logger.info(f"➕ 从 {handler_name} 补充港股字段: {field}")
 
-                if info_data:
-                    logger.info(f"✅ {data_source}获取港股基础信息成功: {code}")
-                    break
+                    # 如果数据已经很完整了（基础元数据 + 核心财务数据均已集齐），就可以提前结束
+                    # 判据：有行业、有市值、有营收、有ROE
+                    if all(info_data.get(f) for f in ['industry', 'market_cap', 'revenue', 'roe']):
+                        break
             except Exception as e:
                 logger.warning(f"⚠️ {source_name}获取基础信息失败: {e}")
                 continue
@@ -901,6 +920,16 @@ class ForeignStockService:
             # 🔥 从财务指标中获取 roe 和 debt_ratio
             'roe': data.get('roe'),
             'debt_ratio': data.get('debt_ratio'),
+            
+            # 🔥 新增：核心财务指标（营收、净利、EPS等）
+            'revenue': data.get('revenue'),
+            'net_profit': data.get('net_profit'),
+            'gross_margin': data.get('gross_margin'),
+            'net_profit_margin': data.get('net_profit_margin'),
+            'eps': data.get('eps'),
+            'net_profit_parent': data.get('net_profit_parent'), # 归母净利润
+            
+            'dividend_yield': data.get('dividend_yield'),
             'dividend_yield': data.get('dividend_yield'),
             'currency': data.get('currency', 'HKD'),
             'source': source,
@@ -1557,7 +1586,8 @@ class ForeignStockService:
         """从AKShare获取港股基础信息和财务指标"""
         from tradingagents.dataflows.providers.hk.improved_hk import (
             get_hk_stock_info_akshare,
-            get_hk_financial_indicators
+            get_hk_financial_indicators,
+            get_improved_hk_provider  # Need this to access static map
         )
 
         # 1. 获取基础信息（包含当前价格）
@@ -1596,11 +1626,27 @@ class ForeignStockService:
             # ps_ratio 暂时为 None
 
         # 4. 合并数据
+        # 🔥 尝试从静态映射中获取行业信息
+        provider = get_improved_hk_provider()
+        normalized_code = provider._normalize_hk_symbol(code)
+        
+        static_industry = None
+        static_sector = None
+        
+        # 尝试匹配多种格式
+        for key in [code, normalized_code, f"{normalized_code}.HK"]:
+            if key in provider.hk_stock_names:
+                entry = provider.hk_stock_names[key]
+                if isinstance(entry, dict):
+                    static_industry = entry.get('industry')
+                    static_sector = entry.get('sector')
+                break
+
         return {
             'name': info.get('name', f'港股{code}'),
             'market_cap': None,  # AKShare 基础信息不包含市值
-            'industry': None,
-            'sector': None,
+            'industry': static_industry,
+            'sector': static_sector,
             # 🔥 计算得到的估值指标
             'pe_ratio': pe_ratio,
             'pb_ratio': pb_ratio,
@@ -1610,13 +1656,30 @@ class ForeignStockService:
             # 🔥 从财务指标中获取
             'roe': financial_indicators.get('roe_avg'),  # 平均净资产收益率
             'debt_ratio': financial_indicators.get('debt_asset_ratio'),  # 资产负债率
+            
+            # 🔥 新增映射
+            'revenue': financial_indicators.get('operate_income'),  # 营业收入
+            'net_profit': financial_indicators.get('holder_profit'),  # 归母净利润
+            'gross_margin': financial_indicators.get('gross_profit_ratio'),  # 毛利率
+            'net_profit_margin': financial_indicators.get('net_profit_ratio'),  # 净利率
+            'eps': financial_indicators.get('eps_basic'),  # 基本每股收益
+            'net_profit_parent': financial_indicators.get('holder_profit'),  # 归母净利润 (Alias)
         }
 
     def _get_hk_info_from_yfinance(self, code: str) -> Dict:
         """从Yahoo Finance获取港股基础信息"""
         import yfinance as yf
 
-        ticker = yf.Ticker(f"{code}.HK")
+        # 🔥 Yahoo Finance 对港股代码有特定要求：通常是 4 位数字补零 + .HK
+        # 0700.HK, 0772.HK (阅文), 0005.HK (汇丰)
+        # 如果是 5 位代码且以 0 开头，通常取后 4 位
+        clean_code = code.replace('.HK', '').replace('.hk', '')
+        if clean_code.isdigit():
+            yf_code = f"{int(clean_code):04d}.HK"
+        else:
+            yf_code = f"{clean_code}.HK"
+
+        ticker = yf.Ticker(yf_code)
         info = ticker.info
 
         return {
@@ -1705,7 +1768,13 @@ class ForeignStockService:
         import yfinance as yf
         import pandas as pd
 
-        ticker = yf.Ticker(f"{code}.HK")
+        clean_code = code.replace('.HK', '').replace('.hk', '')
+        if clean_code.isdigit():
+            yf_code = f"{int(clean_code):04d}.HK"
+        else:
+            yf_code = f"{clean_code}.HK"
+
+        ticker = yf.Ticker(yf_code)
 
         # 周期映射
         period_map = {

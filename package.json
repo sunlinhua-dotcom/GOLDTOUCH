@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "node scripts/init_remote_rs.js && next start",
+    "build": "prisma generate && next build",
+    "start": "next start",
     "lint": "eslint",
-    "postinstall": "DATABASE_URL='mongodb://nodb:27017/dummy' prisma generate"
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
@@ -17,7 +17,7 @@
     "framer-motion": "^12.29.2",
     "html2canvas": "^1.4.1",
     "jspdf": "^4.0.0",
-    "mongodb": "^7.0.0",
+    "lucide-react": "^0.563.0",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",

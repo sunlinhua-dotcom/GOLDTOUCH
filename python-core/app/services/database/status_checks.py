@@ -6,12 +6,12 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Any, Dict
 
-from app.core.database import get_mongo_db, get_redis_client
 from app.core.config import settings
 
 
 async def get_mongodb_status() -> Dict[str, Any]:
     try:
+        from app.core.database import get_mongo_db
         db = get_mongo_db()
         await db.command("ping")
         server_info = await db.command("buildInfo")
@@ -39,6 +39,7 @@ async def get_mongodb_status() -> Dict[str, Any]:
 
 async def get_redis_status() -> Dict[str, Any]:
     try:
+        from app.core.database import get_redis_client
         redis_client = get_redis_client()
         await redis_client.ping()
         info = await redis_client.info()

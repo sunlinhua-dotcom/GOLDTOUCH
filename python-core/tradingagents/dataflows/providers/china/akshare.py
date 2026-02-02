@@ -78,7 +78,7 @@ class AKShareProvider(BaseStockDataProvider):
                             # 注意：使用 impersonate 时，不要传递自定义 headers，让 curl_cffi 自动设置
                             # 🔥 强制缩短超时到 1.5 秒，以便在网络不通时快速 Fallback
                             curl_kwargs = {
-                                'timeout': 1.5,
+                                'timeout': 10.0,
                                 'impersonate': "chrome120"  # 模拟 Chrome 120
                             }
 
@@ -123,8 +123,7 @@ class AKShareProvider(BaseStockDataProvider):
                         if 'Accept-Language' not in kwargs['headers']:
                             kwargs['headers']['Accept-Language'] = 'zh-CN,zh;q=0.9,en;q=0.8'
 
-                    if 'timeout' not in kwargs or kwargs['timeout'] > 1.5:
-                        kwargs['timeout'] = 1.5
+                        kwargs['timeout'] = 10.0
 
                     # 添加重试机制（最多3次）
                     max_retries = 3
@@ -757,18 +756,103 @@ class AKShareProvider(BaseStockDataProvider):
                     logger.error(f"❌ 批量获取实时行情失败，已达最大重试次数: {e}")
                     return {}
 
+    def _get_sina_quote_direct(self, code: str) -> Optional[Dict[str, Any]]:
+        """
+        直接从新浪财经 HTTP 接口获取实时行情 (绕过 HTTPS/TLS 阻断)
+        """
+        try:
+            import requests
+            full_code = self._get_full_symbol(code).replace('.', '').lower() # e.g., sh600519
+            if not full_code.startswith(('sh', 'sz', 'bj')): 
+                 # 简单猜测
+                 if code.startswith('6'): full_code = f"sh{code}"
+                 else: full_code = f"sz{code}"
+
+            url = f"http://hq.sinajs.cn/list={full_code}"
+            headers = { "Referer": "http://finance.sina.com.cn/" }
+            
+            # 使用短超时，HTTP通常很快
+            resp = requests.get(url, headers=headers, timeout=3.0)
+            
+            if resp.status_code != 200: return None
+            
+            # content: var hq_str_sh600519="贵州茅台,1486.000,...";
+            text = resp.text
+            if '="' not in text: return None
+            
+            data_str = text.split('="')[1].split('";')[0]
+            parts = data_str.split(',')
+            
+            if len(parts) < 30: return None
+            
+            # 解析 (Sina 数据结构)
+            # 0: name, 1: open, 2: pre_close, 3: current, 4: high, 5: low
+            # 8: volume (股), 9: amount (元)
+            name = parts[0]
+            open_p = float(parts[1])
+            pre_close = float(parts[2])
+            current = float(parts[3])
+            high = float(parts[4])
+            low = float(parts[5])
+            volume = float(parts[8])
+            amount = float(parts[9])
+            
+            change = current - pre_close
+            pct_chg = (change / pre_close * 100) if pre_close > 0 else 0
+            
+            return {
+                "code": code,
+                "symbol": code,
+                "name": name,
+                "price": current,
+                "close": current,
+                "current_price": current,
+                "change": round(change, 2),
+                "change_percent": round(pct_chg, 2),
+                "pct_chg": round(pct_chg, 2),
+                "volume": volume,
+                "amount": amount,
+                "open_price": open_p,
+                "high_price": high,
+                "low_price": low,
+                "pre_close": pre_close,
+                # Sina 接口不直接提供 PE/PB/市值，需自行计算或设为 None
+                "pe": None, 
+                "pe_ttm": None,
+                "pb": None,
+                "total_mv": None,
+                "circ_mv": None,
+                "source": "sina_http"
+            }
+        except Exception as e:
+            logger.warning(f"⚠️ Sina HTTP Fetch failed: {e}")
+            return None
+
     async def get_stock_quotes(self, code: str) -> Optional[Dict[str, Any]]:
         """
         获取单个股票实时行情 (Robust Version)
-        Fallback Strategy: stock_bid_ask_em -> stock_zh_a_spot_em (Snapshot)
+        Fallback Strategy: Sina HTTP -> Stock Bid Ask EM -> Snapshot
         """
         if not self.connected: return None
 
         # -------------------------------------------------------------
-        # 1. Primary Method: stock_bid_ask_em (Detailed Quote)
+        # 1. Try Sina HTTP (Fastest & Most Robust against Firewall)
         # -------------------------------------------------------------
         try:
-            logger.info(f"📈 Fetching bid_ask for {code}...")
+            # logger.info(f"📈 [Sina] Fetching quote for {code}...")
+            # Run structured sync call in thread
+            sina_data = await asyncio.to_thread(self._get_sina_quote_direct, code)
+            if sina_data:
+                logger.info(f"✅ Sina HTTP Success for {code}: {sina_data['price']}")
+                return sina_data
+        except Exception as e:
+            logger.warning(f"⚠️ Sina Strategy failed: {e}")
+
+        # -------------------------------------------------------------
+        # 2. Secondary Method: stock_bid_ask_em (Detailed Quote)
+        # -------------------------------------------------------------
+        try:
+            logger.info(f"📈 [EM] Fetching bid_ask for {code}...")
             # Run in thread pool
             bid_ask_df = await asyncio.to_thread(self.ak.stock_bid_ask_em, symbol=code)
             
@@ -845,6 +929,11 @@ class AKShareProvider(BaseStockDataProvider):
                   now_cn = datetime.now(cn_tz)
                   trade_date = now_cn.strftime("%Y-%m-%d")
                   
+                  # 🔥 安全获取PE/PB值，None或0都保持为None便于前端判断
+                  pe_value = r.get('市盈率-动态')
+                  pb_value = r.get('市净率')
+                  market_cap_value = r.get('总市值')
+
                   return {
                       "code": code,
                       "symbol": code,
@@ -853,8 +942,9 @@ class AKShareProvider(BaseStockDataProvider):
                       "change": self._safe_float(r.get('涨跌额')),
                       "volume": self._safe_int(r.get('成交量')),
                       "amount": self._safe_float(r.get('成交额')),
-                      "pe": self._safe_float(r.get('市盈率-动态')),
-                      "market_cap": self._safe_float(r.get('总市值')),
+                      "pe": float(pe_value) if pe_value and not pd.isna(pe_value) and float(pe_value) != 0 else None,
+                      "pb": float(pb_value) if pb_value and not pd.isna(pb_value) and float(pb_value) != 0 else None,
+                      "market_cap": float(market_cap_value) if market_cap_value and not pd.isna(market_cap_value) else None,
                       "name": str(r.get('名称')),
                       "trade_date": trade_date,
                       "updated_at": now_cn.isoformat(),

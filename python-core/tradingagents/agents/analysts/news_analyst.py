@@ -138,7 +138,6 @@ CRITICAL: ONLY CHINESE OUTPUT. LATIN CHARACTERS (A-Z) ARE STRICTLY FORBIDDEN.
         prompt = ChatPromptTemplate.from_messages(
             [
                 (
-                (
                     "system",
                     """
 **任务指令**：
@@ -149,7 +148,6 @@ CRITICAL: ONLY CHINESE OUTPUT. LATIN CHARACTERS (A-Z) ARE STRICTLY FORBIDDEN.
 
 开始执行。
 """,
-                ),
                 ),
                 MessagesPlaceholder(variable_name="messages"),
             ]

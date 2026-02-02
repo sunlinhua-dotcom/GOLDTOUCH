@@ -195,19 +195,24 @@ class TradingAgentsGraph:
 
     def __init__(
         self,
-        selected_analysts=["market", "social", "news", "fundamentals"],
+        selected_analysts=None,
         debug=False,
         config: Dict[str, Any] = None,
     ):
         """Initialize the trading agents graph and components.
 
         Args:
-            selected_analysts: List of analyst types to include
+            selected_analysts: List of analyst types to include. If None, uses config setting.
+                Options: ["unified"] or ["market", "social", "news", "fundamentals"]
             debug: Whether to run in debug mode
             config: Configuration dictionary. If None, uses default config
         """
         self.debug = debug
         self.config = config or DEFAULT_CONFIG
+
+        # 🔥 优先使用config中的selected_analysts，如果参数和config都没有，使用["unified"]
+        if selected_analysts is None:
+            selected_analysts = self.config.get("selected_analysts", ["unified"])
 
         # Update the interface's config
         set_config(self.config)

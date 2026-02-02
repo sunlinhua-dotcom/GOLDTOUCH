@@ -235,10 +235,16 @@ async def init_database():
         mongo_client = db_manager.mongo_client
         mongo_db = db_manager.mongo_db
 
-        # 初始化Redis
-        await db_manager.init_redis()
-        redis_client = db_manager.redis_client
-        redis_pool = db_manager.redis_pool
+        # 初始化Redis (可选)
+        try:
+            await db_manager.init_redis()
+            redis_client = db_manager.redis_client
+            redis_pool = db_manager.redis_pool
+            logger.info("✅ Redis连接初始化成功")
+        except Exception as redis_error:
+            logger.warning(f"⚠️  Redis连接失败，将继续运行（某些功能可能受限）: {redis_error}")
+            redis_client = None
+            redis_pool = None
 
         logger.info("🎉 所有数据库连接初始化完成")
 
