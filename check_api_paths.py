@@ -2,7 +2,7 @@ import requests
 import os
 import json
 
-API_KEY = "***REMOVED***"
+API_KEY = os.environ["APIYI_API_KEY"]
 BASE_DOMAIN = "https://api.apiyi.com"
 
 def test_openai_style(suffix, model):

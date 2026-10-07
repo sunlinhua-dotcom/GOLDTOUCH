@@ -6,7 +6,6 @@ import os
 import sys
 
 # 设置环境变量
-os.environ["GOOGLE_API_KEY"] = "***REMOVED***"
 
 print("=" * 60)
 print("测试 Gemini API 连接")

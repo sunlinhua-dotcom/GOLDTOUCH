@@ -40,7 +40,7 @@ prompt = f"""
 
 def test_grounding():
     # User provided credentials
-    api_key = "***REMOVED***"
+    api_key = os.environ["APIYI_API_KEY"]
     base_url = "https://api.apiyi.com/v1beta"
     model_name = "gemini-2.0-flash" # gemini-3-pro-preview-thinking 暂不支持 tools，先用 flash 验证搜索能力
 

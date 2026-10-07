@@ -3,7 +3,8 @@ import fetch from 'node-fetch';
 
 // User Credentials
 const BASE_URL = "https://api.apiyi.com/v1beta";
-const KEY = "***REMOVED***";
+const KEY = process.env.APIYI_API_KEY;
+if (!KEY) throw new Error('APIYI_API_KEY is not set');
 const MODEL = "gemini-3-pro-preview";
 
 async function main() {

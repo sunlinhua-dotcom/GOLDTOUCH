@@ -1,9 +1,10 @@
+import os
 import requests
 import json
 import time
 
 # Configuration
-API_KEY = "***REMOVED***"
+API_KEY = os.environ["APIYI_API_KEY"]
 BASE_URL = "https://api.apiyi.com/v1beta"
 MODEL_NAME = "gemini-2.0-flash"
 
